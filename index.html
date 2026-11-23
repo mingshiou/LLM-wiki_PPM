@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Pathology & MPMI Wiki — Educational Presentation Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8faf7;
+      --card-bg: #ffffff;
+      --primary: #2e7d32;
+      --dark: #1b5e20;
+      --light-mint: #e8f5e9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f4f8f3 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 860px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: var(--light-mint);
+      border: 1px solid #c8e6c9;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    p.lead {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+    .item h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .item a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="badge">TAICA Generative AI Assignment 1110</div>
+    <h1>Plant Pathology & MPMI Wiki</h1>
+    <p class="lead">
+      An autonomous LLM-maintained knowledge base on Molecular Plant-Microbe Interactions (MPMI), accompanied by a high-resolution, responsive 16:9 interactive educational Reveal.js slide presentation.
+    </p>
+
+    <div class="actions">
+      <a href="wiki/presentations/plant-pti-response.html" class="btn btn-primary">
+        <span>▶</span> Launch HTML Slide Deck (16:9)
+      </a>
+      <a href="https://github.com/mingshiou/LLM-wiki_PPM" class="btn btn-secondary">
+        <span>📁</span> View GitHub Repository
+      </a>
+    </div>
+
+    <div class="grid">
+      <div class="item">
+        <h3>🎓 Interactive Slide Deck</h3>
+        <p>Collegiate-level lecture covering the Zig-Zag model, FLS2/BAK1/BIK1 membrane topology, smooth apoplastic ROS kinetics, callose papillae, and biocontrol priming.</p>
+        <p style="margin-top:6px;"><a href="wiki/presentations/plant-pti-response.html">Open Presentation &rarr;</a></p>
+      </div>
+      <div class="item">
+        <h3>📝 Speaker Notes Script</h3>
+        <p>Complete slide-by-slide lecturer script and concept discussion guide supporting the presentation.</p>
+        <p style="margin-top:6px;"><a href="wiki/presentations/plant-pti-notes.md">Read Lecture Notes &rarr;</a></p>
+      </div>
+      <div class="item">
+        <h3>📚 Wiki Knowledge Base</h3>
+        <p>23 interconnected entity pages across pathogens, diseases, hosts, effectors, management, and experimental protocols.</p>
+        <p style="margin-top:6px;"><a href="wiki/index.md">Explore Wiki Catalog &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Plant Pathology & MPMI LLM Wiki &bull; Hosted on GitHub Pages
+  </footer>
+
+</body>
+</html>
