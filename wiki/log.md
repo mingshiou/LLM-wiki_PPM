@@ -1,0 +1,33 @@
+# Knowledge Base Operational Log
+
+All operations (ingestions, major queries, lint passes, restructuring) are chronologically recorded here.
+Format: `## [YYYY-MM-DD] <operation> | <Title/Subject> | <Metadata>`
+
+---
+
+## [2026-11-20] init | Knowledge Base Setup | Initialized repository structure, SCHEMA.md, index.md, and operational log.
+
+
+## [2026-11-20] ingest | Bacterial spot of tomato and pepper: diverse Xanthomonas species with a wide variety of virulence factors posing a worldwide challenge (Potnis et al., 2015) | touched: [[xanthomonas-euvesicatoria]], [[xanthomonas-perforans]], [[xanthomonas-vesicatoria]], [[xanthomonas-gardneri]], [[bacterial-spot-tomato-pepper]], [[solanum-lycopersicum]], [[capsicum-annuum]], [[avrbs2]], [[avrbs3]], [[gene-for-gene-resistance]]
+
+## [2026-11-20] ingest | A centenary for bacterial spot of tomato and pepper (Osdaghi et al., 2021) | touched: [[copper-bactericides-and-resistance]], [[xanthomonas-gardneri]], [[xanthomonas-perforans]], [[xanthomonas-euvesicatoria]], [[bacterial-spot-tomato-pepper]]
+
+## [2026-11-20] ingest | Bacillus velezensis: A Beneficial Biocontrol Agent or Facultative Phytopathogen for Sustainable Agriculture (Rabbee et al., 2023) | touched: [[bacillus-velezensis]], [[cyclic-lipopeptides]], [[induced-systemic-resistance]], [[copper-bactericides-and-resistance]]
+
+## [2026-11-20] ingest | Bacillus velezensis GF267 as a multi-site antagonist for the control of tomato bacterial spot (Mates et al., 2019) | touched: [[spatial-separation-isr-assay]], [[bacillus-velezensis]], [[bacterial-spot-tomato-pepper]]
+
+## [2026-11-20] ingest | Sustainable Management of Bacterial Leaf Spot in Bell Pepper by Biological and Chemical Resistance Inducers (Keawmanee et al., 2025) | touched: [[chemical-resistance-inducers]], [[capsicum-annuum]], [[bacillus-velezensis]]
+
+## [2026-11-20] ingest | Intensification of PAMP-triggered immunity in watermelon by Bacillus spp. strains as a strategy for controlling bacterial fruit blotch disease (Chang et al., 2019) | touched: [[acidovorax-citrulli]], [[bacterial-fruit-blotch]], [[citrullus-lanatus]], [[pamp-triggered-immunity]], [[bacillus-velezensis]]
+
+## [2026-11-20] ingest | Characterization and complete genome analysis of the surfactin-producing, plant-protecting bacterium Bacillus velezensis 9D-6 (Grady et al., 2019) | touched: [[bacillus-velezensis]], [[cyclic-lipopeptides]]
+
+## [2026-11-20] ingest | Bacillus thuringiensis promotes systemic immunity in tomato, controlling pests and pathogens and promoting yield (Gupta et al., 2024) | touched: [[bacillus-thuringiensis]], [[solanum-lycopersicum]], [[pamp-triggered-immunity]]
+
+## [2026-11-20] ingest | Rhizosphere-Associated Pseudomonas Suppress Local Root Immune Responses by Gluconic Acid-Mediated Lowering of Environmental pH (Yu et al., 2019) | touched: [[rhizosphere-immune-modulation]], [[pamp-triggered-immunity]], [[induced-systemic-resistance]]
+
+## [2026-11-20] ingest | Spatiotemporal coordination of virulence, metabolism, and stress responses shapes infection dynamics of Xanthomonas perforans (Kaur et al., 2026) | touched: [[in-planta-bacterial-transcriptomics]], [[xanthomonas-perforans]], [[bacterial-spot-tomato-pepper]]
+
+## [2026-11-20] docs(slides) | Plant Immunity 101: PAMP-Triggered Immunity (PTI) Presentation HTML | touched: [[plant-pti-response.html]], [[pamp-triggered-immunity]], [[gene-for-gene-resistance]], [[citrullus-lanatus]], [[rhizosphere-immune-modulation]]
+
+## [2026-11-23] feat(sop) | Educational Presentation SOP & Skill Implementation | Established 5-phase SOP in AGENTS.md and implemented .agents/skills/educational-slides/SKILL.md with 16:9 Reveal.js layout budgets, smooth cubic spline curves, biological topologies, and 2-iteration circuit breaker self-linting.

@@ -1,0 +1,15 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Obsidian Workspace Cache (keep community-plugins and app settings, ignore local UI state)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+
+# Optional: Large / Copyrighted raw PDFs
+# Uncomment the line below if you want to exclude downloaded PDF binaries from GitHub commits:
+# raw/papers/*.pdf
+raw/papers/*.pdf
+raw/papers/*.pdf

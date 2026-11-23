@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Plant Immunity 101: PAMP-Triggered Immunity (PTI)</title>
+
+  <!-- Reveal.js styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-canvas: #f8faf7;
+      --surface-white: #ffffff;
+      --primary-green: #2e7d32;
+      --dark-green: #1b5e20;
+      --light-mint: #e8f5e9;
+      --accent-emerald: #10b981;
+      --accent-blue: #0284c7;
+      --accent-blue-bg: #f0f9ff;
+      --accent-amber: #d97706;
+      --accent-amber-bg: #fffbeb;
+      --accent-red: #dc2626;
+      --accent-red-bg: #fef2f2;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --border-green: #c8e6c9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .reveal-viewport {
+      background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f4f8f3 100%);
+    }
+
+    .reveal {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-main);
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    /* 16:9 Slide Container filling exactly 1280x720 */
+    .slide-container {
+      width: 1280px;
+      height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 56px 36px 56px;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* Header */
+    .slide-header {
+      flex-shrink: 0;
+      margin-bottom: 20px;
+    }
+
+    .topic-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark-green);
+      background: var(--light-mint);
+      border: 1px solid var(--border-green);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--dark-green);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .reveal h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      color: var(--dark-green);
+      margin-bottom: 8px;
+    }
+
+    .reveal h2 {
+      font-size: 32px;
+      line-height: 1.2;
+      color: var(--dark-green);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* Body Area - Takes up remaining vertical space without overflow */
+    .slide-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    /* Natural Text & List flow (No unnecessary boxes) */
+    p {
+      margin: 0 0 12px 0;
+      line-height: 1.5;
+      font-size: 18px;
+      color: var(--text-main);
+    }
+
+    ul.natural-list {
+      margin: 0 0 14px 0;
+      padding-left: 22px;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    ul.natural-list li {
+      margin-bottom: 8px;
+    }
+
+    ul.natural-list li strong {
+      color: var(--dark-green);
+    }
+
+    /* Comparative Column Layout */
+    .compare-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      width: 100%;
+    }
+
+    .compare-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .compare-col {
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .compare-col.green-top { border-top: 4px solid var(--primary-green); }
+    .compare-col.blue-top { border-top: 4px solid var(--accent-blue); }
+    .compare-col.amber-top { border-top: 4px solid var(--accent-amber); }
+
+    .compare-col h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .compare-col p {
+      font-size: 15px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    /* Visual Diagram Container (Clean, Proportional) */
+    .diagram-panel {
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Timeline & Pipeline (CSS Flex - Never distorted) */
+    .pipeline-container {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      margin: 14px 0 20px 0;
+    }
+
+    .pipeline-step {
+      flex: 1;
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px 18px;
+      position: relative;
+    }
+
+    .pipeline-step.active {
+      border-color: var(--border-green);
+      background: #fafdfa;
+    }
+
+    .pipeline-step .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-green);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .pipeline-step h4 {
+      font-size: 17px;
+      color: var(--dark-green);
+      margin-bottom: 6px;
+    }
+
+    .pipeline-step p {
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .pipeline-arrow {
+      display: flex;
+      align-items: center;
+      color: var(--border-subtle);
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    /* Metric banner */
+    .metric-banner {
+      background: #f0fdf4;
+      border-left: 4px solid var(--primary-green);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 14px 0;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .metric-value {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--dark-green);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .metric-text {
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--text-main);
+    }
+
+    /* Table styling */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      margin-top: 6px;
+    }
+
+    .summary-table th {
+      background: #f1f5f9;
+      color: var(--dark-green);
+      font-weight: 700;
+      padding: 10px 14px;
+      border-bottom: 2px solid var(--border-subtle);
+      text-align: left;
+    }
+
+    .summary-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      line-height: 1.4;
+    }
+
+    .summary-table tr:nth-child(even) td {
+      background: #fafaf9;
+    }
+
+    /* Code */
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Dedicated Bottom Footer strictly inside 16:9 canvas */
+    .slide-footer {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .slide-footer .citation {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .slide-footer .page-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Notes Toggle Button & Drawer */
+    #notes-toggle-btn {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark-green);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #notes-toggle-btn:hover { background: var(--light-mint); }
+
+    #notes-modal {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-height: 220px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      border-top: 3px solid var(--primary-green);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      z-index: 999;
+      padding: 18px 40px;
+      box-sizing: border-box;
+      transform: translateY(100%);
+      transition: transform 0.25s ease;
+      overflow-y: auto;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #1e293b;
+    }
+
+    #notes-modal.visible { transform: translateY(0); }
+
+    #notes-modal h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Notes Toggle Button -->
+<button id="notes-toggle-btn" onclick="toggleNotesModal()" title="Toggle Speaker Notes (Shortcut: N)">
+  <span>📝</span> Speaker Notes (N)
+</button>
+
+<!-- Notes Drawer -->
+<div id="notes-modal">
+  <h4>Speaker Lecturing Script</h4>
+  <div id="notes-body">Select a slide to view notes.</div>
+</div>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 1: Title & Overview -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Undergraduate Plant Pathology Series</div>
+          <h1>PAMP-Triggered Immunity (PTI)</h1>
+          <p class="subtitle">The Foundational Cell-Surface Defense in Plants</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2" style="align-items: center;">
+            <div>
+              <p style="font-size: 21px; line-height: 1.6; color: var(--text-main);">
+                Unlike vertebrates with specialized circulating white blood cells and antibodies, <strong>every individual plant cell</strong> possesses autonomous innate immune capacity to perceive and restrict microbial invaders.
+              </p>
+              <p style="color: var(--dark-green); font-weight: 600; font-size: 18px; margin-top: 14px;">
+                Surface Surveillance &rarr; Phosphorylation Relay &rarr; Coordinated Defenses
+              </p>
+            </div>
+
+            <div style="background: var(--surface-white); border-left: 3px solid var(--primary-green); padding: 18px 24px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+              <h3 style="font-size: 18px; color: var(--dark-green); margin-bottom: 10px;">Lecture Trajectory</h3>
+              <ul class="natural-list" style="font-size: 16px; margin: 0;">
+                <li><strong>The Multi-Layered Defense Model</strong>: The Zig-Zag Framework</li>
+                <li><strong>Conserved Signatures</strong>: flg22, elf18, and Chitin</li>
+                <li><strong>Receptor Complex</strong>: FLS2, BAK1 Co-Receptor, and BIK1</li>
+                <li><strong>Signaling & Execution</strong>: Ca²⁺, MAPKs, ROS Burst, and Callose</li>
+                <li><strong>Agricultural Priming</strong>: Beneficial Bacilli in Biocontrol</li>
+              </ul>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Jones & Dangl (2006); Boller & Felix (2009)</div>
+          <div class="page-num">1</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Welcome students. Today we explore the molecular foundation of plant defense: PAMP-Triggered Immunity (PTI). 
+        A guiding question: Plants have no bloodstream, no wandering macrophages, and no adaptive antibodies. How does a single tomato leaf cell detect an invading bacterium within minutes of contact? 
+        The answer lies in plasma membrane pattern recognition receptors that stand continuous surveillance.
+      </aside>
+    </section>
+
+    <!-- SLIDE 2: Multi-Layered Architecture -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Conceptual Framework</div>
+          <h2>The Multi-Layered Plant Immune Architecture</h2>
+          <p class="subtitle">The Zig-Zag Framework: Conceptualizing self versus non-self recognition in plants</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <!-- Layer 1 -->
+            <div class="compare-col green-top">
+              <h3 style="color: var(--dark-green);">Layer 1: Cell-Surface Immunity (PTI)</h3>
+              <p><strong>Cellular Location:</strong> Outer plasma membrane & apoplast</p>
+              <p><strong>Sensory Hardware:</strong> Pattern Recognition Receptors (PRRs)</p>
+              <p><strong>Molecular Targets:</strong> Conserved microbial signatures (PAMPs / MAMPs)</p>
+              <p><strong>Defensive Scope:</strong> Broad-spectrum basal resistance; halts colonization by non-adapted microbes.</p>
+            </div>
+
+            <!-- Layer 2 -->
+            <div class="compare-col blue-top">
+              <h3 style="color: var(--accent-blue);">Layer 2: Intracellular NLR Immunity (ETI)</h3>
+              <p><strong>Cellular Location:</strong> Cytosol and host cell nucleus</p>
+              <p><strong>Sensory Hardware:</strong> Nucleotide-binding LRR receptors (NLRs / R-genes)</p>
+              <p><strong>Molecular Targets:</strong> Pathogen-specific virulence effectors (Avr factors)</p>
+              <p><strong>Defensive Scope:</strong> Rapid, robust resistance; frequently culminates in hypersensitive cell death (HR).</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding: 12px 18px; background: #fafaf9; border-radius: 8px; font-size: 16px; color: var(--text-muted);">
+            <strong style="color: var(--text-main);">The Evolutionary Dynamic:</strong> PTI represents the ancient, foundational defense line. Pathogens evolved Type III effectors to suppress PTI (causing susceptibility), which in turn provoked the evolution of intracellular NLR receptors (ETI).
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Jones & Dangl (2006); Cook et al. (2015)</div>
+          <div class="page-num">2</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Walk students through the spatial separation:
+        Layer 1 (PTI) acts at the exterior cell boundary, detecting shared microbial molecules that pathogens cannot easily mutate away.
+        Layer 2 (ETI) acts inside the host cell, sensing specific sabotage proteins (effectors).
+        PTI is the frontline wall preventing 99% of ambient microbes from causing disease.
+      </aside>
+    </section>
+
+    <!-- SLIDE 3: Conserved Microbial Signatures (PAMPs) -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Molecular Ligands</div>
+          <h2>Conserved Microbial Signatures (PAMPs / MAMPs)</h2>
+          <p class="subtitle">Indispensable structural and physiological components of microbial life</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-3">
+            <div class="compare-col green-top">
+              <h3 style="color: var(--dark-green);">Bacterial Flagellin</h3>
+              <p><strong>Epitope: <code>flg22</code></strong></p>
+              <p>A 22-amino-acid peptide from the conserved N-terminus of bacterial flagellin (from <em>Pseudomonas</em>, <em>Xanthomonas</em>, <em>Acidovorax</em>).</p>
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">Vital for flagellar motor assembly and motility in water films.</p>
+            </div>
+
+            <div class="compare-col blue-top">
+              <h3 style="color: var(--accent-blue);">Elongation Factor Tu</h3>
+              <p><strong>Epitope: <code>elf18</code></strong></p>
+              <p>An 18-amino-acid epitope from bacterial EF-Tu, the ubiquitous GTPase driving ribosomal protein translation.</p>
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">Highly expressed bacterial protein released during apoplastic cell lysis.</p>
+            </div>
+
+            <div class="compare-col amber-top">
+              <h3 style="color: var(--accent-amber);">Fungal Chitin</h3>
+              <p><strong>Epitope: Chitin Oligomers</strong></p>
+              <p>Linear &beta;-(1,4)-linked N-acetylglucosamine polymers forming the structural scaffolding of fungal cell walls.</p>
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">Completely absent in plant tissues; an unmistakable signature of fungal presence.</p>
+            </div>
+          </div>
+
+          <p style="margin-top: 18px; font-size: 16px; color: var(--text-muted);">
+            <strong style="color: var(--text-main);">Why "MAMPs"?</strong> Because non-pathogenic, beneficial rhizobacteria (e.g. <em>Bacillus</em> and <em>Pseudomonas</em>) also carry flagellin and EF-Tu, the broader term <strong>MAMPs</strong> (Microbe-Associated Molecular Patterns) is commonly used.
+          </p>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Boller & Felix (2009); Chang et al. (2019)</div>
+          <div class="page-num">3</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Emphasize why PAMPs are evolutionary traps for pathogens:
+        Flagellin is required for swimming, EF-Tu is required for translation, and chitin is required for fungal integrity. If a bacterium mutates flagellin to evade FLS2, it frequently loses motility and fails to infect plant stomata.
+      </aside>
+    </section>
+
+    <!-- SLIDE 4: Cell-Surface Perception: FLS2, BAK1 & BIK1 (ACCURATE MOLECULAR TOPOLOGY) -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Receptor Complex Topology</div>
+          <h2>Cell-Surface PRRs: Molecular Surveillance Antennas</h2>
+          <p class="subtitle">The FLS2–flg22–BAK1 Heterodimerization Complex and Cytoplasmic BIK1 Activation</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2" style="align-items: center;">
+            <div>
+              <h3 style="font-size: 20px; margin-bottom: 10px; color: var(--dark-green);">Molecular Components & Membrane Topology</h3>
+              <ul class="natural-list" style="font-size: 16px;">
+                <li>
+                  <strong>FLS2 (Transmembrane LRR-RLK):</strong>
+                  Spans the plasma membrane. Features 28 extracellular LRRs that directly bind <code>flg22</code>, an alpha-helical TM domain, and an intracellular kinase.
+                </li>
+                <li>
+                  <strong>BAK1 / SERK3 (Transmembrane Co-Receptor LRR-RLK):</strong>
+                  Also a transmembrane protein! Features 5 extracellular LRRs that sandwich the C-terminus of flg22, forming an active extracellular complex (Sun et al., 2013).
+                </li>
+                <li>
+                  <strong>BIK1 (Receptor-Like Cytoplasmic Kinase - RLCK):</strong>
+                  <strong>Strictly intracellular!</strong> Lacks extracellular and TM domains; anchored to the inner plasma membrane. Phosphorylated by BAK1/FLS2, then dissociates to activate RBOHD.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Proportional 500x310 Vector Diagram -->
+            <div class="diagram-panel" style="padding: 10px;">
+              <svg viewBox="0 0 500 300" style="width: 100%; max-width: 490px; height: auto;" preserveAspectRatio="xMidYMid meet">
+                <!-- Zone Backgrounds -->
+                <rect x="10" y="8" width="480" height="98" fill="#f8fafc" stroke="#e2e8f0" stroke-dasharray="3" rx="6"/>
+                <text x="20" y="26" font-size="11" fill="#64748b" font-weight="700">EXTRACELLULAR (Apoplast)</text>
+
+                <!-- Plasma Membrane Slab -->
+                <rect x="10" y="108" width="480" height="34" fill="#fde047" opacity="0.75" rx="4"/>
+                <text x="20" y="130" font-size="11" fill="#854d0e" font-weight="700">PLASMA MEMBRANE (Phospholipid Bilayer)</text>
+
+                <!-- Cytosol Zone -->
+                <rect x="10" y="144" width="480" height="148" fill="#f8fafc" stroke="#e2e8f0" stroke-dasharray="3" rx="6"/>
+                <text x="20" y="162" font-size="11" fill="#64748b" font-weight="700">CYTOSOL (Intracellular)</text>
+
+                <!-- FLS2 Extracellular (28 LRRs Crescent) -->
+                <path d="M 175 35 C 135 55, 140 95, 175 108" stroke="#16a34a" stroke-width="8" fill="none" stroke-linecap="round"/>
+                <text x="95" y="65" font-size="13" font-weight="700" fill="#15803d">FLS2</text>
+                <text x="80" y="80" font-size="10" fill="#64748b">(28 LRRs)</text>
+
+                <!-- flg22 Ligand -->
+                <ellipse cx="195" cy="62" rx="14" ry="11" fill="#dc2626"/>
+                <text x="183" y="66" font-size="11" fill="#ffffff" font-weight="700">flg22</text>
+
+                <!-- BAK1 Extracellular (5 LRRs) -->
+                <path d="M 218 42 C 242 55, 238 90, 218 108" stroke="#0284c7" stroke-width="7" fill="none" stroke-linecap="round"/>
+                <text x="248" y="65" font-size="13" font-weight="700" fill="#0369a1">BAK1</text>
+                <text x="248" y="80" font-size="10" fill="#64748b">(5 LRRs)</text>
+
+                <!-- Transmembrane Helices -->
+                <rect x="171" y="108" width="8" height="34" fill="#15803d" rx="2"/>
+                <rect x="214" y="108" width="8" height="34" fill="#0369a1" rx="2"/>
+
+                <!-- Intracellular Kinase Domains -->
+                <rect x="150" y="152" width="50" height="40" rx="8" fill="#16a34a"/>
+                <text x="156" y="177" font-size="12" fill="#ffffff" font-weight="700">FLS2-KD</text>
+
+                <rect x="210" y="152" width="50" height="40" rx="8" fill="#0284c7"/>
+                <text x="216" y="177" font-size="12" fill="#ffffff" font-weight="700">BAK1-KD</text>
+
+                <!-- Transphosphorylation Star -->
+                <circle cx="205" cy="172" r="11" fill="#eab308"/>
+                <text x="201" y="176" font-size="12" font-weight="800" fill="#000000">P</text>
+
+                <!-- BIK1 (RLCK - Strictly Intracellular) -->
+                <rect x="280" y="175" width="130" height="42" rx="8" fill="#d97706"/>
+                <text x="290" y="194" font-size="12" fill="#ffffff" font-weight="700">BIK1 (RLCK)</text>
+                <text x="290" y="209" font-size="10" fill="#fef3c7">Cytoplasmic Kinase</text>
+
+                <!-- Phosphorylation of BIK1 -->
+                <path d="M 262 180 L 278 185" stroke="#d97706" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <circle cx="274" cy="180" r="8" fill="#eab308"/>
+                <text x="271" y="184" font-size="10" font-weight="800">P</text>
+
+                <!-- Dissociation Arrow to RBOHD -->
+                <path d="M 345 220 Q 345 255 240 255" stroke="#d97706" stroke-width="2" stroke-dasharray="3" fill="none"/>
+                <text x="150" y="272" font-size="12" font-weight="700" fill="#b45309">&rarr; Dissociated BIK1 phosphorylates RBOHD & MAPK</text>
+              </svg>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Boller & Felix (2009); Sun et al. (2013) Science</div>
+          <div class="page-num">4</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Crucial conceptual point for students:
+        FLS2 and BAK1 are BOTH transmembrane LRR-RLKs. Flg22 acts as a molecular glue: its N-terminus binds FLS2, while its C-terminus is bound by BAK1's 5 LRRs.
+        In contrast, BIK1 is an RLCK (purely cytoplasmic, anchored to the inner plasma membrane). Upon complex activation, BIK1 is phosphorylated and dissociates to turn on RBOHD and MAPK cascades.
+      </aside>
+    </section>
+
+    <!-- SLIDE 5: Intracellular Signaling Cascades -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Signal Transduction</div>
+          <h2>Intracellular Signaling Cascades (0–15 Minutes)</h2>
+          <p class="subtitle">The biochemical relay converting extracellular perception into nuclear and apoplastic defense</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="pipeline-container">
+            <div class="pipeline-step active">
+              <div class="step-num">Step 1 &bull; 0–2 Min</div>
+              <h4>PRR Activation</h4>
+              <p>FLS2 binds ligand, recruits BAK1, and initiates transphosphorylation.</p>
+            </div>
+
+            <div class="pipeline-arrow">&rarr;</div>
+
+            <div class="pipeline-step active">
+              <div class="step-num">Step 2 &bull; 1–3 Min</div>
+              <h4>Ion Fluxes</h4>
+              <p>Plasma membrane Ca²⁺ channels open; cytoplasmic Ca²⁺ surges within seconds.</p>
+            </div>
+
+            <div class="pipeline-arrow">&rarr;</div>
+
+            <div class="pipeline-step active">
+              <div class="step-num">Step 3 &bull; 3–10 Min</div>
+              <h4>Dual Kinase Relay</h4>
+              <p>MAPK cascades (MPK3/6) and CDPKs amplify phosphorylation signals.</p>
+            </div>
+
+            <div class="pipeline-arrow">&rarr;</div>
+
+            <div class="pipeline-step active">
+              <div class="step-num">Step 4 &bull; 5–15 Min</div>
+              <h4>Defense Deployment</h4>
+              <p>RBOHD produces ROS; WRKY transcription factors activate PR genes.</p>
+            </div>
+          </div>
+
+          <div class="compare-grid-2" style="margin-top: 10px;">
+            <div>
+              <h3 style="font-size: 18px; color: var(--dark-green); margin-bottom: 6px;">Early Biophysical Events (Seconds)</h3>
+              <p style="font-size: 16px; margin-bottom: 6px;">Opening of calcium-permeable channels triggers a rapid calcium wave, activating <strong>Calcium-Dependent Protein Kinases (CDPKs)</strong> and altering membrane potential.</p>
+            </div>
+            <div>
+              <h3 style="font-size: 18px; color: var(--dark-green); margin-bottom: 6px;">Phosphorylation Cascades (Minutes)</h3>
+              <p style="font-size: 16px; margin-bottom: 6px;">The cytoplasmic kinase <code>BIK1</code> phosphorylates the NADPH oxidase <strong>RBOHD</strong> at the plasma membrane, while MAPKs enter the nucleus to reprogram transcription.</p>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Boller & Felix (2009); Jones & Dangl (2006)</div>
+          <div class="page-num">5</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Notice how spatial information is converted:
+        Surface event (receptor binding) triggers rapid biophysical changes (calcium influx within seconds).
+        Calcium and BIK1 trigger the membrane engine (RBOHD), while MAPKs carry the chemical message into the cell nucleus to switch on defense genes.
+      </aside>
+    </section>
+
+    <!-- SLIDE 6: Hallmark Output 1: The Oxidative Burst -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Defense Output I</div>
+          <h2>Hallmark Defense 1: The Apoplastic ROS Burst</h2>
+          <p class="subtitle">Rapid enzymatic generation of Reactive Oxygen Species to poison and restrict invaders</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 10px;">The Enzymatic Engine: RBOHD</h3>
+              <p>The primary producer of defensive ROS is plasma membrane-bound <strong>NADPH Oxidase</strong> (Respiratory Burst Oxidase Homolog D, <code>RBOHD</code>).</p>
+              
+              <div style="background: var(--surface-white); border: 1px solid var(--border-subtle); padding: 12px 16px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 15px; margin: 12px 0;">
+                Cytosolic NADPH + 2O₂ &rarr; NADP⁺ + H⁺ + 2O₂˙⁻ &rarr; H₂O₂
+              </div>
+              
+              <p style="font-size: 16px; color: var(--text-muted);">
+                RBOHD transfers cytosolic electrons across the plasma membrane to apoplastic oxygen, producing superoxide radicals that rapidly dismutate into stable hydrogen peroxide (H₂O₂).
+              </p>
+            </div>
+
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 10px;">Three Functions of Defensive ROS</h3>
+              <ul class="natural-list" style="font-size: 16px;">
+                <li><strong>Direct Antimicrobial Toxicity:</strong> H₂O₂ oxidizes bacterial lipids, proteins, and cell surfaces directly in the apoplast.</li>
+                <li><strong>Cell Wall Cross-Linking:</strong> Serves as a vital substrate for apoplastic peroxidases to cross-link lignin and structural cell wall proteins.</li>
+                <li><strong>Systemic Alarm Signaling:</strong> Diffuses rapidly to trigger defense gene expression in neighboring leaf cells.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px; padding: 10px 16px; background: #fafaf9; border-radius: 8px; font-size: 15px; color: var(--text-muted);">
+            <strong style="color: var(--text-main);">Burst Kinetics:</strong> Detectable in leaf tissue within <strong>2 to 5 minutes</strong> of PAMP perception, peaking at 15–25 minutes, and safely returning to basal levels within 45–60 minutes.
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Torres (2010); Gupta et al. (2024)</div>
+          <div class="page-num">6</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Undergraduates often ask: Why produce ROS outside the cell?
+        Because that is where the invading bacteria reside! If ROS were generated in the cytoplasm, it would damage plant chloroplasts and mitochondria. RBOHD directs the oxidative weapon into the extracellular apoplast.
+      </aside>
+    </section>
+
+    <!-- SLIDE 7: Laboratory Quantification of ROS Burst (PROPORTIONAL 520x260 SMOOTH KINETIC CURVE) -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Experimental Methodology</div>
+          <h2>Laboratory Quantification of the Apoplastic ROS Burst</h2>
+          <p class="subtitle">Chemiluminescent, fluorometric, and pharmacological assays for oxidative defense</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2" style="align-items: center;">
+            <!-- Left: Method Explanations -->
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 12px;">Three Standard Assays</h3>
+              <ul class="natural-list" style="font-size: 15px;">
+                <li>
+                  <strong>1. HRP-Luminol Chemiluminescence:</strong><br>
+                  Leaf discs incubated with luminol and Horseradish Peroxidase. Emitted photons are recorded in real-time as Relative Light Units (RLU).
+                </li>
+                <li>
+                  <strong>2. H₂DCFDA Laser Confocal Microscopy:</strong><br>
+                  Permeable non-fluorescent probe is oxidized by cellular ROS into green-fluorescent DCF for in situ visualization.
+                </li>
+                <li>
+                  <strong>3. Pharmacological Inhibition (DPI):</strong><br>
+                  Diphenyleneiodonium specifically inhibits NADPH oxidases. Abolishes the burst, proving enzymatic origin.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Right: Beautiful 500x260 Smooth Kinetic Curve (Zero text overlap) -->
+            <div class="diagram-panel" style="padding: 12px;">
+              <svg viewBox="0 0 500 260" style="width: 100%; max-width: 490px; height: auto;" preserveAspectRatio="xMidYMid meet">
+                <!-- Axes -->
+                <line x1="65" y1="210" x2="470" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+                <line x1="65" y1="35" x2="65" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+                
+                <!-- Y-Axis Labels -->
+                <text x="20" y="125" font-size="11" fill="#64748b" font-weight="700" transform="rotate(-90 20 125)">Luminescence (RLU)</text>
+                <text x="52" y="214" font-size="10" fill="#94a3b8" text-anchor="end">0</text>
+                <text x="52" y="130" font-size="10" fill="#94a3b8" text-anchor="end">50</text>
+                <text x="52" y="45" font-size="10" fill="#94a3b8" text-anchor="end">100</text>
+
+                <!-- Gridlines -->
+                <line x1="65" y1="126" x2="470" y2="126" stroke="#f1f5f9" stroke-width="1"/>
+                <line x1="65" y1="42" x2="470" y2="42" stroke="#f1f5f9" stroke-width="1"/>
+
+                <!-- X-Axis Labels -->
+                <text x="260" y="244" font-size="11" fill="#64748b" font-weight="700" text-anchor="middle">Time Post-Elicitation (Minutes)</text>
+                <text x="65" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">0</text>
+                <text x="132" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">10</text>
+                <text x="200" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">20</text>
+                <text x="267" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">30</text>
+                <text x="335" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">40</text>
+                <text x="402" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">50</text>
+                <text x="470" y="226" font-size="10" fill="#94a3b8" text-anchor="middle">60</text>
+
+                <!-- Smooth Bell-Shaped flg22 Kinetic Curve (Cubic Bézier Spline) -->
+                <path d="M 65 206 
+                         L 95 206 
+                         C 115 206, 135 170, 155 100 
+                         C 168 55, 182 45, 198 45 
+                         C 214 45, 230 65, 245 100 
+                         C 275 160, 330 202, 410 205 
+                         L 470 206" 
+                      fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Peak Annotation (Clearly Separated) -->
+                <circle cx="198" cy="45" r="4" fill="#0284c7"/>
+                <rect x="210" y="30" width="130" height="22" rx="4" fill="#e0f2fe" stroke="#bae6fd"/>
+                <text x="216" y="45" font-size="10" font-weight="700" fill="#0369a1">Peak Burst: 15–20 Min</text>
+
+                <!-- Water / DPI Negative Control Curve -->
+                <line x1="65" y1="206" x2="470" y2="206" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4"/>
+                <text x="360" y="196" font-size="10" fill="#64748b" font-weight="600">Mock / DPI Control</text>
+
+                <!-- Legend Box -->
+                <rect x="330" y="12" width="135" height="38" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+                <line x1="338" y1="24" x2="356" y2="24" stroke="#0284c7" stroke-width="2.5"/>
+                <text x="362" y="27" font-size="10" fill="#334155">+ flg22 Elicitor</text>
+                <line x1="338" y1="38" x2="356" y2="38" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3"/>
+                <text x="362" y="41" font-size="10" fill="#64748b">Water / + DPI</text>
+              </svg>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Gupta et al. (2024); Chang et al. (2019)</div>
+          <div class="page-num">7</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Notice the natural bell-shaped kinetic profile:
+        The burst begins around 3–5 minutes post-elicitation, reaches a smooth, rounded peak at 15–20 minutes, and gradually declines back to baseline by 45–60 minutes.
+        Pre-treatment with DPI (the specific NADPH oxidase inhibitor) completely suppresses the burst, demonstrating plant enzymatic origin.
+      </aside>
+    </section>
+
+    <!-- SLIDE 8: Hallmark Defenses 2 & 3: Physical Barriers (BALANCED 2-COLUMN WITH CLEAR DIAGRAMS) -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Defense Outputs II & III</div>
+          <h2>Hallmark Defenses 2 & 3: Physical Barrier Reinforcement</h2>
+          <p class="subtitle">Structural defense outputs physically arresting pathogen ingress</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <!-- Left Column: Callose Papillae -->
+            <div class="compare-col green-top" style="padding: 16px;">
+              <h3 style="color: var(--dark-green); font-size: 19px;">Callose Papillae Deposition</h3>
+              <p style="font-size: 14px; margin-bottom: 8px;">
+                Within 4–12 hours, plant cells activate <code>PMR4 / GSL5</code> to deposit dense &beta;-(1,3)-glucan cushions beneath penetration sites. Stained with <strong>0.01% Aniline Blue</strong> under UV.
+              </p>
+
+              <!-- Proportional Callose Diagram (460x170) -->
+              <div style="background: #fafaf9; border-radius: 8px; padding: 6px; display: flex; justify-content: center;">
+                <svg viewBox="0 0 440 160" style="width: 100%; max-width: 420px; height: auto;" preserveAspectRatio="xMidYMid meet">
+                  <!-- Bacterium -->
+                  <ellipse cx="220" cy="22" rx="22" ry="10" fill="#dc2626"/>
+                  <text x="202" y="26" font-size="10" fill="#ffffff" font-weight="700">Pathogen</text>
+                  <path d="M 220 33 L 220 50" stroke="#dc2626" stroke-width="2" stroke-dasharray="2"/>
+
+                  <!-- Cell Wall Slab -->
+                  <rect x="20" y="50" width="400" height="26" fill="#bbf7d0" stroke="#86efac" rx="2"/>
+                  <text x="30" y="67" font-size="11" font-weight="700" fill="#15803d">PLANT CELL WALL (Cellulose Matrix)</text>
+
+                  <!-- Callose Papilla Dome -->
+                  <path d="M 160 115 C 160 70, 280 70, 280 115 Z" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                  <text x="185" y="98" font-size="11" font-weight="800" fill="#0369a1">Callose Papilla</text>
+                  <text x="184" y="110" font-size="9" fill="#0284c7">(β-1,3-glucan cushion)</text>
+
+                  <!-- Plasma Membrane -->
+                  <rect x="20" y="115" width="400" height="14" fill="#fde047" stroke="#eab308" rx="2"/>
+                  <text x="30" y="126" font-size="9" font-weight="700" fill="#854d0e">PLASMA MEMBRANE</text>
+
+                  <!-- Cytosol -->
+                  <text x="30" y="148" font-size="11" fill="#64748b">Cytosol (PMR4 Synthase Activation)</text>
+                  <text x="300" y="148" font-size="11" font-weight="700" fill="#15803d">&check; Ingress Barred</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Right Column: Stomatal Immune Closure -->
+            <div class="compare-col blue-top" style="padding: 16px;">
+              <h3 style="color: var(--accent-blue); font-size: 19px;">Stomatal Immune Closure</h3>
+              <p style="font-size: 14px; margin-bottom: 8px;">
+                Guard cell PRRs perceive PAMPs &rarr; triggers <strong>Nitric Oxide (NO)</strong> and <strong>Abscisic Acid (ABA)</strong> signaling &rarr; turgor loss closes foliar entry portals within 1 hour.
+              </p>
+
+              <!-- Proportional Stomata Diagram (460x170) -->
+              <div style="background: #fafaf9; border-radius: 8px; padding: 6px; display: flex; justify-content: center;">
+                <svg viewBox="0 0 440 160" style="width: 100%; max-width: 420px; height: auto;" preserveAspectRatio="xMidYMid meet">
+                  <!-- Panel A: Open Stoma -->
+                  <g transform="translate(30, 15)">
+                    <text x="45" y="12" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">Resting (Open)</text>
+                    <!-- Left Guard Cell -->
+                    <path d="M 35 25 C 10 40, 10 90, 35 105 C 22 90, 22 40, 35 25 Z" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+                    <!-- Right Guard Cell -->
+                    <path d="M 55 25 C 80 40, 80 90, 55 105 C 68 90, 68 40, 55 25 Z" fill="#86efac" stroke="#16a34a" stroke-width="2"/>
+                    <!-- Open Pore -->
+                    <ellipse cx="45" cy="65" rx="8" ry="24" fill="#0f172a" opacity="0.85"/>
+                    <text x="45" y="124" font-size="10" fill="#64748b" text-anchor="middle">Turgid Guard Cells</text>
+                    <text x="45" y="138" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">Bacteria Enter</text>
+                  </g>
+
+                  <!-- Arrow Transition -->
+                  <g transform="translate(195, 65)">
+                    <text x="25" y="-6" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">PAMP Perception</text>
+                    <line x1="5" y1="5" x2="45" y2="5" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="25" y="18" font-size="9" fill="#64748b" text-anchor="middle">NO / ABA &lt; 1 hr</text>
+                  </g>
+
+                  <!-- Panel B: Closed Stoma -->
+                  <g transform="translate(290, 15)">
+                    <text x="45" y="12" font-size="12" font-weight="700" fill="#0369a1" text-anchor="middle">Immune Defense (Closed)</text>
+                    <!-- Left Guard Cell (Deflated) -->
+                    <path d="M 40 25 C 20 40, 20 90, 40 105 C 38 90, 38 40, 40 25 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+                    <!-- Right Guard Cell (Deflated) -->
+                    <path d="M 50 25 C 70 40, 70 90, 50 105 C 52 90, 52 40, 50 25 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+                    <!-- Closed seam -->
+                    <line x1="45" y1="28" x2="45" y2="102" stroke="#0369a1" stroke-width="2"/>
+                    <text x="45" y="124" font-size="10" fill="#64748b" text-anchor="middle">Flaccid Guard Cells</text>
+                    <text x="45" y="138" font-size="10" font-weight="700" fill="#15803d" text-anchor="middle">&check; Portals Sealed</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Luna et al. (2011); Boller & Felix (2009)</div>
+          <div class="page-num">8</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Contrast the timing and structural actions:
+        Callose papillae (left) are dense beta-glucan structural mounds synthesized beneath penetration sites to halt mechanical ingress.
+        Stomatal defense (right) acts within 1 hour: guard cells lose turgor via NO and ABA signaling to seal foliar entry portals, preventing bacterial entry into the apoplast.
+      </aside>
+    </section>
+
+    <!-- SLIDE 9: Pathogen Counter-Attack: ETS -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Pathogen Counter-Attack</div>
+          <h2>Pathogen Counter-Attack: Effector-Triggered Susceptibility</h2>
+          <p class="subtitle">Adapted pathogens deploy Type III Secretion Systems (T3SS) to sabotage host PTI</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <div>
+              <h3 style="font-size: 20px; color: var(--accent-red); margin-bottom: 8px;">The Principle of ETS</h3>
+              <p style="font-size: 16px; line-height: 1.5;">
+                If PTI were impenetrable, plants would never succumb to disease. Adapted phytobacteria (e.g., <em>Xanthomonas</em>, <em>Pseudomonas</em>) evolved a specialized molecular syringe: the <strong>Type III Secretion System (T3SS)</strong>.
+              </p>
+              <p style="font-size: 16px; line-height: 1.5; color: var(--text-muted);">
+                They inject dozens of <strong>Effector proteins</strong> directly into the host cytoplasm to dismantle the PTI machinery from within, producing <strong>Effector-Triggered Susceptibility (ETS)</strong>.
+              </p>
+            </div>
+
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 8px;">Molecular Targets of Bacterial Effectors</h3>
+              <ul class="natural-list" style="font-size: 15px;">
+                <li><strong>Targeting Co-Receptors:</strong> Effectors dephosphorylate or degrade <code>BAK1</code>, cutting off perception.</li>
+                <li><strong>Silencing MAPK Signaling:</strong> Bacterial phosphatases inactivate MPK3/MPK6 to stop transcription signals.</li>
+                <li><strong>Suppressing the ROS Burst:</strong> Effectors disrupt RBOHD phosphorylation to extinguish oxidative firepower.</li>
+                <li><strong>Core Effector Example:</strong> <code>AvrBs2</code> in <em>Xanthomonas</em> carries glycerophosphoryl diester phosphodiesterase activity essential for apoplastic fitness.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding: 12px 18px; background: #fafaf9; border-left: 4px solid var(--accent-red); font-size: 16px;">
+            <strong style="color: var(--text-main);">The Arms Race Escalation:</strong> When pathogens suppress PTI via effectors (ETS), plants evolve intracellular NLR receptors to intercept those effectors &mdash; triggering <strong>ETI</strong> (Layer 2).
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Jones & Dangl (2006); Potnis et al. (2015); Osdaghi et al. (2021)</div>
+          <div class="page-num">9</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        This illustrates the second step of the Zig-zag model:
+        1. Plant develops PTI.
+        2. Adapted pathogen evolves effectors to suppress PTI, causing ETS.
+        3. Plant evolves NLR receptors to detect effectors, initiating ETI.
+      </aside>
+    </section>
+
+    <!-- SLIDE 10: Agricultural Priming -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Translational Plant Pathology</div>
+          <h2>Agricultural Application: Defense Priming by Beneficial Microbes</h2>
+          <p class="subtitle">Plant Growth-Promoting Rhizobacteria (PGPR) as natural trainers of plant innate immunity</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 8px;">What is Defense Priming?</h3>
+              <p style="font-size: 16px; line-height: 1.5;">
+                Plants colonized by beneficial rhizobacteria (e.g. <em>Bacillus velezensis</em>) do not continuously waste metabolic energy producing defenses.
+              </p>
+              <p style="font-size: 16px; line-height: 1.5; color: var(--text-muted);">
+                Instead, they enter a <strong>primed state</strong>: a sensitized physiological condition where receptors and signaling kinases are pre-assembled for hyper-accelerated defense upon actual pathogen challenge.
+              </p>
+            </div>
+
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 8px;">Landmark Watermelon Case Study</h3>
+              <p style="font-size: 15px; margin-bottom: 8px;">
+                In watermelon (<em>Citrullus lanatus</em>) primed with <em>Bacillus</em> PMB04/05 against Bacterial Fruit Blotch (Chang et al., 2019):
+              </p>
+              
+              <div class="metric-banner">
+                <div class="metric-value">2,733&times;</div>
+                <div class="metric-text">
+                  <strong>Hyper-Amplified ROS Surge:</strong> Primed plants unleashed up to 2,733-fold higher apoplastic ROS bursts within 1 hour of pathogen challenge compared to unprimed controls.
+                </div>
+              </div>
+
+              <p style="font-size: 15px; color: var(--text-muted); margin: 0;">
+                &bull; Callose papillae deposition surged over 150-fold, completely arresting bacterial ingress.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding: 10px 18px; background: #fafaf9; border-radius: 8px; font-size: 15px; color: var(--text-muted);">
+            <strong style="color: var(--text-main);">Biocontrol Insight:</strong> Strains that strongly prime host PTI achieve over 95% disease protection in field trials, demonstrating that <strong>activating plant immunity</strong> is often more decisive than direct in vitro antibiotic inhibition.
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Chang et al. (2019); Gupta et al. (2024)</div>
+          <div class="page-num">10</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Connect molecular theory to agricultural reality:
+        Biocontrol isn't merely microbes spraying antibiotics at each other in the soil. Friendly microbes prime and train the host plant's own PTI machinery, enabling leaves to react with a 2,000-fold stronger burst when a real pathogen strikes.
+      </aside>
+    </section>
+
+    <!-- SLIDE 11: The Root Immune Paradox -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Rhizosphere Biology</div>
+          <h2>The Root Immune Paradox: Microenvironmental pH Quenching</h2>
+          <p class="subtitle">Why don't plant roots constantly launch destructive immune bursts against friendly soil bacteria?</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="compare-grid-2">
+            <div>
+              <h3 style="font-size: 20px; color: var(--accent-amber); margin-bottom: 8px;">The Biological Dilemma</h3>
+              <p style="font-size: 16px; line-height: 1.5;">
+                Soil contains billions of beneficial rhizobacteria displaying flagellin. If root cells triggered constant ROS bursts and callose papillae, <strong>root elongation would be paralyzed</strong> (The Growth-Defense Trade-Off).
+              </p>
+              <p style="font-size: 16px; line-height: 1.5; color: var(--text-muted); margin-top: 10px;">
+                <strong>The Mechanism (Yu et al., 2019):</strong> Beneficial <em>Pseudomonas</em> secrete D-gluconic acid via the <em>pqqF</em> pathway, actively acidifying the root boundary microenvironment to <strong>pH 3.5–3.7</strong>.
+              </p>
+            </div>
+
+            <div>
+              <h3 style="font-size: 20px; color: var(--dark-green); margin-bottom: 8px;">Physiological ROS Quenching</h3>
+              <ul class="natural-list" style="font-size: 15px;">
+                <li>Plant apoplastic NADPH oxidase (RBOHD) requires neutral to slightly alkaline pH (~6.5–7.0) for optimal enzymatic ROS generation.</li>
+                <li>At pH 3.7, the <strong>flg22-elicited ROS burst is completely abolished</strong>.</li>
+                <li>This allows beneficial bacteria to colonize root surfaces without eliciting toxic autoimmunity, while distal leaves remain fully primed for defense!</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding: 12px 18px; background: #fffbeb; border-left: 4px solid var(--accent-amber); font-size: 15px;">
+            <strong style="color: var(--text-main);">Microenvironment Principle:</strong> Plant immunity is not a rigid digital switch; its activation threshold is continuously modulated by local chemical microenvironments (pH, organic acids, nutrients).
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Yu et al. (2019)</div>
+          <div class="page-num">11</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        This explains a major paradox for students:
+        If flagellin triggers immune attacks, how can plants coexist with friendly soil bacteria?
+        The bacteria lower the root boundary pH to 3.7, which chemically switches off RBOHD, preventing self-harm while keeping systemic defenses intact.
+      </aside>
+    </section>
+
+    <!-- SLIDE 12: Summary & Review -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Synthesis & Review</div>
+          <h2>Summary & Learning Checkpoint</h2>
+          <p class="subtitle">Core concepts to master for examinations and laboratory practicals</p>
+        </header>
+
+        <main class="slide-body">
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Stage</th>
+                <th>Key Molecules / Receptors</th>
+                <th>Timing</th>
+                <th>Biological Consequence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Perception</strong></td>
+                <td><code>flg22</code> &rarr; <code>FLS2 + BAK1</code></td>
+                <td>0 - 2 min</td>
+                <td>Receptor heterodimerization & transphosphorylation</td>
+              </tr>
+              <tr>
+                <td><strong>2. Early Signaling</strong></td>
+                <td>Ca²⁺ influx, MPK3/6, CDPKs, BIK1</td>
+                <td>2 - 15 min</td>
+                <td>Cytoplasmic phosphorylation relay to membrane & nucleus</td>
+              </tr>
+              <tr>
+                <td><strong>3. Early Defense</strong></td>
+                <td>NADPH Oxidase (<code>RBOHD</code>) &rarr; ROS</td>
+                <td>5 - 30 min</td>
+                <td>Direct antimicrobial toxicity & cell wall oxidative cross-linking</td>
+              </tr>
+              <tr>
+                <td><strong>4. Late Defense</strong></td>
+                <td>Callose (PMR4), Stomatal closure</td>
+                <td>1 - 12 hours</td>
+                <td>Physical papillae mounds block penetration; portals seal</td>
+              </tr>
+              <tr>
+                <td><strong>5. Evolution / ETS</strong></td>
+                <td>T3SS Effectors (AvrBs2, Xop)</td>
+                <td>Ongoing</td>
+                <td>ETS (susceptibility) countered by Layer 2 ETI (NLRs)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="compare-grid-2" style="margin-top: 16px;">
+            <div style="background: var(--surface-white); border-left: 3px solid var(--primary-green); padding: 10px 14px; border-radius: 6px;">
+              <strong style="color: var(--dark-green); font-size: 15px;">Review Question 1:</strong>
+              <p style="font-size: 14px; margin: 4px 0 0 0; color: var(--text-muted);">Why does pre-treating leaf discs with DPI eliminate the luminol flash, but heat-killed bacteria still trigger the response?</p>
+            </div>
+            <div style="background: var(--surface-white); border-left: 3px solid var(--accent-blue); padding: 10px 14px; border-radius: 6px;">
+              <strong style="color: var(--accent-blue); font-size: 15px;">Review Question 2:</strong>
+              <p style="font-size: 14px; margin: 4px 0 0 0; color: var(--text-muted);">How does root microenvironmental acidification by <em>Pseudomonas</em> protect plant growth without compromising leaf immunity?</p>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Jones & Dangl (2006); Boller & Felix (2009)</div>
+          <div class="page-num">12</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Wrap up by reviewing the questions:
+        Answer 1: DPI inhibits host RBOHD; PAMPs like flagellin are heat-stable peptides that remain intact after boiling.
+        Answer 2: Local low pH quenches root RBOHD, preventing growth-defense tradeoffs, while primed defense signals travel systemically.
+      </aside>
+    </section>
+
+    <!-- SLIDE 13: References & Sources -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">Bibliography</div>
+          <h2>References & Knowledge Base Sources</h2>
+          <p class="subtitle">Primary literature and curated wiki entries supporting this presentation</p>
+        </header>
+
+        <main class="slide-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; font-size: 14px; line-height: 1.45;">
+            <div>
+              <p style="margin-bottom: 10px;">
+                <strong>Boller, T., & Felix, G. (2009).</strong> A renaissance of elicitors: perception of microbe-associated molecular patterns. <em>Annu. Rev. Plant Biol.</em>, 60, 379–406.<br>
+                <code>[wiki/concepts/pamp-triggered-immunity.md]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Chang, C. J., et al. (2019).</strong> Intensification of PAMP-triggered immunity in watermelon by <em>Bacillus</em> spp. strains. <em>J. Plant Med.</em>, 61(1), 39–48.<br>
+                <code>[raw/papers/chang2019intensification.pdf]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Gupta, R., et al. (2024).</strong> <em>Bacillus thuringiensis</em> promotes systemic immunity in tomato. <em>Food Security</em>, 16(3), 675–690.<br>
+                <code>[raw/papers/gupta2024bacillus.pdf]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Jones, J. D. G., & Dangl, J. L. (2006).</strong> The plant immune system. <em>Nature</em>, 444(7117), 323–329.<br>
+                <code>[wiki/concepts/gene-for-gene-resistance.md]</code>
+              </p>
+            </div>
+
+            <div>
+              <p style="margin-bottom: 10px;">
+                <strong>Cook, D. E., et al. (2015).</strong> The plant-pathogen interface: An evolving arms race. <em>Annu. Rev. Phytopathol.</em>, 53, 541–562.<br>
+                <code>[wiki/concepts/gene-for-gene-resistance.md]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Luna, E., et al. (2011).</strong> Callose deposition: a multifaceted plant defense response. <em>Mol. Plant-Microbe Interact.</em>, 24(2), 183–193.<br>
+                <code>[wiki/concepts/pamp-triggered-immunity.md]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Potnis, N., et al. (2015).</strong> Bacterial spot of tomato and pepper: diverse <em>Xanthomonas</em> species. <em>Mol. Plant Pathol.</em>, 16(9), 907–920.<br>
+                <code>[raw/papers/potnis2015bacterial.pdf]</code>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>Yu, K., et al. (2019).</strong> Rhizosphere-associated <em>Pseudomonas</em> suppress local root immune responses by lowering pH. <em>Curr. Biol.</em>, 29(23), 3913–3920.<br>
+                <code>[raw/papers/yu2019rhizosphere.pdf]</code>
+              </p>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Plant Pathology Knowledge Base</div>
+          <div class="page-num">13</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        End of presentation. All concepts and experimental examples in this lecture are curated directly from our plant pathology and MPMI knowledge base.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<!-- Reveal.js JavaScript dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    controls: true,
+    progress: true,
+    center: true,
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    margin: 0.04,
+    width: 1280,
+    height: 720,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [ RevealNotes, RevealMath.KaTeX ]
+  });
+
+  // Notes Modal Management
+  function updateNotesModal() {
+    var currentSlide = Reveal.getCurrentSlide();
+    var notesEl = currentSlide.querySelector('aside.notes');
+    var modalBody = document.getElementById('notes-body');
+    if (notesEl && notesEl.innerHTML.trim() !== "") {
+      modalBody.innerHTML = notesEl.innerHTML;
+    } else {
+      modalBody.innerHTML = "<em>No speaker notes for this slide.</em>";
+    }
+  }
+
+  function toggleNotesModal() {
+    var modal = document.getElementById('notes-modal');
+    modal.classList.toggle('visible');
+    if (modal.classList.contains('visible')) {
+      updateNotesModal();
+    }
+  }
+
+  Reveal.on('slidechanged', function() {
+    updateNotesModal();
+  });
+
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'n' || e.key === 'N') {
+      toggleNotesModal();
+    }
+  });
+
+  Reveal.on('ready', function() {
+    updateNotesModal();
+  });
+</script>
+
+</body>
+</html>
