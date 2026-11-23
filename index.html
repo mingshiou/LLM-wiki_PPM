@@ -148,6 +148,34 @@
     }
 
     /* Embedded Presentation Iframe */
+    .deck-switch-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .deck-tab {
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-tab:hover {
+      background: #e2e8f0;
+      color: var(--text);
+    }
+    .deck-tab.active {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+      box-shadow: 0 2px 8px rgba(27, 94, 32, 0.25);
+    }
+
     .slide-embed-wrapper {
       position: relative;
       width: 100%;
@@ -301,15 +329,25 @@
 
     <!-- SECTION 1: FEATURED EDUCATIONAL PRESENTATION -->
     <section class="showcase-block" id="presentation">
-      <div class="section-pill">Featured Lecture Deck &bull; 16:9 Interactive Presentation</div>
-      <h2 class="section-title">Plant Immunity 101: PAMP-Triggered Immunity (PTI)</h2>
-      <p class="section-desc">
+      <div class="section-pill">Interactive Courseware &bull; 16:9 Reveal.js Slide Decks</div>
+      <h2 class="section-title" id="deck-title">Plant Immunity 101: PAMP-Triggered Immunity (PTI)</h2>
+      <p class="section-desc" id="deck-desc">
         A collegiate-level instructional slide deck designed for undergraduate and graduate courses in plant pathology, microbiology, and agronomy. Directly interact with the presentation below, or launch fullscreen mode for lecturing.
       </p>
 
+      <!-- Deck Switcher Tabs -->
+      <div class="deck-switch-tabs">
+        <button class="deck-tab active" id="tab-pti" onclick="selectDeck('pti')">
+          🌿 Deck 1: Plant PTI Response (12 Slides)
+        </button>
+        <button class="deck-tab" id="tab-bstp" onclick="selectDeck('bstp')">
+          🔬 Deck 2: Bacterial Spot of Tomato &amp; Pepper (13 Slides)
+        </button>
+      </div>
+
       <!-- Embedded 16:9 Reveal.js Presentation -->
       <div class="slide-embed-wrapper">
-        <iframe src="wiki/presentations/plant-pti-response.html" allowfullscreen></iframe>
+        <iframe id="slide-iframe" src="wiki/presentations/plant-pti-response.html" allowfullscreen></iframe>
       </div>
 
       <div class="slide-actions-bar">
@@ -317,10 +355,10 @@
           <span>💡 <strong>Lecture Navigation:</strong> Click inside the slide deck to advance with <code>Space</code> / <code>&rarr;</code>. Press <code>F</code> for fullscreen, or press <code>N</code> to toggle the speaker lecturing script drawer.</span>
         </div>
         <div style="display: flex; gap: 10px;">
-          <a href="wiki/presentations/plant-pti-response.html" target="_blank" class="btn btn-primary">
+          <a id="btn-fullscreen" href="wiki/presentations/plant-pti-response.html" target="_blank" class="btn btn-primary">
             <span>⛶</span> Launch Fullscreen Slide Deck
           </a>
-          <a href="https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/plant-pti-notes.md" target="_blank" class="btn btn-secondary">
+          <a id="btn-notes" href="https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/plant-pti-notes.md" target="_blank" class="btn btn-secondary">
             <span>📝</span> View Lecture Script (Markdown)
           </a>
         </div>
@@ -510,6 +548,37 @@
   <footer class="site-footer">
     Plant Pathology & MPMI Knowledge Base &bull; Open-Access Educational & Research Portal &bull; Hosted on GitHub Pages
   </footer>
+
+  <script>
+    const decks = {
+      pti: {
+        title: "Plant Immunity 101: PAMP-Triggered Immunity (PTI)",
+        desc: "A collegiate-level instructional slide deck designed for undergraduate and graduate courses in plant pathology, microbiology, and agronomy. Covers PRR receptors, RBOHD ROS burst, callose papillae, and beneficial rhizobacterial priming.",
+        url: "wiki/presentations/plant-pti-response.html",
+        notes: "https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/plant-pti-notes.md"
+      },
+      bstp: {
+        title: "Bacterial Spot of Tomato & Pepper: Etiology, Pathogenesis & IPM",
+        desc: "A comprehensive instructional slide deck covering the four Xanthomonas lineages, spatiotemporal foliar infection dynamics (phyllosphere ingress to stomatal egression), Type III effectors (AvrBs2, AvrBs3 TALE), Bs resistance genetics, and sustainable IPM.",
+        url: "wiki/presentations/bacterial-spot.html",
+        notes: "https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/bacterial-spot-notes.md"
+      }
+    };
+
+    function selectDeck(key) {
+      const deck = decks[key];
+      if (!deck) return;
+
+      document.getElementById('deck-title').textContent = deck.title;
+      document.getElementById('deck-desc').textContent = deck.desc;
+      document.getElementById('slide-iframe').src = deck.url;
+      document.getElementById('btn-fullscreen').href = deck.url;
+      document.getElementById('btn-notes').href = deck.notes;
+
+      document.getElementById('tab-pti').classList.toggle('active', key === 'pti');
+      document.getElementById('tab-bstp').classList.toggle('active', key === 'bstp');
+    }
+  </script>
 
 </body>
 </html>

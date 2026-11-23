@@ -76,6 +76,7 @@ Welcome to the Plant Pathology & Molecular Plant-Microbe Interactions (MPMI) Wik
 *Marp-formatted lecture slide decks and interactive HTML presentations compiled from wiki knowledge.*
 
 - [[plant-pti-response.html]]: Interactive Reveal.js presentation (12 slides) on Plant PAMP-Triggered Immunity (PTI) tailored for undergraduate teaching; covers Zig-Zag model, PRR-BAK1 perception, RBOHD ROS burst, callose papillae, ETS counter-attacks, and PGPR immune priming.
+- [[bacterial-spot.html]]: Interactive Reveal.js presentation (13 slides) on Bacterial Spot of Tomato and Pepper; covers the 4 *Xanthomonas* species complex, biphasic spatiotemporal infection dynamics (ingress to egression), Type III effectors (AvrBs2, AvrBs3 TALE), *Bs* gene-for-gene resistance, plasmid *copLAB* copper resistance, and next-generation IPM.
 
 ---
 
