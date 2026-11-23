@@ -220,13 +220,16 @@ When the user requests an educational slide deck or lecture presentation on a sp
      - Never nest HTML tags (`<em>`, `<strong>`) inside SVG `<text>` elements; use SVG attributes or `<tspan>`.
      - Always include explicit `<defs>` blocks for marker arrowheads (`marker-end`).
      - Split long SVG labels across multiple lines or use `text-anchor="middle"` to prevent text clipping.
+   - **Strict Scientific Nomenclature & Italicization Mandate**:
+     - All scientific names (genera, species, subspecies, pathovars; e.g. *Bacillus*, *Bacillus velezensis*, *Xanthomonas*, *X. perforans*, *Capsicum annuum*, *Solanum lycopersicum*) **MUST** strictly follow international binomial nomenclature: Capitalized genus, lowercase specific epithet, and completely italicized (`<em>...</em>` in HTML, `*...*` in Markdown, `<tspan font-style="italic">` in SVG).
+     - **Zero Exception for Large Titles & Headers**: Even inside main slide titles (`h1`, `h2`), card headers, or diagram labels, scientific names must remain properly cased and italicized. Scientific names must **NEVER** be written in all-caps (e.g., `XANTHOMONAS` or `BACILLUS` is strictly forbidden; write `<tspan font-style="italic">Xanthomonas</tspan>`).
    - **Notation & Viewport Harmony**:
      - Use native HTML superscripts (`Cu<sup>+</sup>`, `Cu<sup>2+</sup>`) for simple chemical notations rather than serif KaTeX to maintain sans-serif typographic unity.
      - Use standard Greek characters (e.g., `KΦ1`) and expand specialized acronyms on first mention (e.g., `Niche Overlap Index (NOI)`).
      - Maintain an elastic viewport budget (`min-height: 500px; max-height: 535px;` for `.slide-body`) with legible body typography (15–18px) to prevent silent content clipping.
 4. **Phase 4: Automated Self-Linting & Circuit Breaker (Max 2 Auto-Repairs)**:
    - Execute the 6-point linting checklist:
-     1. *Language*: 100% academic English, zero CJK leakage in HTML.
+     1. *Language & Nomenclature*: 100% academic English (zero CJK leakage in HTML); all scientific names correctly cased and 100% italicized (zero all-caps genera/species even in titles/SVGs).
      2. *Geometry & Viewport*: Standard 1280×720 canvas, elastic body height, zero overflow clipping.
      3. *Visual & Layout*: Comparison matrix for multi-taxon data, embedded SVGs for mechanisms, clean minimalist cover without metadata clutter.
      4. *SVG Code Quality*: No HTML tags in `<text>`, valid marker definitions, safe text coordinates.

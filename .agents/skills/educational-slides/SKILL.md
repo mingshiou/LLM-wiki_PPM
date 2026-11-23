@@ -172,12 +172,18 @@ To eliminate rendering glitches, text collisions, and broken browser graphics:
 
 ## 4. Scientific Notation, Chemical Ions & Nomenclature
 
-1. **Sans-Serif HTML Superscripts for Simple Ions**:
+1. **Strict Binomial Nomenclature & Italicization**:
+   - All scientific names (genera, species, subspecies, pathovars; e.g. *Bacillus*, *Bacillus velezensis*, *Xanthomonas*, *X. perforans*, *Capsicum annuum*, *Solanum lycopersicum*) **MUST** strictly follow binomial nomenclature conventions:
+     - **Capitalized genus**, **lowercase specific epithet**.
+     - **100% Italicized**: `<em>...</em>` in HTML, `*...*` in Markdown, `<tspan font-style="italic">` in SVG.
+   - **Zero Exception for Large Titles & Headings**: Even in `<h1>`, `<h2>`, card headers, badges, or diagram labels, scientific names must remain italicized and properly cased.
+   - **ZERO ALL-CAPS FOR SCIENTIFIC NAMES**: Scientific names must NEVER be written in all-caps (e.g. `XANTHOMONAS` or `BACILLUS` is strictly prohibited; write `<tspan font-style="italic">Xanthomonas</tspan>`).
+2. **Sans-Serif HTML Superscripts for Simple Ions**:
    - In prose and diagrams, write simple ion charges using HTML superscripts: `Cu<sup>+</sup>` and `Cu<sup>2+</sup>`.
    - **Do NOT use KaTeX Times-serif math (`$\text{Cu}^+$`)** in the middle of sans-serif body text; it creates a jarring font style clash with `Plus Jakarta Sans`.
-2. **Standard Greek Characters**:
+3. **Standard Greek Characters**:
    - Use standard Greek unicode characters (e.g., **`KΦ1`**) rather than lookalike Cyrillic glyphs (`KФ1`).
-3. **Mandatory Abbreviation Expansion**:
+4. **Mandatory Abbreviation Expansion**:
    - On the first occurrence of specialized quantitative indices, always write out the full name in parentheses: e.g. **Niche Overlap Index (NOI: 0.8–1.0)**.
 
 ---
@@ -207,7 +213,7 @@ Font size should be $12\text{--}12.5\text{px}$ with generous line-height ($1.5\t
 
 Before delivering the presentation files to the user, the agent must run the following 6-point verification:
 
-- [ ] **L1: Language, Chemical & Notation Conformance**: 100% Academic English (0 Chinese characters); sans-serif HTML superscripts (`Cu<sup>+</sup>`/`Cu<sup>2+</sup>`); Greek standards (`KΦ1`); expanded abbreviations (`NOI`).
+- [ ] **L1: Language, Nomenclature & Notation Conformance**: 100% Academic English (0 Chinese characters); strict binomial nomenclature (all genera/species capitalized genus, lowercase epithet, 100% italicized, zero all-caps in titles/SVGs); sans-serif HTML superscripts (`Cu<sup>+</sup>`/`Cu<sup>2+</sup>`); Greek standards (`KΦ1`); expanded abbreviations (`NOI`).
 - [ ] **L2: 16:9 Viewport & Elastic Budget**: 1280×720 canvas; `.slide-body` has elastic budget (`flex: 1; min-height: 500px; max-height: 535px;`); references slide does not clip.
 - [ ] **L3: Cover & Pedagogical Alignment**: Slide 1 is minimalist (0 metadata boxes, 0 category pills, empty bottom-left footer); Slide 2 features explicit Core Learning Objectives.
 - [ ] **L4: Visual Pedagogy & Structural Matrices**: Pathogen comparison uses `matrix-table` (no 4-card grids); symptoms, spatiotemporal dynamics, and molecular mechanisms include vector schematics.

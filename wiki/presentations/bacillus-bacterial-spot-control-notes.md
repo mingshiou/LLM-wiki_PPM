@@ -1,4 +1,4 @@
-# Speaker Lecture Script: Biological Control of Bacterial Spot (Bacillus Multi-Site Suppression)
+# Speaker Lecture Script: Biological Control of Bacterial Spot (*Bacillus* Multi-Site Suppression)
 
 This document provides the complete collegiate-level lecturing script, instructional notes, and pedagogical prompts for the 12-slide Reveal.js interactive presentation `bacillus-bacterial-spot-control.html`.
 
@@ -60,7 +60,7 @@ This document provides the complete collegiate-level lecturing script, instructi
 ---
 
 ## Slide 5: Direct Antibiosis: Non-Ribosomal Metabolite Arsenal
-* **Layout Archetype**: `Archetype 4: .focus-mechanism` (Full-Width Vector Schematic of Xanthomonas Envelope Lysis)
+* **Layout Archetype**: `Archetype 4: .focus-mechanism` (Full-Width Vector Schematic of *Xanthomonas* Envelope Lysis)
 * **Citation**: (Rabbee et al., 2023; Grady et al., 2019)
 
 ### Speaker Lecture Script
