@@ -81,37 +81,65 @@ Each slide must be structured using a flexbox layout container to eliminate vert
 
 ---
 
-## 2. Structural Layout Archetypes & Matrices
+## 2. Standard Layout Archetypes & Dual-Track Blueprint
 
-### 2.1 Comparison Matrix Table for Multi-Lineage Complexes
-- When comparing 3 or 4 pathogen species (e.g. *Xanthomonas* Group A–D complex), **NEVER use 4 narrow vertical cards (`grid-4col`)**, which force eyes to jump back and forth.
-- **Always use a structured Comparison Matrix (`table.matrix-table`)**:
-  ```html
-  <table class="matrix-table">
-    <thead>
-      <tr>
-        <th>Species &amp; Lineage</th>
-        <th>Primary Hosts</th>
-        <th>Amylolytic / Pectolytic</th>
-        <th>Climate &amp; Ecological Niche</th>
-        <th>Distinctive Virulence Traits</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>X. euvesicatoria</strong> (Group A)</td>
-        <td>Tomato &amp; Pepper</td>
-        <td>Non-amylolytic (-)</td>
-        <td>Temperate / Subtropical</td>
-        <td>Model for T3SS and TALE (AvrBs2, AvrBs3)</td>
-      </tr>
-      ...
-    </tbody>
-  </table>
-  ```
+### 2.1 The 5 Standard Layout Archetypes
+Every educational slide proposal in Phase 2 must explicitly assign one of the following 5 standard archetypes:
 
-### 2.2 Pipeline Process Steppers
-- Multi-step chronological pathways (e.g., Seed $\to$ Blossom $\to$ Nursery $\to$ Field Epidemic) must use CSS Flexbox pipelines (`.pipeline-container` and `.pipeline-step`) with distinct step number badges and directional arrows.
+1. **Archetype 1: Comparison Matrix Table (`.matrix-table`)**
+   - *Application*: Multi-species/lineage taxonomic comparisons, differential host ranges, enzyme profiles (amylolytic/pectolytic), resistance spectra.
+   - *Design*: 4–6 column table with clear headers, bold species names, high-contrast badges (`+`, `-`, `High`, `Low`), and horizontal row hover styling. Never use 4 parallel cards.
+   ```html
+   <table class="matrix-table">
+     <thead>
+       <tr>
+         <th>Species &amp; Lineage</th>
+         <th>Primary Hosts</th>
+         <th>Amylolytic / Pectolytic</th>
+         <th>Climate &amp; Ecological Niche</th>
+         <th>Distinctive Virulence Traits</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td><strong>X. euvesicatoria</strong> (Group A)</td>
+         <td>Tomato &amp; Pepper</td>
+         <td>Non-amylolytic (-)</td>
+         <td>Temperate / Subtropical</td>
+         <td>Model for T3SS and TALE (AvrBs2, AvrBs3)</td>
+       </tr>
+     </tbody>
+   </table>
+   ```
+
+2. **Archetype 2: Split Diagram + Panel (`.diagram-split`)**
+   - *Application*: Diagnostic symptoms, leaf surface topology, or experimental assay comparisons.
+   - *Design*: Horizontal 50/50 or 60/40 layout. Left side contains an embedded vector schematic (or photo asset from `raw/assets/`); right side contains 2–3 structured takeaway blocks with bullet points.
+
+3. **Archetype 3: Spatiotemporal Flow & Progression (`.flow-progression`)**
+   - *Application*: Infection cycles, symptom evolution (water-soaking $\to$ halo $\to$ shot-hole), or multi-stage timecourses (8h $\to$ 24h $\to$ 72h).
+   - *Design*: Horizontal step progression or upper/lower stage vector pipeline with directional arrows and state badges (`.pipeline-container` and `.pipeline-step`).
+
+4. **Archetype 4: Full-Width Focus Mechanism (`.focus-mechanism`)**
+   - *Application*: Deep molecular machinery (T3SS syringe, gene operons, receptor-ligand complexes, membrane redox systems).
+   - *Design*: Full-width canvas centered around a contiguous multi-compartment vector diagram (bacterial membrane, apoplast, host cytoplasm/nucleus) with explicit callout annotations and zero text overflows.
+
+5. **Archetype 5: Dual Contrast Grid (`.contrast-grid`)**
+   - *Application*: Binary biological paradigms (Compatible vs. Incompatible interactions; Copper-sensitive vs. Copper-resistant; Traditional bactericide vs. Bacteriophage biocontrol).
+   - *Design*: Two balanced columns with contrasting border accents (e.g. green for defense/resistance, amber/red for susceptibility/disease).
+
+### 2.2 Phase 2 Dual-Track Blueprint Format
+When proposing slides during Phase 2 (Gatekeeper Checkpoint A), the LLM must present the outline in this structured format:
+
+```markdown
+* **Slide [N]: [Slide Title]**
+  * **Core Pedagogical Point**: [1 clear sentence explaining the specific biological or analytical takeaway]
+  * **Layout Archetype**: [Archetype 1: Matrix Table | Archetype 2: Split Diagram + Panel | Archetype 3: Flow Progression | Archetype 4: Focus Mechanism | Archetype 5: Dual Contrast Grid]
+  * **Visual Strategy & Elements**:
+    * [Diagram / Table details: list specific compartments, arrows, molecular entities, or table columns]
+    * [Asset source: Local photo asset / Embedded SVG / HTML Table]
+  * **In-slide Citation**: `(Author, Year)` linking to wiki files
+```
 
 ---
 

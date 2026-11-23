@@ -199,11 +199,16 @@ When the user requests an educational slide deck or lecture presentation on a sp
      - **Sufficient Coverage ($\ge 70\%$)**: Proceed directly to outline planning using existing wiki knowledge.
      - **Partial Coverage ($30\%\text{--}70\%$)**: Propose a "Scope Convergence" plan (default recommendation) substituting missing details with documented wiki pathosystems. If the user explicitly requires the missing subtopic, allow expanding at most 1 target paper via Operation 1 upon explicit user approval.
      - **Insufficient / Out-of-Scope ($< 30\%$)**: Halt boundary defense. Transparently inform the user that the topic falls outside the current wiki corpus; suggest splitting the request into an initial literature ingestion project before generating presentations. **Never silently search the web or hallucinate ungrounded facts.**
-2. **Phase 2: Outline Planning & Mandatory User Alignment (Gatekeeper Checkpoint)**:
-   - Formulate a 10–13 slide outline detailing pedagogical goals, target audience level (e.g., undergraduate vs. graduate), and in-slide citations `(Author, Year)` linking to wiki files.
-   - **MANDATORY CHECKPOINT**: The agent must stop and present the proposed outline to the user. **Do NOT generate any presentation code until the user explicitly approves ("可以 / 同意")**.
-3. **Phase 3: Execution via Presentation Builder Skill**:
-   - Activate and strictly adhere to `.agents/skills/educational-slides/SKILL.md`.
+2. **Phase 2: Dual-Track Pedagogical & Visual Blueprint (Gatekeeper Checkpoint A)**:
+   - Formulate a 10–13 slide proposal using the **Dual-Track Blueprint** format. For every single slide, the LLM must explicitly declare:
+     - **Title & Core Pedagogical Message**: 1-sentence analytical or biological takeaway.
+     - **Layout Archetype**: Choose from the 5 standard archetypes defined in `SKILL.md` (`.matrix-table`, `.diagram-split`, `.flow-progression`, `.focus-mechanism`, `.contrast-grid`).
+     - **Visual Strategy & Elements**: If diagram/SVG, explicitly specify physical compartments, arrows, and molecular players (e.g. "Leaf cross-section showing stomata, apoplast, and flagellar brake"); if table, specify comparison criteria and dimensions.
+     - **In-slide Citation**: `(Author, Year)` linking to wiki files.
+   - **MANDATORY GATEKEEPER CHECKPOINT A**: The agent must stop and present this Dual-Track Blueprint to the user. **Do NOT generate any presentation code until the user explicitly approves ("可以 / 同意")**.
+   - **Loop Point A (Blueprint Iteration)**: If the user requests layout adjustments (e.g., "Slide 4 use a progression timeline instead of text cards", "Slide 8 diagram needs host nucleus"), the LLM updates the blueprint immediately with zero code debt.
+3. **Phase 3: Blueprint-Driven Execution via Presentation Builder Skill**:
+   - Activate and strictly adhere to the approved Phase 2 blueprint and `.agents/skills/educational-slides/SKILL.md`.
    - **Slide Structure & Cover Rules**:
      - *Slide 1 (Minimalist Cover)*: Clean academic title, descriptive subtitle, and presenter/institution line. **Do NOT include** artificial category pills (e.g., "Advanced Lecture Series"), metadata box grids (`Course/Module/Host`), or bottom-left footer citations.
      - *Slide 2 (Learning Objectives)*: Define 3–4 explicit, pedagogical core competencies for students.
@@ -228,8 +233,9 @@ When the user requests an educational slide deck or lecture presentation on a sp
      5. *Citations & Notation*: Clean `(Author, Year)` without "Refs:" label, sans-serif HTML chemical superscripts, expanded acronyms.
      6. *Dual-track Delivery*: Synchronized speaker notes in `.slide-notes` and companion `-notes.md`.
    - **Circuit Breaker**: Limit automatic repair cycles to **maximum 2 iterations**. If any check fails after 2 auto-fixes, trigger graceful escalation: halt auto-repair and present the specific structural trade-off to the user for decision.
-5. **Phase 5: Delivery & Operational Logging**:
+5. **Phase 5: Delivery & Operational Logging (Gatekeeper Checkpoint B)**:
    - Deliver the standalone HTML file (`wiki/presentations/<slug>.html`) and companion Markdown lecture script (`wiki/presentations/<slug>-notes.md`).
+   - **Loop Point B (Refinement & Polishing)**: Address minor user feedback on typography sizes or diagram coordinate nuances.
    - Catalog the presentation in `wiki/index.md` (Section 8) and append an audit record to `wiki/log.md`.
 
 ### Operation 3: Query & Synthesis
