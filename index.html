@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plant Pathology & MPMI Wiki — Educational Presentation Portal</title>
+  <title>植物病理與 MPMI LLM Wiki — 教學簡報與知識庫成果展現</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f8faf7;
@@ -14,83 +14,134 @@
       --primary: #2e7d32;
       --dark: #1b5e20;
       --light-mint: #e8f5e9;
+      --accent-blue: #0284c7;
+      --accent-blue-bg: #f0f9ff;
+      --accent-amber: #d97706;
+      --accent-amber-bg: #fffbeb;
+      --accent-red: #dc2626;
       --text: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
+      --border-green: #c8e6c9;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f4f8f3 100%);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", sans-serif;
+      background: #f8faf7;
       color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
+      line-height: 1.6;
+      padding: 0;
     }
-    .container {
-      max-width: 860px;
-      width: 100%;
+
+    /* Top Navigation Bar */
+    header.navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Main Container */
+    main.container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 24px 80px 24px;
+    }
+
+    /* Section Styling */
+    section.showcase-block {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 48px 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
-    .badge {
+
+    .section-pill {
       display: inline-block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--dark);
       background: var(--light-mint);
-      border: 1px solid #c8e6c9;
-      padding: 6px 14px;
+      border: 1px solid var(--border-green);
+      padding: 4px 12px;
       border-radius: 20px;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--dark);
-      line-height: 1.2;
       margin-bottom: 12px;
     }
-    p.lead {
-      font-size: 17px;
+
+    h2.section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    p.section-desc {
+      font-size: 15px;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
+
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.2s ease;
     }
+
     .btn-primary {
       background: var(--primary);
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
     }
     .btn-primary:hover {
       background: var(--dark);
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
+
     .btn-secondary {
       background: #f1f5f9;
       color: var(--text);
@@ -99,77 +150,523 @@
     .btn-secondary:hover {
       background: #e2e8f0;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      border-top: 1px solid var(--border);
-      padding-top: 28px;
+
+    /* Embedded Presentation Iframe */
+    .slide-embed-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      margin-bottom: 16px;
+      background: #f4f8f3;
     }
-    .item h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
+
+    .slide-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
-    .item p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .item a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .item a:hover { text-decoration: underline; }
-    footer {
-      margin-top: 32px;
+
+    .slide-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
       font-size: 13px;
       color: var(--text-muted);
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    table.data-table th {
+      background: #f8fafc;
+      color: var(--dark);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 2px solid var(--border);
+      text-align: left;
+    }
+
+    table.data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+
+    table.data-table tr:hover td {
+      background: #fcfdfc;
+    }
+
+    /* Badge Tags */
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .tag-pathogen { background: #fee2e2; color: #991b1b; }
+    .tag-host { background: #dcfce7; color: #166534; }
+    .tag-mgmt { background: #e0f2fe; color: #075985; }
+    .tag-mol { background: #fef3c7; color: #92400e; }
+    .tag-concept { background: #f3e8ff; color: #6b21a8; }
+
+    /* Category Cards Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .category-card {
+      background: #fcfdfc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .category-card h3 {
+      font-size: 16px;
+      color: var(--dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-card ul {
+      list-style-type: none;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .category-card ul li {
+      margin-bottom: 6px;
+      line-height: 1.45;
+    }
+
+    .category-card ul li code {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Diagram flow box */
+    .sop-diagram-box {
+      background: #fafcf9;
+      border: 1px solid var(--border-green);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    /* Step flow cards */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .flow-step-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      position: relative;
+    }
+
+    .flow-step-card.gate {
+      border: 2px solid var(--primary);
+      background: #f0fdf4;
+    }
+
+    .flow-step-card.circuit {
+      border: 2px solid var(--accent-amber);
+      background: #fffbeb;
+    }
+
+    .flow-step-card .num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .flow-step-card h4 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .flow-step-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Callout block */
+    .callout-box {
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 14px 0;
+    }
+    .callout-box.info { background: #e0f2fe; border-left: 4px solid var(--accent-blue); color: #0369a1; }
+    .callout-box.success { background: #dcfce7; border-left: 4px solid var(--primary); color: #166534; }
+    .callout-box.warning { background: #fef3c7; border-left: 4px solid var(--accent-amber); color: #92400e; }
+
+    footer.site-footer {
       text-align: center;
+      padding: 30px;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="badge">TAICA Generative AI Assignment 1110</div>
-    <h1>Plant Pathology & MPMI Wiki</h1>
-    <p class="lead">
-      An autonomous LLM-maintained knowledge base on Molecular Plant-Microbe Interactions (MPMI), accompanied by a high-resolution, responsive 16:9 interactive educational Reveal.js slide presentation.
-    </p>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <span>🌿</span> Plant Pathology & MPMI Wiki
+    </div>
+    <nav class="nav-links">
+      <a href="#presentation">教學簡報成果</a>
+      <a href="#wiki-papers">餵入文獻 (10篇)</a>
+      <a href="#wiki-entities">知識庫實體 (23篇)</a>
+      <a href="#loop-sop">Loop / Graph 設計</a>
+      <a href="#audit-reflection">檢核紀錄與反思</a>
+      <a href="https://github.com/mingshiou/LLM-wiki_PPM" target="_blank">GitHub 倉庫 ↗</a>
+    </nav>
+  </header>
 
-    <div class="actions">
-      <a href="wiki/presentations/plant-pti-response.html" class="btn btn-primary">
-        <span>▶</span> Launch HTML Slide Deck (16:9)
-      </a>
-      <a href="https://github.com/mingshiou/LLM-wiki_PPM" class="btn btn-secondary">
-        <span>📁</span> View GitHub Repository
-      </a>
+  <main class="container">
+
+    <!-- HERO HEADER -->
+    <div style="text-align: center; margin-bottom: 40px; padding: 20px 0;">
+      <div class="section-pill">TAICA 生成式 AI：文字與圖像應用專題作業 1110</div>
+      <h1 style="font-size: 36px; font-weight: 800; color: var(--dark); margin-bottom: 12px; line-height: 1.25;">
+        以 LLM Wiki 為知識基底的教學型 HTML 簡報生成系統
+      </h1>
+      <p style="font-size: 17px; color: var(--text-muted); max-width: 820px; margin: 0 auto;">
+        本專案建立了一個專注於<strong>植物病理學與分子植物微生物交互作用（MPMI）</strong>的自主維護知識庫（23 篇跨鏈結實體、10 篇國際頂刊文獻），並透過專屬的 5 階段自我檢核 SOP，自動化生成大學部 16:9 教學簡報與講義。
+      </p>
     </div>
 
-    <div class="grid">
-      <div class="item">
-        <h3>🎓 Interactive Slide Deck</h3>
-        <p>Collegiate-level lecture covering the Zig-Zag model, FLS2/BAK1/BIK1 membrane topology, smooth apoplastic ROS kinetics, callose papillae, and biocontrol priming.</p>
-        <p style="margin-top:6px;"><a href="wiki/presentations/plant-pti-response.html">Open Presentation &rarr;</a></p>
-      </div>
-      <div class="item">
-        <h3>📝 Speaker Notes Script</h3>
-        <p>Complete slide-by-slide lecturer script and concept discussion guide supporting the presentation.</p>
-        <p style="margin-top:6px;"><a href="wiki/presentations/plant-pti-notes.md">Read Lecture Notes &rarr;</a></p>
-      </div>
-      <div class="item">
-        <h3>📚 Wiki Knowledge Base</h3>
-        <p>23 interconnected entity pages across pathogens, diseases, hosts, effectors, management, and experimental protocols.</p>
-        <p style="margin-top:6px;"><a href="wiki/index.md">Explore Wiki Catalog &rarr;</a></p>
-      </div>
-    </div>
-  </div>
+    <!-- SECTION 1: LIVE INTERACTIVE PRESENTATION -->
+    <section class="showcase-block" id="presentation">
+      <div class="section-pill">成果展示：教學型 HTML 簡報</div>
+      <h2 class="section-title">植物免疫第一道防線：PAMP-Triggered Immunity (PTI)</h2>
+      <p class="section-desc">
+        針對非植物病理本科系學生設計的大學部入門簡報。下方為直接嵌入的 16:9 互動簡報，支援點擊播放、鍵盤翻頁（空白鍵 / 方向鍵）、全螢幕（<code>F</code> 鍵）以及點擊 <code>📝 Notes</code>（或按 <code>N</code> 鍵）呼叫隨堂講稿抽屜。
+      </p>
 
-  <footer>
-    Plant Pathology & MPMI LLM Wiki &bull; Hosted on GitHub Pages
+      <!-- Embedded 16:9 Reveal.js Presentation -->
+      <div class="slide-embed-wrapper">
+        <iframe src="wiki/presentations/plant-pti-response.html" allowfullscreen></iframe>
+      </div>
+
+      <div class="slide-actions-bar">
+        <div>
+          <span>💡 <strong>操作提示</strong>：點擊上方簡報後，可按 <code>F</code> 進入全螢幕播放，按 <code>N</code> 鍵展開英文演講備忘稿。</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="wiki/presentations/plant-pti-response.html" target="_blank" class="btn btn-primary">
+            <span>⛶</span> 全螢幕獨立開啟簡報
+          </a>
+          <a href="wiki/presentations/plant-pti-notes.md" target="_blank" class="btn btn-secondary">
+            <span>📝</span> 閱讀配套講義 (Markdown)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 10 INGESTED PAPERS -->
+    <section class="showcase-block" id="wiki-papers">
+      <div class="section-pill">數據基底：餵入文獻資料庫</div>
+      <h2 class="section-title">完整入庫的 10 篇學術論文（Ingested Sources）</h2>
+      <p class="section-desc">
+        嚴格落實「先討論、後生成」的互動入庫流程（Operation 1），完整研讀、結構化提取並建檔 10 篇國際權威期刊論文（皆存放於 <code>raw/papers/</code>，以 Better BibTeX citekey 標準命名）：
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">文獻 Citekey</th>
+            <th style="width: 32%;">論文名稱與作者</th>
+            <th style="width: 18%;">期刊與年份</th>
+            <th style="width: 32%;">核心貢獻與對應 Wiki 條目</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>potnis2015bacterial</code></td>
+            <td><strong>Bacterial spot of tomato and pepper: diverse Xanthomonas species...</strong><br>Potnis et al.</td>
+            <td><em>Mol. Plant Pathol.</em><br>(2015)</td>
+            <td>奠定番茄甜椒細菌性斑點病四大黃單胞菌種分類體系、T3SS 與 <code>avrBs2</code>/<code>avrBs3</code> 效應蛋白模型。</td>
+          </tr>
+          <tr>
+            <td><code>osdaghi2021centenary</code></td>
+            <td><strong>A centenary for bacterial spot of tomato and pepper</strong><br>Osdaghi et al.</td>
+            <td><em>Mol. Plant Pathol.</em><br>(2021)</td>
+            <td>斑點病百年回顧，記錄佛州 100% 穿孔黃單胞菌取代優勢、XopJ2 加速田間傳播、<code>copLAB</code> 銅劑抗性。</td>
+          </tr>
+          <tr>
+            <td><code>rabbee2023bacillus</code></td>
+            <td><strong>Bacillus velezensis: A Beneficial Biocontrol Agent...</strong><br>Rabbee et al.</td>
+            <td><em>Agronomy</em><br>(2023)</td>
+            <td>貝萊斯芽孢桿菌次級代謝產物（界面活性素 Surfactin 等環脂肽 CLPs）、根圈定殖與系統抗性 ISR 機制。</td>
+          </tr>
+          <tr>
+            <td><code>mates2019bacillus</code></td>
+            <td><strong>Bacillus velezensis GF267 as a multi-site antagonist...</strong><br>Mates et al.</td>
+            <td><em>Biological Control</em><br>(2019)</td>
+            <td>GF267 菌株 5 小時殺死斑點病菌，建立「空間分離根灌抗病試驗」標準流程，分離直接拮抗與植物免疫。</td>
+          </tr>
+          <tr>
+            <td><code>keawmanee2025sustainable</code></td>
+            <td><strong>Sustainable Management of Bacterial Leaf Spot in Bell Pepper...</strong><br>Keawmanee et al.</td>
+            <td><em>Crop Protection</em><br>(2025)</td>
+            <td>化學誘導劑（ASM/BTH、BABA、幾丁聚醣）與生防菌協同激活甜椒 <em>PR-1</em>, <em>PR-2</em>, <em>PR-4</em> 防禦基因表達。</td>
+          </tr>
+          <tr>
+            <td><code>chang2019intensification</code></td>
+            <td><strong>Intensification of PAMP-triggered immunity in watermelon...</strong><br>Chang et al.</td>
+            <td><em>J. Plant Med.</em><br>(2019)</td>
+            <td><strong>簡報核心實例</strong>：芽孢桿菌 PMB04/05 預備（Priming）西瓜，引發 <strong>2,733 倍超強 ROS 爆發</strong>與 150 倍胼胝質沉積阻絕果斑病。</td>
+          </tr>
+          <tr>
+            <td><code>grady2019characterization</code></td>
+            <td><strong>Characterization and complete genome analysis of Bacillus velezensis 9D-6</strong><br>Grady et al.</td>
+            <td><em>BMC Genomics</em><br>(2019)</td>
+            <td>9D-6 完整基因體定序，揭示 13 個非核糖體胜肽（NRPS）合成酶基因簇與抗性誘導結構特異性。</td>
+          </tr>
+          <tr>
+            <td><code>gupta2024bacillus</code></td>
+            <td><strong>Bacillus thuringiensis promotes systemic immunity in tomato...</strong><br>Gupta et al.</td>
+            <td><em>Food Security</em><br>(2024)</td>
+            <td><strong>簡報核心檢測法</strong>：蘇力菌（Bt）雙重功效，利用 HRP-Luminol 化學發光動態監測葉圓片 ROS 爆發動態曲線。</td>
+          </tr>
+          <tr>
+            <td><code>yu2019rhizosphere</code></td>
+            <td><strong>Rhizosphere-Associated Pseudomonas Suppress Local Root Immune Responses...</strong><br>Yu et al.</td>
+            <td><em>Current Biology</em><br>(2019)</td>
+            <td><strong>簡報核心悖論</strong>：根圈假單胞菌分泌 D-葡糖酸將微環境酸化至 pH 3.5–3.7，淬滅根部 ROS，化解生長與防衛權衡衝突。</td>
+          </tr>
+          <tr>
+            <td><code>kaur2026spatiotemporal</code></td>
+            <td><strong>Spatiotemporal coordination of virulence, metabolism, and stress responses...</strong><br>Kaur et al.</td>
+            <td><em>Appl. Environ. Microbiol.</em><br>(2026)</td>
+            <td>建立葉表/質外體雙微環境轉錄組學（In planta RNA-seq），揭示病菌葉表預防性氧化抗性與氣孔重新脫出傳播機制。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 3: 23 WIKI KNOWLEDGE BASE PAGES -->
+    <section class="showcase-block" id="wiki-entities">
+      <div class="section-pill">知識圖譜：23 篇 Wiki 實體網絡</div>
+      <h2 class="section-title">LLM Wiki 結構化知識庫成果</h2>
+      <p class="section-desc">
+        依據 <code>AGENTS.md</code> 規範建立的 23 篇跨鏈結學術 Markdown 條目，完整涵蓋植物病理學核心分類：
+      </p>
+
+      <div class="category-grid">
+        <div class="category-card">
+          <h3><span>🦠 病原微生物 (Pathogens)</span> <span class="tag tag-pathogen">5 篇</span></h3>
+          <ul>
+            <li><code>[[xanthomonas-euvesicatoria]]</code>: Group A 斑點病菌、TALE 模式</li>
+            <li><code>[[xanthomonas-perforans]]</code>: Group C 穿孔病菌、四階段感染歷程</li>
+            <li><code>[[xanthomonas-vesicatoria]]</code>: Group B 澱粉水解型斑點病菌</li>
+            <li><code>[[xanthomonas-gardneri]]</code>: Group D 低溫適應型種傳病菌</li>
+            <li><code>[[acidovorax-citrulli]]</code>: 西瓜與瓜類細菌性果斑病菌 (BFB)</li>
+          </ul>
+        </div>
+
+        <div class="category-card">
+          <h3><span>🍂 病害檔案 (Diseases)</span> <span class="tag tag-pathogen">2 篇</span></h3>
+          <ul>
+            <li><code>[[bacterial-spot-tomato-pepper]]</code>: 番茄甜椒細菌性斑點病綜合管理</li>
+            <li><code>[[bacterial-fruit-blotch]]</code>: 瓜類細菌性果斑病水浸狀萎凋與檢疫</li>
+          </ul>
+        </div>
+
+        <div class="category-card">
+          <h3><span>🌱 宿主植物 (Hosts)</span> <span class="tag tag-host">3 篇</span></h3>
+          <ul>
+            <li><code>[[solanum-lycopersicum]]</code>: 栽培番茄、Bs2 轉殖與抗氧化爆發模型</li>
+            <li><code>[[capsicum-annuum]]</code>: 甜椒、Bs1-Bs4 基因對基因抗性遺傳體系</li>
+            <li><code>[[citrullus-lanatus]]</code>: 栽培西瓜、PTI 增強作用與果斑病防護模型</li>
+          </ul>
+        </div>
+
+        <div class="category-card">
+          <h3><span>🔬 分子生物學 (Molecular Biology)</span> <span class="tag tag-mol">3 篇</span></h3>
+          <ul>
+            <li><code>[[avrbs2]]</code>: 核心 T3SS 毒力效應蛋白 (甘油磷酸二酯酶活性)</li>
+            <li><code>[[avrbs3]]</code>: 原型轉錄活化因子樣效應蛋白 (TALE) 與 UPA box</li>
+            <li><code>[[cyclic-lipopeptides]]</code>: 界面活性素、伊枯草菌素、豐原素膜穿孔機制</li>
+          </ul>
+        </div>
+
+        <div class="category-card">
+          <h3><span>🛡️ 生防與管理 (Management)</span> <span class="tag tag-mgmt">4 篇</span></h3>
+          <ul>
+            <li><code>[[bacillus-velezensis]]</code>: 貝萊斯芽孢桿菌全基因體 BGCs 與定殖</li>
+            <li><code>[[bacillus-thuringiensis]]</code>: 蘇力菌雙重功效 (殺蟲毒素 + MAMP 免疫促發)</li>
+            <li><code>[[chemical-resistance-inducers]]</code>: ASM/BTH、BABA、幾丁聚醣作用機制</li>
+            <li><code>[[copper-bactericides-and-resistance]]</code>: 銅劑作用、copLAB 質體抗藥性</li>
+          </ul>
+        </div>
+
+        <div class="category-card">
+          <h3><span>💡 核心概念與方法 (Concepts & Methods)</span> <span class="tag tag-concept">6 篇</span></h3>
+          <ul>
+            <li><code>[[pamp-triggered-immunity]]</code>: <strong>簡報核心</strong> (PRR 感知、ROS 爆發、胼胝質)</li>
+            <li><code>[[gene-for-gene-resistance]]</code>: 基因對基因假說與 Zig-zag 模型</li>
+            <li><code>[[induced-systemic-resistance]]</code>: 根圈促生菌引導之系統抗病性 (ISR vs SAR)</li>
+            <li><code>[[rhizosphere-immune-modulation]]</code>: 根圈微環境 pH 3.7 免疫淬滅悖論</li>
+            <li><code>[[spatial-separation-isr-assay]]</code>: 根灌空間分離誘導抗病標準實驗法</li>
+            <li><code>[[in-planta-bacterial-transcriptomics]]</code>: 雙微環境 (葉表/質外體) RNA-seq 流程</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LOOP / GRAPH SOP DESIGN -->
+    <section class="showcase-block" id="loop-sop">
+      <div class="section-pill">系統架構：Loop / Graph 流程設計</div>
+      <h2 class="section-title">五階段自動化生成與檢核標準作業程序 (SOP)</h2>
+      <p class="section-desc">
+        本專案建立的 Loop / Graph 流程規範於 <code>AGENTS.md</code> 與 <code>.agents/skills/educational-slides/SKILL.md</code>，解決傳統 LLM 一次性生成容易幻覺、圖文擠壓與死循環問題：
+      </p>
+
+      <div class="flow-steps">
+        <div class="flow-step-card">
+          <div class="num">Phase 1</div>
+          <h4>知識庫檢索與覆蓋度稽核</h4>
+          <p>比對 Wiki 條目：&ge;70% 充足執行；30–70% 提出收斂方案（限補 1 篇）；&lt;30% 邊界阻斷，絕不盲目搜尋。</p>
+        </div>
+
+        <div class="flow-step-card gate">
+          <div class="num">Phase 2 【強制中斷點】</div>
+          <h4>大綱規劃與用戶對齊確認</h4>
+          <p>生成 10–13 頁大綱並標註引用。<strong>Agent 必須停下來等待用戶確認，未經同意嚴禁逕自寫程式碼！</strong></p>
+        </div>
+
+        <div class="flow-step-card">
+          <div class="num">Phase 3</div>
+          <h4>16:9 Reveal.js 規格生成</h4>
+          <p>依據 Skill 樣板：鎖定 1280×720，Body &le; 520px，自然去方框化，平滑貝茲曲線，真實受體膜拓撲。</p>
+        </div>
+
+        <div class="flow-step-card circuit">
+          <div class="num">Phase 4 【自動檢核與熔斷】</div>
+          <h4>Self-Linting 自動自我審查</h4>
+          <p>執行 6 大檢核清單（語言、幾何、去框、科學精度、引用、備忘稿）。<strong>最多自動修復 2 次，超限觸發透明回報。</strong></p>
+        </div>
+
+        <div class="flow-step-card">
+          <div class="num">Phase 5</div>
+          <h4>雙軌交付與系統日誌</h4>
+          <p>產出 HTML 簡報與同步 Markdown 講義檔，自動更新全域 <code>index.md</code> 與 <code>log.md</code> 運作紀錄。</p>
+        </div>
+      </div>
+
+      <div class="callout-box info">
+        <strong>為什麼這樣設計？（SOP 設計核心哲學）</strong><br>
+        1. <strong>邊界收斂（Decoupling）</strong>：將「文獻擴充」與「簡報生成」解耦，避免簡報做到一半無止盡地去找外部論文，造成任務發散（Scope Creep）。<br>
+        2. <strong>大綱守門員（Human-in-the-loop Gatekeeper）</strong>：在寫幾百行 HTML 前先確立邏輯架構，大幅減少後續重構成本。<br>
+        3. <strong>2 次修復熔斷機制（Circuit Breaker）</strong>：防止模型在自我檢核失敗時陷入「修復 &rarr; 失敗 &rarr; 再修復」的無限死循環，保護 Token 預算並及時求助人類。
+      </div>
+    </section>
+
+    <!-- SECTION 5: AUDIT LOG & REFLECTION -->
+    <section class="showcase-block" id="audit-reflection">
+      <div class="section-pill">實戰紀錄：執行檢核與反思</div>
+      <h2 class="section-title">實際執行歷程、常錯節點檢核與深度反思</h2>
+
+      <h3 style="font-size: 18px; color: var(--dark); margin: 20px 0 10px 0;">1. 一次實際執行的結果與檢核修復歷程</h3>
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+        在本次以「植物 PTI 反應」為主題生成簡報時，實際經歷了兩輪嚴格的檢核修復歷程：
+      </p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">檢核項目</th>
+            <th style="width: 35%;">初稿檢核出的具體缺陷 (Round 0)</th>
+            <th style="width: 45%;">修復手段與成果 (Round 1 & 2)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>語言一致性</strong></td>
+            <td>出現中英混雜標籤（如 <code>&lt;span class="zh-tag"&gt;</code>），破壞學術簡報排版節奏。</td>
+            <td><strong>全面轉為 100% 學術英文</strong>，專業術語保留精確國際英文字母，並移除所有生硬的中文標註。</td>
+          </tr>
+          <tr>
+            <td><strong>術語保真度</strong></td>
+            <td>Slide 2 出現了外部綜述詞彙「Tier」，但檢驗 Wiki 資料集發現庫內使用的是「Layer」。</td>
+            <td><strong>全面剔除 Tier 外部詞彙</strong>，嚴格回歸 Wiki 本體名詞：<code>Layer 1 (PTI)</code> 與 <code>Layer 2 (ETI)</code>。</td>
+          </tr>
+          <tr>
+            <td><strong>版面幾何預算</strong></td>
+            <td>Slide 5 在 700px 高度內堆疊 280px 超大 SVG，導致版面嚴重崩壞裁切。</td>
+            <td><strong>重構 Slide 5</strong>：捨棄 SVG 嵌入文字，改用<strong>純 CSS Flexbox Pipeline</strong>，字體清晰且絕不溢出。</td>
+          </tr>
+          <tr>
+            <td><strong>科學範圍等價性</strong></td>
+            <td>Slide 7 標題「How to measure PTI」範圍過大，實際內容僅為 ROS 活性氧檢測法。</td>
+            <td><strong>精確修正標題</strong>為 <code>Laboratory Quantification of the Apoplastic ROS Burst</code>，加註其在全套 PTI 檢測中的定位。</td>
+          </tr>
+          <tr>
+            <td><strong>圖形動力學與拓撲</strong></td>
+            <td>Slide 7 ROS 曲線頂點為尖角；Slide 8 壓成 560×76 扁條；Slide 4 FLS2/BAK1 膜拓撲混淆。</td>
+            <td>1. Slide 7 改用<strong>三次貝茲曲線還原平滑圓弧穹頂高峰 (Smooth Dome Peak)</strong>。<br>2. Slide 8 改為<strong>左右對稱雙卡片 (Callose 乳頭 + 氣孔開閉對比)</strong>。<br>3. Slide 4 精確標記 FLS2/BAK1 穿膜共受體與<strong>細胞質側的 BIK1 解離機制</strong>。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-size: 18px; color: var(--dark); margin: 30px 0 10px 0;">2. 深度反思：哪個節點最常出錯？如何前置防禦？</h3>
+      <div class="callout-box warning">
+        <strong>⚠️ 哪個節點最常出錯？</strong><br>
+        <strong>「SVG 向量圖的幾何比例失真」</strong> 與 <strong>「資訊過度方框化（Box-in-a-box syndrome）」</strong> 最常出錯！<br>
+        LLM 在撰寫 SVG 時，無法即時在物理螢幕上「看見」渲染尺寸，常將 4 欄文字塞入狹長 ViewBox 中，導致字體變形或疊壓；同時 LLM 習慣用 <code>&lt;div class="card"&gt;</code> 包裹每一段文字，造成視覺疲勞。
+      </div>
+
+      <div class="callout-box success">
+        <strong>🛡️ 我們如何將檢核前移，並修改了哪些 Workflow？</strong><br>
+        1. <strong>技術解耦（CSS Pipeline 替代 SVG 文字）</strong>：在 Skill 中規定「流程性文字」必須採用 HTML/CSS Flexbox 排版，SVG 僅負責繪製幾何結構與平滑曲線，從根源根除字體擠壓。<br>
+        2. <strong>建立 16:9 幾何高度硬指標</strong>：規範主內容區高度預算嚴格 $\le 520\text{px}$、圖形長寬比 $\ge 4:3$ 或 $16:10$。<br>
+        3. <strong>去方框化排版哲學</strong>：規定非並列對等比較項一律自然流動，提升學術呼吸感。<br>
+        4. <strong>確立 2 次自動修復熔斷機制</strong>：如果 2 次 auto-fix 仍有版面衝突，立即觸發透明回報，由人類決策是否拆頁或刪減文字。
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    Plant Pathology & MPMI LLM Wiki &bull; TAICA Generative AI Assignment 1110 &bull; Hosted on GitHub Pages
   </footer>
 
 </body>
