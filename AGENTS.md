@@ -204,9 +204,29 @@ When the user requests an educational slide deck or lecture presentation on a sp
    - **MANDATORY CHECKPOINT**: The agent must stop and present the proposed outline to the user. **Do NOT generate any presentation code until the user explicitly approves ("可以 / 同意")**.
 3. **Phase 3: Execution via Presentation Builder Skill**:
    - Activate and strictly adhere to `.agents/skills/educational-slides/SKILL.md`.
-   - Ensure standard 16:9 canvas (`width: 1280, height: 720`), clean flexbox layout, natural de-boxed typography, proportional scientific diagrams, smooth cubic Bézier kinetic curves, verified biological topologies, dual-track speaker notes, and a dedicated final references slide.
+   - **Slide Structure & Cover Rules**:
+     - *Slide 1 (Minimalist Cover)*: Clean academic title, descriptive subtitle, and presenter/institution line. **Do NOT include** artificial category pills (e.g., "Advanced Lecture Series"), metadata box grids (`Course/Module/Host`), or bottom-left footer citations.
+     - *Slide 2 (Learning Objectives)*: Define 3–4 explicit, pedagogical core competencies for students.
+     - *Penultimate & Final Slides*: Split Summary/Key Takeaways and References into two distinct standalone slides.
+   - **Visual Pedagogy & Anti-Wall-of-Text Mandate**:
+     - Do not rely solely on text cards or bullet points. Complex pathosystem comparisons (e.g., multi-species traits) **MUST** use structured Comparison Matrix Tables (`.matrix-table`) instead of multi-card grids.
+     - Core biological mechanisms (symptom development, spatiotemporal infection dynamics, effector secretion systems, resistance biochemistry) **MUST** incorporate embedded proportional vector diagrams (SVG).
+   - **Strict SVG Sanitation & Layout Safety**:
+     - Never nest HTML tags (`<em>`, `<strong>`) inside SVG `<text>` elements; use SVG attributes or `<tspan>`.
+     - Always include explicit `<defs>` blocks for marker arrowheads (`marker-end`).
+     - Split long SVG labels across multiple lines or use `text-anchor="middle"` to prevent text clipping.
+   - **Notation & Viewport Harmony**:
+     - Use native HTML superscripts (`Cu<sup>+</sup>`, `Cu<sup>2+</sup>`) for simple chemical notations rather than serif KaTeX to maintain sans-serif typographic unity.
+     - Use standard Greek characters (e.g., `KΦ1`) and expand specialized acronyms on first mention (e.g., `Niche Overlap Index (NOI)`).
+     - Maintain an elastic viewport budget (`min-height: 500px; max-height: 535px;` for `.slide-body`) with legible body typography (15–18px) to prevent silent content clipping.
 4. **Phase 4: Automated Self-Linting & Circuit Breaker (Max 2 Auto-Repairs)**:
-   - Execute the 6-point linting checklist (Language conformance, 16:9 geometry, natural un-boxed flow, scientific accuracy, citations without "Refs:", and notes accessibility).
+   - Execute the 6-point linting checklist:
+     1. *Language*: 100% academic English, zero CJK leakage in HTML.
+     2. *Geometry & Viewport*: Standard 1280×720 canvas, elastic body height, zero overflow clipping.
+     3. *Visual & Layout*: Comparison matrix for multi-taxon data, embedded SVGs for mechanisms, clean minimalist cover without metadata clutter.
+     4. *SVG Code Quality*: No HTML tags in `<text>`, valid marker definitions, safe text coordinates.
+     5. *Citations & Notation*: Clean `(Author, Year)` without "Refs:" label, sans-serif HTML chemical superscripts, expanded acronyms.
+     6. *Dual-track Delivery*: Synchronized speaker notes in `.slide-notes` and companion `-notes.md`.
    - **Circuit Breaker**: Limit automatic repair cycles to **maximum 2 iterations**. If any check fails after 2 auto-fixes, trigger graceful escalation: halt auto-repair and present the specific structural trade-off to the user for decision.
 5. **Phase 5: Delivery & Operational Logging**:
    - Deliver the standalone HTML file (`wiki/presentations/<slug>.html`) and companion Markdown lecture script (`wiki/presentations/<slug>-notes.md`).
