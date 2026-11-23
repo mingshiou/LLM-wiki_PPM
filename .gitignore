@@ -1,4 +1,5 @@
-# OS Files
+# Temporary scratch scripts
+scratch/
 .DS_Store
 Thumbs.db
 *.tmp

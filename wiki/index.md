@@ -1,7 +1,7 @@
 # Plant Pathology Knowledge Base Index
 
-*Last updated: 2026-11-20*
-*Total pages: 23*
+*Last updated: 2026-11-23*
+*Total pages: 24*
 
 Welcome to the Plant Pathology & Molecular Plant-Microbe Interactions (MPMI) Wiki. This index serves as the global catalog for all entity, concept, protocol, and synthesis pages in this repository.
 
@@ -77,6 +77,7 @@ Welcome to the Plant Pathology & Molecular Plant-Microbe Interactions (MPMI) Wik
 
 - [[plant-pti-response.html]]: Interactive Reveal.js presentation (12 slides) on Plant PAMP-Triggered Immunity (PTI) tailored for undergraduate teaching; covers Zig-Zag model, PRR-BAK1 perception, RBOHD ROS burst, callose papillae, ETS counter-attacks, and PGPR immune priming.
 - [[bacterial-spot.html]]: Interactive Reveal.js presentation (13 slides) on Bacterial Spot of Tomato and Pepper; covers the 4 *Xanthomonas* species complex, biphasic spatiotemporal infection dynamics (ingress to egression), Type III effectors (AvrBs2, AvrBs3 TALE), *Bs* gene-for-gene resistance, plasmid *copLAB* copper resistance, and next-generation IPM.
+- [[bacillus-bacterial-spot-control.html]]: Interactive Reveal.js presentation (12 slides) on Biological Control of Bacterial Spot by *Bacillus*; covers *B. velezensis* phylogenomics, cyclic lipopeptide and polyketide direct antibiosis, 5-hour liquid kill kinetics (GF267), nutritional niche overlap (NOI 0.8–1.0), stomatal TasA biofilm pre-emption, spatial separation bioassays proving ISR, distal peroxidase/PPO priming, and PRI-integrated IPM regimes.
 
 ---
 

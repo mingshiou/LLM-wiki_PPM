@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Biological Control of Bacterial Spot: Multi-Site Suppression by Bacillus</title>
+
+  <!-- Reveal.js styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-canvas: #f8faf7;
+      --surface-white: #ffffff;
+      --primary-green: #2e7d32;
+      --dark-green: #1b5e20;
+      --light-mint: #e8f5e9;
+      --accent-emerald: #10b981;
+      --accent-blue: #0284c7;
+      --accent-blue-bg: #f0f9ff;
+      --accent-amber: #d97706;
+      --accent-amber-bg: #fffbeb;
+      --accent-red: #dc2626;
+      --accent-red-bg: #fef2f2;
+      --accent-purple: #7c3aed;
+      --accent-purple-bg: #f5f3ff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-subtle: #cbd5e1;
+      --border-green: #a5d6a7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .reveal-viewport {
+      background: radial-gradient(circle at 10% 10%, #ffffff 0%, #f4f8f3 100%);
+    }
+
+    /* Fixed 16:9 Slide Container */
+    .slide-container {
+      width: 1220px;
+      height: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    /* Header Budget: <= 80px */
+    .slide-header {
+      height: 76px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+
+    .topic-pill {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary-green);
+      background: var(--light-mint);
+      padding: 3px 12px;
+      border-radius: 9999px;
+      width: fit-content;
+      margin-bottom: 4px;
+    }
+
+    .slide-header h2 {
+      font-size: 29px;
+      font-weight: 800;
+      color: var(--dark-green);
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .slide-header .subtitle {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin: 3px 0 0 0;
+      font-weight: 500;
+    }
+
+    /* Flexible Slide Body Budget */
+    .slide-body {
+      flex: 1;
+      min-height: 500px;
+      max-height: 535px;
+      padding: 14px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Footer Budget: ~ 45px */
+    .slide-footer {
+      height: 44px;
+      flex-shrink: 0;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .slide-footer .citation {
+      font-style: italic;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .slide-footer .page-num {
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--primary-green);
+    }
+
+    /* Typography & Hierarchy */
+    .prose-lead {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .prose-regular {
+      font-size: 15px;
+      line-height: 1.55;
+      color: #334155;
+    }
+
+    /* Layout Grids */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+      height: 100%;
+    }
+
+    .grid-split-60-40 {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+      height: 100%;
+    }
+
+    .grid-split-50-50 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+      height: 100%;
+    }
+
+    /* Structured Comparison Matrix (.matrix-table) */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: var(--surface-white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .matrix-table th {
+      background: #f1f5f9;
+      color: var(--dark-green);
+      font-weight: 700;
+      padding: 11px 13px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-subtle);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .matrix-table td {
+      padding: 10px 13px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+      line-height: 1.45;
+      color: #1e293b;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .badge-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* Diagram Panels & SVG Containers */
+    .diagram-panel {
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .diagram-panel svg {
+      width: 100%;
+      height: 100%;
+      max-height: 480px;
+    }
+
+    /* Editorial Comparative Cards */
+    .editorial-card {
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .card-accent-green { border-top: 5px solid var(--primary-green); }
+    .card-accent-blue { border-top: 5px solid var(--accent-blue); }
+    .card-accent-amber { border-top: 5px solid var(--accent-amber); }
+    .card-accent-purple { border-top: 5px solid var(--accent-purple); }
+    .card-accent-red { border-top: 5px solid var(--accent-red); }
+
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      letter-spacing: 0.05em;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .card-body {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: #334155;
+      flex-grow: 1;
+    }
+
+    /* Title Slide Layout */
+    .title-wrapper {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0 30px;
+    }
+
+    .title-wrapper h1 {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--dark-green);
+      letter-spacing: -0.03em;
+      margin: 14px 0 12px 0;
+      line-height: 1.15;
+    }
+
+    .title-wrapper .lead-sub {
+      font-size: 20px;
+      color: #334155;
+      font-weight: 500;
+      max-width: 960px;
+      margin-bottom: 36px;
+      line-height: 1.4;
+    }
+
+    /* On-Screen Notes Modal Drawer */
+    #notes-modal {
+      display: none;
+      position: fixed;
+      bottom: 60px;
+      right: 40px;
+      width: 500px;
+      max-height: 400px;
+      background: rgba(15, 23, 42, 0.97);
+      color: #f8fafc;
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      z-index: 9999;
+      padding: 22px;
+      overflow-y: auto;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      border: 1px solid #334155;
+    }
+
+    #notes-modal.visible {
+      display: block;
+    }
+
+    #notes-modal h4 {
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 6px;
+    }
+
+    .notes-toggle-btn {
+      position: fixed;
+      bottom: 14px;
+      left: 18px;
+      background: var(--primary-green);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .notes-toggle-btn:hover {
+      background: var(--dark-green);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ==========================================
+         SLIDE 1: TITLE SLIDE (MINIMALIST)
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <div class="slide-body" style="height: 610px;">
+          <div class="title-wrapper">
+            <h1>Biological Control of Bacterial Spot:<br>Multi-Site Suppression by Bacillus</h1>
+            <p class="lead-sub">Direct Antibiosis, Ecological Niche Competition, and Induced Systemic Resistance in Solanaceous Crops</p>
+
+            <p style="margin-top: 10px; font-size: 14.5px; color: #64748b; font-family: 'JetBrains Mono', monospace;">
+              Press <strong>[SPACE]</strong> to advance • Press <strong>[N]</strong> to toggle speaker lecture script drawer
+            </p>
+          </div>
+        </div>
+
+        <footer class="slide-footer">
+          <div class="citation"></div>
+          <div class="page-num">1</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Welcome to this collegiate lecture on the biological control of Bacterial Spot in tomato and pepper, focusing on the multi-site suppression mechanisms deployed by beneficial Bacillus species. With conventional chemical control compromised by widespread copper bactericide resistance across all four Xanthomonas lineages, understanding the mechanistic tripartite framework of Bacillus—spanning non-ribosomal antibiotic synthesis, competitive niche exclusion on the phylloplane, and root-mediated induced systemic resistance (ISR)—is vital for sustainable plant pathology and integrated disease management.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 2: CORE LEARNING OBJECTIVES
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">PEDAGOGICAL ALIGNMENT</div>
+          <h2>Core Learning Objectives</h2>
+          <p class="subtitle">Four Essential Competencies in Microbial Biological Control</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="grid-split-50-50">
+            <!-- Left: Competency Ladder SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 540 450" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b5e20"/>
+                  </marker>
+                </defs>
+
+                <!-- Background guide -->
+                <rect x="10" y="10" width="520" height="430" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+                <text x="270" y="38" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1e293b" letter-spacing="0.05em">PEDAGOGICAL PROGRESSION ARCHITECTURE</text>
+
+                <!-- Tier 4: Integrated Management -->
+                <g transform="translate(40, 60)">
+                  <rect x="0" y="0" width="460" height="68" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+                  <rect x="12" y="14" width="40" height="40" rx="6" fill="#1b5e20"/>
+                  <text x="32" y="40" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#ffffff">04</text>
+                  <text x="68" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="15" fill="#1b5e20">Field IPM &amp; Resistance Inducer Integration</text>
+                  <text x="68" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">Synergy with ASM, BABA &amp; Chitosan to bypass copper failure</text>
+                </g>
+
+                <path d="M 270 140 L 270 128" stroke="#1b5e20" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+                <!-- Tier 3: Spatial Separation & ISR -->
+                <g transform="translate(40, 150)">
+                  <rect x="0" y="0" width="460" height="68" rx="8" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+                  <rect x="12" y="14" width="40" height="40" rx="6" fill="#0284c7"/>
+                  <text x="32" y="40" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#ffffff">03</text>
+                  <text x="68" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="15" fill="#0369a1">Decoupling Antibiosis from ISR</text>
+                  <text x="68" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">Spatial separation bioassays &amp; foliar defense enzyme surges</text>
+                </g>
+
+                <path d="M 270 230 L 270 218" stroke="#0284c7" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+                <!-- Tier 2: Niche Competition & Direct Lysis -->
+                <g transform="translate(40, 240)">
+                  <rect x="0" y="0" width="460" height="68" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+                  <rect x="12" y="14" width="40" height="40" rx="6" fill="#d97706"/>
+                  <text x="32" y="40" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#ffffff">02</text>
+                  <text x="68" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="15" fill="#b45309">Direct Antibiosis &amp; Ecological Pre-emption</text>
+                  <text x="68" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">Cyclic lipopeptides, polyketides &amp; Niche Overlap Index (NOI)</text>
+                </g>
+
+                <path d="M 270 320 L 270 308" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+                <!-- Tier 1: Taxonomy & Genomics -->
+                <g transform="translate(40, 330)">
+                  <rect x="0" y="0" width="460" height="68" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+                  <rect x="12" y="14" width="40" height="40" rx="6" fill="#475569"/>
+                  <text x="32" y="40" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#ffffff">01</text>
+                  <text x="68" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="15" fill="#1e293b">Phylogenomics of Bacillus velezensis</text>
+                  <text x="68" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">BASC reclassifications and secondary metabolome capacity</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Right: Learning Objectives List -->
+            <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+              <div class="editorial-card card-accent-green" style="padding: 12px 16px;">
+                <div class="card-tag" style="color: var(--primary-green);">COMPETENCY 1: DIRECT VS. SYSTEMIC PROTECTION</div>
+                <div class="card-title" style="font-size: 16px;">Mechanistic Differentiation</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Contrast direct phytopathogen membrane lysis by cyclic lipopeptides (surfactins, iturins) with root-mediated vascular priming of host defenses.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-blue" style="padding: 12px 16px;">
+                <div class="card-tag" style="color: var(--accent-blue);">COMPETENCY 2: RIGOROUS EXPERIMENTAL BIOASSAYS</div>
+                <div class="card-title" style="font-size: 16px;">Spatial Separation Evaluation</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Evaluate spatial separation protocols that decouple root inoculation from foliar challenge, proving Induced Systemic Resistance (ISR) via AUDPC reduction.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-amber" style="padding: 12px 16px;">
+                <div class="card-tag" style="color: var(--accent-amber);">COMPETENCY 3: ECOLOGICAL NICHE EXCLUSION</div>
+                <div class="card-title" style="font-size: 16px;">Resource Competition Metrics</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Analyze the Niche Overlap Index (NOI: 0.8–1.0) and pre-emptive colonization dynamics that physically block Xanthomonas entry through stomata.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-purple" style="padding: 12px 16px;">
+                <div class="card-tag" style="color: var(--accent-purple);">COMPETENCY 4: SUSTAINABLE FIELD MANAGEMENT</div>
+                <div class="card-title" style="font-size: 16px;">Formulating Copper-Free IPM</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Design integrated pest management regimes pairing Bacillus bioinoculants with plant resistance inducers (ASM, BABA, Chitosan) to circumvent copper resistance.
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Rabbee et al. (2023); Mates et al. (2019)</div>
+          <div class="page-num">2</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        On this slide, we establish the four core competencies that students must master by the conclusion of this lecture. First, students must distinguish direct bactericidal mechanisms, such as membrane permeabilization by non-ribosomal cyclic lipopeptides, from host-mediated systemic resistance. Second, students will analyze the landmark spatial separation bioassay that physically eliminates contact between the antagonist and pathogen to prove ISR. Third, we evaluate the ecological niche overlap index, measuring nutritional competition for carbon sources. Finally, we translate these physiological insights into practical IPM programs combining Bacillus with plant defense activators.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 3: THE PATHOSYSTEM & CHEMICAL CRISIS
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">PATHOLOGY &amp; CHEMICAL FAILURE</div>
+          <h2>The Bacterial Spot Threat &amp; The Copper Crisis</h2>
+          <p class="subtitle">Why Plasmid-Borne Resistance Compels Biological Alternatives</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="grid-2col">
+            <!-- Left: The Chemical Failure -->
+            <div class="editorial-card card-accent-red">
+              <div class="card-tag" style="color: var(--accent-red);">CHEMICAL TRADITION IN CRISIS</div>
+              <div class="card-title">The Failure of Copper Bactericides</div>
+              <div class="card-body">
+                <p style="margin-bottom: 10px;">
+                  <strong>The Devastating Complex:</strong> Bacterial spot of tomato and pepper is driven by four distinct <em>Xanthomonas</em> species (<em>X. euvesicatoria</em>, <em>X. perforans</em>, <em>X. vesicatoria</em>, and <em>X. gardneri</em>), destroying foliar canopies and rendering fruit unmarketable.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Plasmid-Borne Selection:</strong> Decades of prophylactic copper bactericide applications (FRAC M01) exerted intense selective pressure, driving horizontal dissemination of the conjugative <strong>copLAB</strong> resistance operon.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Enzymatic Detoxification:</strong> Periplasmic copper oxidases (CopA) oxidize cytotoxic Cu<sup>+</sup> to less toxic Cu<sup>2+</sup>, enabling survival at copper concentrations exceeding 200 ppm.
+                </p>
+                <div style="background: var(--accent-red-bg); border-left: 4px solid var(--accent-red); padding: 10px 14px; border-radius: 6px; margin-top: 8px;">
+                  <span style="font-weight: 800; color: var(--accent-red); font-size: 16px;">23%–44% Collapse:</span>
+                  <span style="font-size: 13.5px; color: #7f1d1d;"> Severe outbreaks trigger catastrophic marketable yield collapse despite weekly copper spraying regimes.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: The Biological Opportunity -->
+            <div class="editorial-card card-accent-green">
+              <div class="card-tag" style="color: var(--primary-green);">THE SUSTAINABLE PARADIGM</div>
+              <div class="card-title">The Bacillus Biocontrol Alternative</div>
+              <div class="card-body">
+                <p style="margin-bottom: 10px;">
+                  <strong>Endospore-Forming Durability:</strong> Gram-positive <em>Bacillus</em> species produce dormant endospores that resist thermal extremes, intense UV radiation, and severe desiccation, granting outstanding commercial formulation stability.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Multi-Target Mode of Action:</strong> Rather than relying on a single enzymatic target vulnerable to point mutations, <em>Bacillus</em> acts through a tripartite mechanism: direct membrane lysis, ecological niche exclusion, and host systemic defense priming.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Zero Resistance Selection:</strong> Because biocontrol bacilli deploy multi-site antimicrobial metabolites and stimulate endogenous host pathways, phytopathogenic <em>Xanthomonas</em> cannot easily evolve resistance.
+                </p>
+                <div style="background: var(--light-mint); border-left: 4px solid var(--primary-green); padding: 10px 14px; border-radius: 6px; margin-top: 8px;">
+                  <span style="font-weight: 800; color: var(--dark-green); font-size: 16px;">Eco-Compatible:</span>
+                  <span style="font-size: 13.5px; color: #14532d;"> Halts heavy metal copper accumulation in agricultural soils while protecting beneficial pollinators and soil microbiota.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Potnis et al. (2015); Osdaghi et al. (2021)</div>
+          <div class="page-num">3</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        This slide illustrates the agronomic and chemical dilemma that motivates our study. For over five decades, commercial tomato and pepper growers relied on copper-based bactericides to manage bacterial spot. However, intense chemical pressure selected for the conjugative copLAB operon, which encodes periplasmic oxidases that detoxify copper ions. Today, over 80% of field isolates in intensive growing regions like Florida and South America are highly copper-resistant, leading to up to 44% yield loss despite routine spraying. Bacillus provides an environmentally sound alternative that attacks Xanthomonas across multiple physiological fronts simultaneously, preventing resistance breakdown.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 4: PHYLOGENOMIC IDENTITY OF BACILLUS
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">SYSTEMATICS &amp; GENOMICS</div>
+          <h2>Phylogenomics of Biocontrol Bacilli</h2>
+          <p class="subtitle">Resolving the BASC Complex and Unveiling the Bacillus velezensis Genome</p>
+        </header>
+
+        <main class="slide-body">
+          <div style="display: flex; flex-direction: column; gap: 12px; height: 100%; justify-content: center;">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 22%;">Taxon &amp; Nomenclatural Status</th>
+                  <th style="width: 16%;">Genomic Architecture</th>
+                  <th style="width: 24%;">Secondary Metabolome (NRPS/PKS)</th>
+                  <th style="width: 18%;">Benchmark Strains &amp; Products</th>
+                  <th style="width: 20%;">Primary Biocontrol Mode of Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Bacillus velezensis</strong><br>
+                    <span class="badge-tag" style="background: #e8f5e9; color: #1b5e20;">Conspecific BASC Priority</span><br>
+                    <span style="font-size: 12px; color: #64748b;">(formerly B. amyloliquefaciens subsp. plantarum)</span>
+                  </td>
+                  <td>
+                    <strong>~3.96 Mb</strong> circular<br>
+                    46.4% GC content<br>
+                    ~3,849 CDS | 0 plasmids
+                  </td>
+                  <td>
+                    <strong>10%–12% of genome (13 BGCs):</strong><br>
+                    Surfactin, Iturin, Fengycin,<br>
+                    Difficidin, Macrolactin, Bacilysin
+                  </td>
+                  <td>
+                    <strong>QST713</strong> (Serenade)<br>
+                    <strong>FZB42</strong> (RhizoVital)<br>
+                    <strong>GF267</strong>, <strong>CH6</strong>, <strong>9D-6</strong>
+                  </td>
+                  <td>
+                    <strong>Tripartite Multi-Site:</strong><br>
+                    Direct bactericidal lysis + Stomatal pre-emption + Potent host ISR elicitation
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>Bacillus subtilis</strong><br>
+                    <span class="badge-tag" style="background: #f1f5f9; color: #475569;">Sensu Stricto Model</span><br>
+                    <span style="font-size: 12px; color: #64748b;">(Canonical genetic paradigm)</span>
+                  </td>
+                  <td>
+                    <strong>~4.21 Mb</strong> circular<br>
+                    43.5% GC content<br>
+                    ~4,100 CDS
+                  </td>
+                  <td>
+                    <strong>4%–5% of genome:</strong><br>
+                    Surfactin, Subtilosin A,<br>
+                    Plipastatin (Fengycin-type)
+                  </td>
+                  <td>
+                    <strong>168</strong> (Laboratory model)<br>
+                    <strong>GB03</strong> (Kodiak - legacy)
+                  </td>
+                  <td>
+                    Model for spore morphogenesis, biofilm matrix formation, and basic genetic regulation
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>Bacillus amyloliquefaciens</strong><br>
+                    <span class="badge-tag" style="background: #f1f5f9; color: #475569;">Sensu Stricto</span><br>
+                    <span style="font-size: 12px; color: #64748b;">(Industrial enzyme producer)</span>
+                  </td>
+                  <td>
+                    <strong>~3.98 Mb</strong> circular<br>
+                    45.8% GC content<br>
+                    ~3,850 CDS
+                  </td>
+                  <td>
+                    <strong>8%–9% of genome:</strong><br>
+                    Surfactin, Iturin A,<br>
+                    Plantazolicin, Amylocyclicin
+                  </td>
+                  <td>
+                    <strong>DSM 7</strong> (Type strain)<br>
+                    <strong>GA1</strong>
+                  </td>
+                  <td>
+                    High secretory capacity for alpha-amylases and proteases; moderate plant colonization
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>Bacillus thuringiensis</strong><br>
+                    <span class="badge-tag" style="background: #f0f9ff; color: #0369a1;">Entomopathogenic Group</span><br>
+                    <span style="font-size: 12px; color: #64748b;">(Dual-action bioinoculant)</span>
+                  </td>
+                  <td>
+                    <strong>5.2–6.5 Mb</strong> chromosome<br>
+                    Extensive plasmid array<br>
+                    35.5% GC content
+                  </td>
+                  <td>
+                    Parasporal crystalline Cry/Cyt delta-endotoxins, vegetative VIP proteins, chitinases
+                  </td>
+                  <td>
+                    <strong>HD-1</strong> (Dipel)<br>
+                    <strong>Kurstaki</strong>, <strong>Aizawai</strong>
+                  </td>
+                  <td>
+                    Insecticidal gut pore formation + MAMP-triggered apoplastic ROS defense priming
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 16px; font-size: 13.5px; color: #475569;">
+              <strong style="color: var(--primary-green);">Taxonomic Synthesis:</strong> Phylogenomic Average Nucleotide Identity (ANI) and digital DNA-DNA hybridization (dDDH) proved that commercial biocontrol strains historically labeled as <em>B. subtilis</em> or <em>B. amyloliquefaciens</em> belong to <strong>Bacillus velezensis</strong>, which possesses the highest genomic density of antimicrobial synthesis machinery.
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Dunlap et al. (2016); Rabbee et al. (2023); Grady et al. (2019)</div>
+          <div class="page-num">4</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 4 addresses a frequent point of confusion in applied microbiology: the taxonomic status of commercial Bacillus biocontrol strains. Landmark phylogenomic analyses by Dunlap et al. demonstrated that strains previously described as Bacillus amyloliquefaciens subsp. plantarum and Bacillus methylotrophicus form a single conspecific taxon with Bacillus velezensis. Famous industrial biofungicide strains like QST713 and FZB42 are now officially classified as B. velezensis. Notice from the matrix that B. velezensis dedicates an extraordinary 10 to 12 percent of its circular 3.96 Mb genome to secondary metabolite clusters, far exceeding B. subtilis.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: DIRECT ANTIBIOSIS: METABOLITE ARSENAL
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">MOLECULAR ANTAGONISM</div>
+          <h2>Direct Antibiosis: Non-Ribosomal Metabolite Arsenal</h2>
+          <p class="subtitle">Coordinated Membrane Lysis, Protein Translation Arrest, and Peptidoglycan Disruption</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="diagram-panel">
+            <svg viewBox="0 0 1180 470" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-antibiotic" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626"/>
+                </marker>
+                <marker id="arrow-green-small" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b5e20"/>
+                </marker>
+              </defs>
+
+              <!-- Top: Bacillus Cell Factory -->
+              <rect x="30" y="15" width="1120" height="75" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+              <text x="50" y="45" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="16" fill="#1b5e20">BACILLUS VELEZENSIS (BIOREFACTOR FACTORY)</text>
+              <text x="50" y="68" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="13" fill="#334155">Non-Ribosomal Peptide Synthetases (NRPS) &amp; Polyketide Synthases (PKS) continuously secrete antimicrobial metabolites</text>
+
+              <!-- Middle: Secreted Metabolite Carriers -->
+              <!-- CLP 1: Surfactin/Iturin -->
+              <g transform="translate(60, 110)">
+                <rect x="0" y="0" width="240" height="75" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+                <text x="120" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#dc2626">CYCLIC LIPOPEPTIDES (CLPs)</text>
+                <text x="120" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#991b1b">Surfactin &amp; Iturin Families</text>
+                <text x="120" y="62" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Amphiphilic heptapeptides + lipid tail</text>
+                <path d="M 120 75 L 120 120" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-antibiotic)"/>
+              </g>
+
+              <!-- PK 2: Difficidin -->
+              <g transform="translate(340, 110)">
+                <rect x="0" y="0" width="240" height="75" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+                <text x="120" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#2563eb">ANTIBACTERIAL POLYKETIDES</text>
+                <text x="120" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#1e40af">Difficidin &amp; Macrolactin</text>
+                <text x="120" y="62" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Highly conjugated macrocycles</text>
+                <path d="M 120 75 L 120 120" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-antibiotic)"/>
+              </g>
+
+              <!-- Antibiotic 3: Bacilysin -->
+              <g transform="translate(620, 110)">
+                <rect x="0" y="0" width="240" height="75" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+                <text x="120" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#d97706">NON-RIBOSOMAL DIPEPTIDE</text>
+                <text x="120" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#92400e">Bacilysin (L-Ala-anticapsin)</text>
+                <text x="120" y="62" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Prodrug targeting cell wall synthesis</text>
+                <path d="M 120 75 L 120 120" stroke="#d97706" stroke-width="2" marker-end="url(#arrow-antibiotic)"/>
+              </g>
+
+              <!-- VOCs 4 -->
+              <g transform="translate(900, 110)">
+                <rect x="0" y="0" width="220" height="75" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+                <text x="110" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#7c3aed">VOLATILE METABOLITES</text>
+                <text x="110" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#5b21b6">Acetoin &amp; 2,3-Butanediol</text>
+                <text x="110" y="62" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Diffusible signaling and priming</text>
+                <path d="M 110 75 L 110 120" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-antibiotic)"/>
+              </g>
+
+              <!-- Bottom: Target Xanthomonas Envelope & Cytoplasm -->
+              <g transform="translate(30, 240)">
+                <!-- Outer Membrane -->
+                <rect x="0" y="0" width="1120" height="30" rx="4" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1"/>
+                <text x="560" y="20" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#334155" letter-spacing="0.05em">XANTHOMONAS OUTER MEMBRANE (LIPOPOLYSACCHARIDE LAYER)</text>
+
+                <!-- Periplasmic space with Peptidoglycan mesh -->
+                <rect x="0" y="30" width="1120" height="35" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+                <text x="560" y="52" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="11.5" fill="#64748b">PERIPLASMIC SPACE &amp; PEPTIDOGLYCAN CELL WALL MESH</text>
+
+                <!-- Inner Membrane -->
+                <rect x="0" y="65" width="1120" height="30" rx="4" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1"/>
+                <text x="560" y="85" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#334155" letter-spacing="0.05em">INNER PLASMA MEMBRANE (PHOSPHOLIPID BILAYER)</text>
+
+                <!-- Cytoplasm -->
+                <rect x="0" y="95" width="1120" height="120" rx="6" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5"/>
+
+                <!-- Mechanism Annotations inside Target -->
+                <g transform="translate(30, 110)">
+                  <!-- 1. CLP Pore Formation -->
+                  <rect x="10" y="5" width="240" height="90" rx="6" fill="#ffffff" stroke="#dc2626" stroke-width="1"/>
+                  <text x="130" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#dc2626">Transmembrane Pore Lysis</text>
+                  <text x="130" y="46" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Inserts into lipid bilayers, inducing</text>
+                  <text x="130" y="64" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">ion leakage, potassium efflux &amp;</text>
+                  <text x="130" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" fill="#991b1b">membrane potential collapse</text>
+                </g>
+
+                <g transform="translate(310, 110)">
+                  <!-- 2. Difficidin Translation Arrest -->
+                  <rect x="10" y="5" width="240" height="90" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1"/>
+                  <text x="130" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#2563eb">Protein Synthesis Arrest</text>
+                  <text x="130" y="46" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Difficidin binds prokaryotic</text>
+                  <text x="130" y="64" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">ribosomes to stall translation and</text>
+                  <text x="130" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" fill="#1e40af">blocks FtsZ bacterial cell division</text>
+                </g>
+
+                <g transform="translate(590, 110)">
+                  <!-- 3. Bacilysin GlcN6P -->
+                  <rect x="10" y="5" width="240" height="90" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1"/>
+                  <text x="130" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#d97706">GlcN6P Synthase Inactivation</text>
+                  <text x="130" y="46" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Anticapsin irreversibly inactivates</text>
+                  <text x="130" y="64" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Glucosamine-6-phosphate synthase,</text>
+                  <text x="130" y="82" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" fill="#92400e">halting peptidoglycan mesh repair</text>
+                </g>
+
+                <g transform="translate(870, 110)">
+                  <!-- 4. Lysis Summary -->
+                  <rect x="10" y="5" width="210" height="90" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="1"/>
+                  <text x="115" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#16a34a">Bactericidal Outcome</text>
+                  <text x="115" y="48" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#1b5e20">Osmotic Lysis</text>
+                  <text x="115" y="68" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Irreversible cell wall blowout</text>
+                  <text x="115" y="84" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">&amp; complete loss of viability</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Rabbee et al. (2023); Grady et al. (2019)</div>
+          <div class="page-num">5</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 5 dissects the direct molecular weaponry deployed by Bacillus velezensis against the Gram-negative bacterial envelope of Xanthomonas. Direct antibiosis operates via three complementary biochemical hits. First, cyclic lipopeptides such as surfactin and iturin insert their aliphatic lipid tails into the phospholipid bilayers, creating toroidal pores that dissipate membrane potential through potassium efflux. Second, difficidin, a potent macrocyclic polyketide, diffuses across the envelope to halt ribosomal translation and arrest cell division. Third, bacilysin acts as a Trojan horse: after peptide cleavage, its anticapsin moiety irreversibly inactivates glucosamine-6-phosphate synthase, depriving the pathogen of building blocks for cell wall repair.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 6: BACTERICIDAL KINETICS: GF267 BENCHMARK
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">EMPIRICAL EFFICACY</div>
+          <h2>Rapid Bactericidal Kinetics: The GF267 Benchmark</h2>
+          <p class="subtitle">Complete Liquid Eradication within 5 Hours and In Vitro Growth Zone Halos</p>
+        </header>
+
+        <main class="slide-body">
+          <div style="display: flex; flex-direction: column; gap: 14px; height: 100%; justify-content: center;">
+            <!-- Top: 5-Hour Kill Curve SVG -->
+            <div class="diagram-panel" style="height: 290px; padding: 10px;">
+              <svg viewBox="0 0 1140 270" xmlns="http://www.w3.org/2000/svg">
+                <!-- Grid background -->
+                <rect x="80" y="20" width="1020" height="200" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+                <line x1="80" y1="70" x2="1100" y2="70" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="80" y1="120" x2="1100" y2="120" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+                <line x1="80" y1="170" x2="1100" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+
+                <!-- Y-axis labels -->
+                <text x="70" y="25" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#64748b">10⁸</text>
+                <text x="70" y="75" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#64748b">10⁶</text>
+                <text x="70" y="125" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#64748b">10⁴</text>
+                <text x="70" y="175" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#64748b">10²</text>
+                <text x="70" y="224" text-anchor="end" font-family="'JetBrains Mono', monospace" font-size="11.5" fill="#dc2626" font-weight="700">0 (LOD)</text>
+
+                <text x="30" y="120" text-anchor="middle" transform="rotate(-90 30 120)" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#475569">Viable X. perforans (CFU/mL)</text>
+
+                <!-- X-axis labels -->
+                <text x="120" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#334155">0 h</text>
+                <text x="320" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#334155">1 h</text>
+                <text x="520" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#334155">2 h</text>
+                <text x="720" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#334155">3 h</text>
+                <text x="920" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#334155">4 h</text>
+                <text x="1060" y="242" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#1b5e20" font-weight="800">5 h (Eradication)</text>
+
+                <!-- Red Path: Pathogen Alone Control -->
+                <path d="M 120 60 Q 520 45 1060 30" fill="none" stroke="#dc2626" stroke-width="3" stroke-dasharray="6"/>
+                <circle cx="120" cy="60" r="5" fill="#dc2626"/>
+                <circle cx="520" cy="48" r="5" fill="#dc2626"/>
+                <circle cx="1060" cy="30" r="5" fill="#dc2626"/>
+                <text x="880" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#dc2626">X. perforans Monoculture (Exponential Growth)</text>
+
+                <!-- Green Path: Co-culture with GF267 -->
+                <path d="M 120 60 C 280 65, 420 120, 520 145 C 620 170, 820 215, 1060 220" fill="none" stroke="#1b5e20" stroke-width="4"/>
+                <circle cx="120" cy="60" r="6" fill="#1b5e20"/>
+                <circle cx="320" cy="85" r="5" fill="#1b5e20"/>
+                <circle cx="520" cy="145" r="5" fill="#1b5e20"/>
+                <circle cx="720" cy="190" r="5" fill="#1b5e20"/>
+                <circle cx="920" cy="212" r="5" fill="#1b5e20"/>
+                <circle cx="1060" cy="220" r="7" fill="#1b5e20" stroke="#ffffff" stroke-width="2"/>
+
+                <text x="530" y="132" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#1b5e20">+ B. velezensis GF267 Co-culture</text>
+
+                <!-- Callout Badge -->
+                <g transform="translate(830, 110)">
+                  <rect x="0" y="0" width="240" height="60" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+                  <text x="120" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13" fill="#1b5e20">100% Lethality at 5 Hours</text>
+                  <text x="120" y="44" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11.5" fill="#15803d">1.6 x 10⁷ CFU/mL to 0 CFU/mL</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Bottom: 3-step empirical evidence panels -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+              <div class="editorial-card card-accent-green" style="padding: 12px 14px;">
+                <div class="card-tag" style="color: var(--primary-green);">BIOASSAY HALO ZONE</div>
+                <div class="card-title" style="font-size: 15px;">8 mm In Vitro Radial Clearance</div>
+                <div class="card-body" style="font-size: 13px;">
+                  Diffusible metabolites produced by GF267 clear an 8-mm radial inhibition halo on agar lawns seeded with <em>Xanthomonas perforans</em>.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-blue" style="padding: 12px 14px;">
+                <div class="card-tag" style="color: var(--accent-blue);">ULTRASTRUCTURAL LYSIS</div>
+                <div class="card-title" style="font-size: 15px;">Outer Membrane Blebbing</div>
+                <div class="card-body" style="font-size: 13px;">
+                  Electron microscopy reveals immediate surface corrugation, cytoplasmic vacuolization, and outer membrane blebbing within 120 minutes of exposure.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-purple" style="padding: 12px 14px;">
+                <div class="card-tag" style="color: var(--accent-purple);">IN PLANTA RELEVANCE</div>
+                <div class="card-title" style="font-size: 15px;">Phyllosphere Population Collapse</div>
+                <div class="card-body" style="font-size: 13px;">
+                  Co-inoculation directly on tomato foliar surfaces prevents Xanthomonas population establishment, holding counts below the threshold required for water-soaking.
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Mates et al. (2019)</div>
+          <div class="page-num">6</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 6 presents compelling empirical proof from the benchmark study by Mates et al. (2019), who evaluated Bacillus velezensis strain GF267 against Xanthomonas perforans on tomato. In liquid co-culture assays, starting from a high pathogen inoculum of 1.6 times 10 to the 7th CFU per milliliter, GF267 caused a rapid, exponential decline in viable Xanthomonas cells. By hour 5, bacterial counts dropped below the detection limit—achieving 100% eradication. On solid agar, GF267 secretes diffusible metabolites creating an 8-millimeter clear inhibition zone, confirming robust in vitro potency.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 7: ECOLOGICAL NICHE EXCLUSION
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">MICROBIAL ECOLOGY</div>
+          <h2>Ecological Niche Exclusion &amp; Stomatal Pre-emption</h2>
+          <p class="subtitle">Nutritional Resource Monopolization (NOI 0.8–1.0) and Physical Entry Site Blockade</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="grid-split-50-50">
+            <!-- Left: Stomatal Biofilm Shield SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 540 440" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <marker id="arrow-red-block" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626"/>
+                  </marker>
+                </defs>
+
+                <!-- Leaf Cross Section Background -->
+                <rect x="20" y="20" width="500" height="400" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+
+                <!-- Epiphytic Foliar Cuticle -->
+                <path d="M 20 140 Q 150 145 200 160 Q 230 170 240 210 Q 250 250 270 250 Q 290 250 300 210 Q 310 170 340 160 Q 390 145 520 140" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+                <text x="80" y="125" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#15803d">TOMATO CUTICLE SURFACE</text>
+
+                <!-- Stomatal Guard Cells -->
+                <ellipse cx="230" cy="200" rx="28" ry="42" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+                <ellipse cx="310" cy="200" rx="28" ry="42" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+                <text x="270" y="205" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#166534">PORE</text>
+
+                <!-- Substomatal Apoplastic Cavity -->
+                <rect x="180" y="260" width="180" height="130" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="4"/>
+                <text x="270" y="325" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#475569">SUBSTOMATAL CAVITY</text>
+                <text x="270" y="345" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b">(Protected Apoplast)</text>
+
+                <!-- Bacillus TasA Biofilm Mesh Pre-empting Stomata -->
+                <g id="bacillus-shield">
+                  <rect x="195" y="130" width="150" height="48" rx="8" fill="#1b5e20" opacity="0.9" stroke="#14532d" stroke-width="1.5"/>
+                  <text x="270" y="152" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#ffffff">BACILLUS BIOFILM</text>
+                  <text x="270" y="168" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="10.5" fill="#86efac">TasA Fibers + EPS Matrix</text>
+
+                  <!-- Individual Bacillus Rods -->
+                  <rect x="205" y="98" width="30" height="12" rx="6" fill="#2e7d32"/>
+                  <rect x="245" y="94" width="32" height="12" rx="6" fill="#2e7d32"/>
+                  <rect x="290" y="100" width="28" height="12" rx="6" fill="#2e7d32"/>
+                </g>
+
+                <!-- Invading Xanthomonas Repelled -->
+                <g transform="translate(180, 40)">
+                  <rect x="60" y="0" width="26" height="10" rx="5" fill="#dc2626"/>
+                  <path d="M 60 5 Q 40 2 30 10" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+                  <text x="100" y="10" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11.5" fill="#dc2626">Invading X. perforans</text>
+                  <path d="M 80 16 L 80 80" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4" marker-end="url(#arrow-red-block)"/>
+                  <text x="92" y="55" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#dc2626">ENTRY BLOCKED</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Right: Ecological Mechanics -->
+            <div style="display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+              <div class="editorial-card card-accent-green">
+                <div class="card-tag" style="color: var(--primary-green);">NUTRITIONAL EXCLUSION</div>
+                <div class="card-title">Niche Overlap Index (NOI: 0.8–1.0)</div>
+                <div class="card-body">
+                  <p style="margin-bottom: 8px;">
+                    <strong>Metabolic Fingerprinting:</strong> Biolog GN2/GP2 microplate assays show that <em>B. velezensis</em> GF267 and <em>X. perforans</em> consume an almost identical nutritional profile of phylloplane carbon sources (amino acids, organic acids, and simple carbohydrates).
+                  </p>
+                  <p>
+                    <strong>Competitive Starvation:</strong> Fast-growing <em>Bacillus</em> colonies scavenge ambient exudates before <em>Xanthomonas</em> can metabolize them, arresting epiphytic multiplication on the leaf surface.
+                  </p>
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-blue">
+                <div class="card-tag" style="color: var(--accent-blue);">PHYSICAL PRE-EMPTION</div>
+                <div class="card-title">Biofilm Gatekeeping at Stomata</div>
+                <div class="card-body">
+                  <p style="margin-bottom: 8px;">
+                    <strong>Pre-emptive Arrival:</strong> Preventive bioinoculant application 24–48 hours prior to rain or mist events allows <em>Bacillus</em> to secrete an extracellular matrix composed of TasA amyloid fibers and exopolysaccharides (EPS).
+                  </p>
+                  <p>
+                    <strong>Stomatal Seal:</strong> This resilient bio-barrier physically clogs and covers stomatal apertures, preventing motile <em>Xanthomonas</em> flagella from swimming into the vulnerable apoplast.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Mates et al. (2019); Kaur et al. (2026)</div>
+          <div class="page-num">7</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 7 highlights the second pillar of biological control: ecological niche exclusion and spatial pre-emption. Biocontrol is not solely about producing antibiotics; it is a competition for space and nutrients. Metabolic profiling demonstrates that Bacillus velezensis and Xanthomonas share a Niche Overlap Index, or NOI, between 0.8 and 1.0. When Bacillus colonizes the leaf surface 24 hours prior to rain, it consumes available sugars and organic acids, starving the pathogen. Furthermore, its extracellular biofilm matrix of TasA fibers forms a physical barricade directly over guard cells, preventing Xanthomonas from entering through stomata.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 8: SPATIAL SEPARATION ASSAY (ISR PROOF)
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">EXPERIMENTAL METHODOLOGY</div>
+          <h2>Decoupling Antibiosis from ISR: The Spatial Separation Assay</h2>
+          <p class="subtitle">Physical Decoupling Proves Plant-Mediated Systemic Protection Distal from the Root Crown</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="diagram-panel">
+            <svg viewBox="0 0 1140 450" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-flow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b5e20"/>
+                </marker>
+              </defs>
+
+              <!-- Stage 1: Day 0 Root Drench -->
+              <g transform="translate(30, 30)">
+                <rect x="0" y="0" width="320" height="340" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="0" y="0" width="320" height="36" rx="8" fill="#e8f5e9"/>
+                <text x="160" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#1b5e20">STAGE 1: ROOT APPLICATION (DAY 0)</text>
+
+                <!-- Pot and Root graphic -->
+                <path d="M 100 240 L 220 240 L 205 320 L 115 320 Z" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+                <text x="160" y="285" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#ffffff">Substrate</text>
+
+                <!-- Drench application -->
+                <rect x="90" y="210" width="140" height="24" rx="4" fill="#dcfce7" stroke="#16a34a"/>
+                <text x="160" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" fill="#15803d">8 mL Bacillus (5x10⁷)</text>
+
+                <g transform="translate(20, 60)">
+                  <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#1e293b">• Strict Root Inoculation:</text>
+                  <text x="12" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Cell suspension pipetted onto root crown.</text>
+                  <text x="0" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#dc2626">• Zero Foliar Contact:</text>
+                  <text x="12" y="83" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Physical plastic shield eliminates splashing</text>
+                  <text x="12" y="100" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">or aerosol drift to upper canopy.</text>
+                </g>
+              </g>
+
+              <path d="M 360 200 L 390 200" stroke="#1b5e20" stroke-width="3" marker-end="url(#arrow-flow)"/>
+
+              <!-- Stage 2: Days 1–3 Systemic Signaling -->
+              <g transform="translate(410, 30)">
+                <rect x="0" y="0" width="320" height="340" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="0" y="0" width="320" height="36" rx="8" fill="#f0f9ff"/>
+                <text x="160" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#0369a1">STAGE 2: SYSTEMIC LAG (DAYS 1–3)</text>
+
+                <!-- Stem with upward vascular arrows -->
+                <rect x="150" y="180" width="20" height="140" fill="#86efac" stroke="#16a34a"/>
+                <path d="M 160 300 L 160 200" stroke="#0284c7" stroke-width="3" stroke-dasharray="4" marker-end="url(#arrow-flow)"/>
+                <text x="160" y="250" text-anchor="middle" transform="rotate(-90 160 250)" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="10.5" fill="#0369a1">JA/ET VASCULAR FLOW</text>
+
+                <g transform="translate(20, 60)">
+                  <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#1e293b">• Endophytic &amp; Root Sensing:</text>
+                  <text x="12" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Surfactins &amp; VOCs perceived by roots.</text>
+                  <text x="0" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#0284c7">• Vascular Signal Relay:</text>
+                  <text x="12" y="83" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Ascending mobile defense triggers</text>
+                  <text x="12" y="100" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">pre-arm distant 3rd and 4th leaves.</text>
+                </g>
+              </g>
+
+              <path d="M 740 200 L 770 200" stroke="#1b5e20" stroke-width="3" marker-end="url(#arrow-flow)"/>
+
+              <!-- Stage 3: Day 3 Foliar Challenge & Outcome -->
+              <g transform="translate(790, 30)">
+                <rect x="0" y="0" width="320" height="340" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="0" y="0" width="320" height="36" rx="8" fill="#fef2f2"/>
+                <text x="160" y="24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#dc2626">STAGE 3: FOLIAR CHALLENGE (DAY 3)</text>
+
+                <!-- Leaf with spray -->
+                <g transform="translate(110, 200)">
+                  <path d="M 50 80 Q 20 40 40 10 Q 70 30 50 80" fill="#4ade80" stroke="#15803d"/>
+                  <path d="M 60 75 Q 90 40 70 15 Q 40 30 60 75" fill="#4ade80" stroke="#15803d"/>
+                  <text x="50" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#15803d">Distal Foliage</text>
+                </g>
+
+                <g transform="translate(20, 60)">
+                  <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#1e293b">• Spray Challenge:</text>
+                  <text x="12" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Foliar spray with X. perforans.</text>
+                  <text x="0" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1b5e20">• EMPIRICAL OUTCOME:</text>
+                  <rect x="10" y="75" width="260" height="42" rx="6" fill="#e8f5e9" stroke="#2e7d32"/>
+                  <text x="140" y="101" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1b5e20">58% AUDPC Reduction</text>
+                </g>
+              </g>
+
+              <!-- Bottom Takeaway Banner -->
+              <g transform="translate(30, 390)">
+                <rect x="0" y="0" width="1080" height="42" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+                <text x="540" y="26" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#1e293b">
+                  Rigorous Proof: Decoupled antagonist and pathogen never physically meet, proving that protection is 100% plant-mediated via Induced Systemic Resistance (ISR).
+                </text>
+              </g>
+            </svg>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Mates et al. (2019)</div>
+          <div class="page-num">8</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 8 covers a cornerstone bioassay in plant pathology: the Spatial Separation Assay. In scientific research, how do we prove that disease suppression is mediated by plant signaling rather than direct antibiosis? As shown in this sequence, Bacillus velezensis GF267 was applied exclusively to the potting substrate at the root crown on Day 0, with shields preventing any foliar contact. Three days later, distant upper leaves were challenged with Xanthomonas perforans spray. The resulting 58% reduction in the Area Under the Disease Progress Curve (AUDPC) proved conclusively that protection was mediated systemically through the plant's vascular network.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 9: FOLIAR DEFENSE PRIMING & ENZYMES
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">PLANT IMMUNOLOGY</div>
+          <h2>Systemic Defense Priming &amp; Foliar Enzymatic Surges</h2>
+          <p class="subtitle">Anticipatory Activation of Peroxidase, Polyphenoloxidase, and PR Defense Genes</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="diagram-panel">
+            <svg viewBox="0 0 1140 450" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-green-lg" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b5e20"/>
+                </marker>
+              </defs>
+
+              <!-- Left: Root Perception Complex -->
+              <g transform="translate(30, 30)">
+                <rect x="0" y="0" width="300" height="380" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="0" y="0" width="300" height="38" rx="8" fill="#e8f5e9"/>
+                <text x="150" y="25" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#1b5e20">1. ROOT CROWN RECOGNITION</text>
+
+                <g transform="translate(20, 55)">
+                  <text x="0" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13.5" fill="#1e293b">Colonization Signals:</text>
+                  <text x="10" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">• Surfactin biosurfactants</text>
+                  <text x="10" y="62" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">• Acetoin &amp; 2,3-butanediol VOCs</text>
+                  <text x="10" y="82" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#475569">• Lipopolysaccharides / Flagellin</text>
+
+                  <rect x="0" y="110" width="260" height="85" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+                  <text x="130" y="134" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#166534">Receptor Binding</text>
+                  <text x="130" y="154" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">Root cell plasma membrane PRRs</text>
+                  <text x="130" y="172" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11.5" fill="#475569">trigger sub-lethal calcium influx</text>
+
+                  <text x="0" y="230" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13.5" fill="#0284c7">No Fitness Drag:</text>
+                  <text x="10" y="252" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">Plant maintains growth-defense balance;</text>
+                  <text x="10" y="270" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12" fill="#475569">primed state requires zero baseline energy.</text>
+                </g>
+              </g>
+
+              <!-- Center: Vascular Loop -->
+              <g transform="translate(360, 100)">
+                <path d="M 0 120 L 70 120" stroke="#1b5e20" stroke-width="4" marker-end="url(#arrow-green-lg)"/>
+                <text x="35" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#1b5e20">VASCULAR</text>
+                <text x="35" y="115" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="12" fill="#1b5e20">RELAY</text>
+                <text x="35" y="150" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b">JA / ET / SA</text>
+                <text x="35" y="165" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="11" fill="#64748b">Translocation</text>
+              </g>
+
+              <!-- Right: Distal Foliar Response Cascade -->
+              <g transform="translate(470, 30)">
+                <rect x="0" y="0" width="630" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+                <rect x="0" y="0" width="630" height="38" rx="8" fill="#f0f9ff"/>
+                <text x="315" y="25" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13.5" fill="#0369a1">2. DISTAL FOLIAR ENZYMATIC &amp; TRANSCRIPTIONAL BURST</text>
+
+                <g transform="translate(30, 60)">
+                  <!-- Peroxidase PO Card -->
+                  <rect x="0" y="0" width="270" height="120" rx="8" fill="#f8fafc" stroke="#0284c7" stroke-width="1.5"/>
+                  <text x="20" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#0284c7">Peroxidase (PO) Surge</text>
+                  <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#334155">• Catalyzes apoplastic ROS dynamics</text>
+                  <text x="20" y="72" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#334155">• Accelerates lignin &amp; suberin crosslinking</text>
+                  <text x="20" y="94" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11.5" fill="#0369a1">Surges at 3 DAI in primed plants</text>
+
+                  <!-- Polyphenoloxidase PPO Card -->
+                  <rect x="300" y="0" width="270" height="120" rx="8" fill="#f8fafc" stroke="#d97706" stroke-width="1.5"/>
+                  <text x="320" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#d97706">Polyphenoloxidase (PPO)</text>
+                  <text x="320" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#334155">• Oxidizes phenolics to toxic quinones</text>
+                  <text x="320" y="72" font-family="'Plus Jakarta Sans', sans-serif" font-weight="500" font-size="12.5" fill="#334155">• Inactivates bacterial extracellular enzymes</text>
+                  <text x="320" y="94" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11.5" fill="#b45309">Restricts water-soaking halos</text>
+
+                  <!-- Transcriptional PR Induction -->
+                  <g transform="translate(0, 140)">
+                    <rect x="0" y="0" width="570" height="145" rx="8" fill="#f0fdf4" stroke="#2e7d32" stroke-width="1.5"/>
+                    <text x="20" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1b5e20">Transcriptional Gene Priming &amp; Chlorophyll Preservation</text>
+
+                    <text x="20" y="58" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">
+                      <tspan font-weight="700" fill="#1b5e20">• PR-1 Upregulation (23.7-fold): </tspan>
+                      <tspan fill="#334155">Rapid activation of PR-1 reinforces systemic antimicrobial defenses.</tspan>
+                    </text>
+                    <text x="20" y="82" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">
+                      <tspan font-weight="700" fill="#1b5e20">• PR-2 Glucanase (4.5-fold): </tspan>
+                      <tspan fill="#334155">Stimulates endo-beta-1,3-glucanases to degrade bacterial slime.</tspan>
+                    </text>
+                    <text x="20" y="106" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">
+                      <tspan font-weight="700" fill="#1b5e20">• SPAD-502 Chlorophyll Index: </tspan>
+                      <tspan fill="#334155">Significantly preserved in Bacillus-primed foliage, averting chlorosis.</tspan>
+                    </text>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Mates et al. (2019); Keawmanee et al. (2025); Chang et al. (2019)</div>
+          <div class="page-num">9</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 9 takes us into the physiological and biochemical heart of Induced Systemic Resistance. When Bacillus root colonization is recognized via cell-surface pattern recognition receptors, it does not induce heavy, energetically costly expression of defense genes under baseline conditions. Instead, it enters a state of 'priming.' When distant foliage is challenged by Xanthomonas, the primed plant mounts a hyper-accelerated immune response: Peroxidase (PO) and Polyphenoloxidase (PPO) activity spikes at 3 days post-infection, converting phenolic compounds into toxic quinones. Simultaneously, PR-1 and PR-2 transcript levels surge by up to 23.7-fold, preventing tissue necrosis and preserving chlorophyll levels.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 10: SYNERGISTIC INTEGRATED MANAGEMENT
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">INTEGRATED MANAGEMENT</div>
+          <h2>Synergistic IPM: Bioinoculants Combined with PRIs</h2>
+          <p class="subtitle">Harmonizing Biological Colonization with Chemical Resistance Inducers for Enhanced Disease Control</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="grid-2col">
+            <!-- Left: Multi-Tiered Pyramid -->
+            <div class="editorial-card card-accent-green">
+              <div class="card-tag" style="color: var(--primary-green);">THE MULTI-TIERED IPM TRIAD</div>
+              <div class="card-title">Three Lines of Integrated Defense</div>
+              <div class="card-body">
+                <p style="margin-bottom: 10px;">
+                  <strong>Layer 1: Root Inoculation (Foundation):</strong><br>
+                  Seed treatment or seedling transplant drench with <em>Bacillus velezensis</em> (e.g., GF267 / CH6) establishes early rhizosphere dominance and lifelong baseline ISR priming.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Layer 2: Foliar Plant Resistance Inducers (PRIs):</strong><br>
+                  • <strong>ASM / BTH (FRAC P01):</strong> Synthetic salicylic acid mimic activating <em>PR-1</em> &amp; <em>PR-2</em>.<br>
+                  • <strong>BABA:</strong> Non-protein amino acid priming catalase (<em>CAT</em>) and callose.<br>
+                  • <strong>Chitosan:</strong> Natural elicitor stimulating <em>PR-4</em> and cell wall lignification.
+                </p>
+                <p>
+                  <strong>Layer 3: Targeted Bacteriophages (Curative Knockdown):</strong><br>
+                  Deployment of <em>Xanthomonas</em>-specific phage cocktails (e.g., KΦ1 / KΦ2) during active foliar outbreaks to rapidly clear apoplastic bacterial blooms without residue.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Synergistic Outcome -->
+            <div class="editorial-card card-accent-blue">
+              <div class="card-tag" style="color: var(--accent-blue);">SYNERGY &amp; AGRONOMIC ADVANTAGES</div>
+              <div class="card-title">Eliminating the Growth-Defense Penalty</div>
+              <div class="card-body">
+                <p style="margin-bottom: 10px;">
+                  <strong>Overcoming the Fitness Cost:</strong> High doses of chemical inducers like ASM can cause transient plant stunting. Combining half-rate ASM (0.25 mM) with root <em>Bacillus</em> drench achieves superior disease suppression without any vegetative growth lag.
+                </p>
+                <p style="margin-bottom: 10px;">
+                  <strong>Prolonging Protection Windows:</strong> Single chemical elicitor sprays typically provide transient resistance for only 3 to 5 days. Continuous root colonizing <em>Bacillus</em> maintains host systemic priming across the entire vegetative cycle.
+                </p>
+                <p style="margin-bottom: 12px;">
+                  <strong>Bell Pepper Field Validation:</strong> In <em>Capsicum annuum</em> trials, the combined CH6 + PRI protocol reduced bacterial leaf spot disease index from 71.7% down to under 20%.
+                </p>
+                <div style="background: var(--accent-blue-bg); border-left: 4px solid var(--accent-blue); padding: 8px 12px; border-radius: 6px;">
+                  <span style="font-weight: 800; color: var(--accent-blue); font-size: 14.5px;">&gt;75% Total Efficacy:</span>
+                  <span style="font-size: 13px; color: #0369a1;"> Surpasses standard copper bactericides with zero chemical residue and zero copper resistance risk.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Keawmanee et al. (2025); Osdaghi et al. (2021)</div>
+          <div class="page-num">10</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 10 demonstrates how these mechanistic discoveries translate into high-performance field practice. Standalone biocontrol agents or chemical resistance inducers can sometimes show variable field efficacy when used in isolation. However, Keawmanee et al. (2025) demonstrated that combining a root drench of Bacillus velezensis CH6 with foliar plant resistance inducers like ASM or BABA produces powerful synergy. Crucially, the presence of Bacillus mitigates the vegetative growth penalties frequently associated with high-dose synthetic elicitors, sustaining over 75% protection in bell pepper without relying on toxic copper sprays.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 11: SUMMARY & STRATEGIC TAKEAWAYS
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">SYNTHESIS &amp; RECOMMENDATIONS</div>
+          <h2>The Tripartite Biocontrol Framework</h2>
+          <p class="subtitle">Translating Molecular Mechanisms into Resilient Agronomic Management</p>
+        </header>
+
+        <main class="slide-body">
+          <div class="grid-split-50-50">
+            <!-- Left: Tripartite Triangle SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 540 440" xmlns="http://www.w3.org/2000/svg">
+                <!-- Triangle vertices and connecting bonds -->
+                <polygon points="270,50 70,360 470,360" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+
+                <!-- Central Hub -->
+                <circle cx="270" cy="250" r="75" fill="#e8f5e9" stroke="#1b5e20" stroke-width="2.5"/>
+                <text x="270" y="240" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1b5e20">SUSTAINABLE</text>
+                <text x="270" y="258" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="14" fill="#1b5e20">SUPPRESSION</text>
+                <text x="270" y="276" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11.5" fill="#2e7d32">Zero Copper</text>
+
+                <!-- Vertex 1: Direct Antibiosis (Top) -->
+                <g transform="translate(270, 50)">
+                  <circle cx="0" cy="0" r="48" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+                  <text x="0" y="-8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#dc2626">DIRECT</text>
+                  <text x="0" y="8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#dc2626">ANTIBIOSIS</text>
+                  <text x="0" y="24" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#7f1d1d">CLPs &amp; Difficidin</text>
+                </g>
+
+                <!-- Vertex 2: Niche Exclusion (Bottom Left) -->
+                <g transform="translate(70, 360)">
+                  <circle cx="0" cy="0" r="48" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+                  <text x="0" y="-8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#d97706">NICHE</text>
+                  <text x="0" y="8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#d97706">EXCLUSION</text>
+                  <text x="0" y="24" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#78350f">NOI 0.8–1.0 / TasA</text>
+                </g>
+
+                <!-- Vertex 3: Systemic Priming (Bottom Right) -->
+                <g transform="translate(470, 360)">
+                  <circle cx="0" cy="0" r="48" fill="#f0f9ff" stroke="#0284c7" stroke-width="2"/>
+                  <text x="0" y="-8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#0284c7">SYSTEMIC</text>
+                  <text x="0" y="8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12.5" fill="#0284c7">PRIMING</text>
+                  <text x="0" y="24" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#0c4a6e">PO / PPO / PR-1</text>
+                </g>
+
+                <!-- Connecting labels -->
+                <text x="145" y="190" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#475569">Surface Kill</text>
+                <text x="395" y="190" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#475569">Host Signaling</text>
+                <text x="270" y="385" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#475569">Pre-emptive Ecology</text>
+              </svg>
+            </div>
+
+            <!-- Right: 4 Golden Rules for Field Implementation -->
+            <div style="display: flex; flex-direction: column; gap: 10px; justify-content: center;">
+              <div class="editorial-card card-accent-green" style="padding: 10px 14px;">
+                <div class="card-tag" style="color: var(--primary-green);">RULE 1: PREVENTIVE APPLICATION TIMING</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Apply <em>Bacillus</em> at transplanting or prior to high-risk rain events; pre-emptive niche colonization must precede <em>Xanthomonas</em> foliar immigration.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-blue" style="padding: 10px 14px;">
+                <div class="card-tag" style="color: var(--accent-blue);">RULE 2: PRESERVE RHIZOSPHERE COLONIZATION</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Maintain adequate root-zone moisture to sustain biofilm matrix synthesis; avoid tank-mixing with harsh soil-sterilizing chemical surfactants.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-amber" style="padding: 10px 14px;">
+                <div class="card-tag" style="color: var(--accent-amber);">RULE 3: MULTI-TIERED TANK COMBINATIONS</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Pair root-applied bacilli with foliar plant defense activators (ASM, BABA, or Chitosan) to maintain continuous systemic priming.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-purple" style="padding: 10px 14px;">
+                <div class="card-tag" style="color: var(--accent-purple);">RULE 4: RELY ON RESILIENT ENDOSPORES</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Utilize high-titer endospore formulations (&gt;10⁹ CFU/g) that withstand UV degradation, shelf storage, and temperature fluctuations.
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Mates et al. (2019); Rabbee et al. (2023)</div>
+          <div class="page-num">11</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        Slide 11 synthesizes the entire lecture into a unified Tripartite Biocontrol Framework. Sustainable control of bacterial spot does not rely on a single silver bullet. Instead, it balances three interconnected biological pillars: direct antibiosis via lipopeptides and polyketides, competitive niche exclusion occupying stomatal entry points, and root-mediated systemic priming of host defense enzymes. By adhering to the four golden rules—preventive timing, biofilm maintenance, synergistic inducer pairing, and endospore formulation—growers and agronomists can achieve dependable, long-term disease suppression without copper.
+      </aside>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 12: REFERENCES & SOURCES (DEDICATED)
+         ========================================== -->
+    <section>
+      <div class="slide-container">
+        <header class="slide-header">
+          <div class="topic-pill">ACADEMIC BIBLIOGRAPHY</div>
+          <h2>References &amp; Knowledge Base Sources</h2>
+          <p class="subtitle">Foundational Literature on Bacillus Biocontrol and Solanaceous Bacterial Spot</p>
+        </header>
+
+        <main class="slide-body" style="justify-content: flex-start; padding-top: 20px;">
+          <div style="background: var(--surface-white); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 22px 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); font-size: 12.5px; line-height: 1.6; color: #334155;">
+            <p style="margin-bottom: 12px;">
+              <strong>Chang, H. Y., et al. (2019).</strong> Intensification of PAMP-triggered immunity in watermelon by <em>Bacillus</em> spp. strains PMB04 and PMB05. <em>Journal of Plant Medicine</em>, 61(4), 1–12.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <strong>Dunlap, C. A., et al. (2016).</strong> <em>Bacillus velezensis</em> is not a later heterotypic synonym of <em>Bacillus amyloliquefaciens</em>; phylogenetic analysis of the <em>Bacillus amyloliquefaciens</em> clade. <em>International Journal of Systematic and Evolutionary Microbiology</em>, 66(3), 1212–1217.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <strong>Grady, E. N., et al. (2019).</strong> Characterization and complete genome analysis of <em>Bacillus velezensis</em> 9D-6, an endophyte with biocontrol potential. <em>BMC Genomics</em>, 20(1), 1–15.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <strong>Keawmanee, P., et al. (2025).</strong> Sustainable management of bacterial leaf spot in bell pepper using <em>Bacillus velezensis</em> CH6 combined with plant resistance inducers. <em>Crop Protection</em>, 188, 106987.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <strong>Mates, A. K., et al. (2019).</strong> <em>Bacillus velezensis</em> GF267 as a multi-site antagonist against <em>Xanthomonas perforans</em> on tomato. <em>Biological Control</em>, 137, 104019.
+            </p>
+            <p style="margin-bottom: 12px;">
+              <strong>Osdaghi, E., et al. (2021).</strong> A centenary for bacterial spot of tomato and pepper: Diverse and elusive <em>Xanthomonas</em> species in a changing world. <em>Molecular Plant Pathology</em>, 22(8), 915–933.
+            </p>
+            <p style="margin-bottom: 0;">
+              <strong>Rabbee, M. F., et al. (2023).</strong> <em>Bacillus velezensis</em>: A beneficial biocontrol agent or facultative phytopathogen? A comprehensive genomic and metabolomic perspective. <em>Agronomy</em>, 13(3), 840.
+            </p>
+          </div>
+        </main>
+
+        <footer class="slide-footer">
+          <div class="citation">Plant Pathology &amp; MPMI Wiki Corpus</div>
+          <div class="page-num">12</div>
+        </footer>
+      </div>
+
+      <aside class="notes">
+        This concluding slide provides complete bibliographic records for all peer-reviewed primary sources curated in this lecture. These studies represent the cutting edge of biological control research, ranging from phylogenomics and non-ribosomal secondary metabolome mapping to spatial separation bioassays and field-scale IPM integration. Students are strongly encouraged to consult these primary references in the Plant Pathology Wiki to examine experimental protocols, genetic mutants, and statistical datasets in full depth.
+      </aside>
+    </section>
+
+  </div>
+</div>
+
+<!-- On-Screen Speaker Notes Modal Drawer -->
+<div id="notes-modal">
+  <h4>
+    <span>Speaker Lecture Script</span>
+    <span style="cursor: pointer; color: #94a3b8;" onclick="toggleNotesModal()">✕</span>
+  </h4>
+  <div id="notes-body"></div>
+</div>
+
+<!-- Floating Toggle Button for Notes -->
+<button class="notes-toggle-btn" onclick="toggleNotesModal()">
+  <span>📝 Lecture Notes [N]</span>
+</button>
+
+<!-- Reveal.js & Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    controls: true,
+    progress: true,
+    center: true,
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    margin: 0.04,
+    width: 1280,
+    height: 720,
+    minScale: 0.2,
+    maxScale: 2.0,
+    plugins: [ RevealNotes ]
+  });
+
+  // Modal Notes Synchronizer
+  function updateNotesModal() {
+    var currentSlide = Reveal.getCurrentSlide();
+    var notesEl = currentSlide.querySelector('aside.notes');
+    var modalBody = document.getElementById('notes-body');
+    if (notesEl && notesEl.innerHTML.trim() !== "") {
+      modalBody.innerHTML = notesEl.innerHTML;
+    } else {
+      modalBody.innerHTML = "<em>No lecture script provided for this slide.</em>";
+    }
+  }
+
+  function toggleNotesModal() {
+    var modal = document.getElementById('notes-modal');
+    modal.classList.toggle('visible');
+    if (modal.classList.contains('visible')) {
+      updateNotesModal();
+    }
+  }
+
+  Reveal.on('slidechanged', updateNotesModal);
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'n' || e.key === 'N') {
+      toggleNotesModal();
+    }
+  });
+  Reveal.on('ready', updateNotesModal);
+</script>
+
+</body>
+</html>

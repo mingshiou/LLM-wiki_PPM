@@ -343,6 +343,9 @@
         <button class="deck-tab" id="tab-bstp" onclick="selectDeck('bstp')">
           🔬 Deck 2: Bacterial Spot of Tomato &amp; Pepper (13 Slides)
         </button>
+        <button class="deck-tab" id="tab-bacillus" onclick="selectDeck('bacillus')">
+          🛡️ Deck 3: Bacillus Biocontrol Mechanisms (12 Slides)
+        </button>
       </div>
 
       <!-- Embedded 16:9 Reveal.js Presentation -->
@@ -562,6 +565,12 @@
         desc: "A comprehensive instructional slide deck covering the four Xanthomonas lineages, spatiotemporal foliar infection dynamics (phyllosphere ingress to stomatal egression), Type III effectors (AvrBs2, AvrBs3 TALE), Bs resistance genetics, and sustainable IPM.",
         url: "wiki/presentations/bacterial-spot.html",
         notes: "https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/bacterial-spot-notes.md"
+      },
+      bacillus: {
+        title: "Biological Control of Bacterial Spot: Multi-Site Suppression by Bacillus",
+        desc: "A collegiate-level instructional slide deck exploring Bacillus velezensis multi-site biocontrol: cyclic lipopeptide and polyketide direct antibiosis, nutritional niche overlap (NOI 0.8–1.0), spatial separation assays proving ISR, and synergistic PRI integration.",
+        url: "wiki/presentations/bacillus-bacterial-spot-control.html",
+        notes: "https://github.com/mingshiou/LLM-wiki_PPM/blob/main/wiki/presentations/bacillus-bacterial-spot-control-notes.md"
       }
     };
 
@@ -577,6 +586,7 @@
 
       document.getElementById('tab-pti').classList.toggle('active', key === 'pti');
       document.getElementById('tab-bstp').classList.toggle('active', key === 'bstp');
+      document.getElementById('tab-bacillus').classList.toggle('active', key === 'bacillus');
     }
   </script>
 
