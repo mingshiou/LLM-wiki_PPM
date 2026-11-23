@@ -11,7 +11,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -30,9 +30,9 @@
       --accent-purple: #7c3aed;
       --accent-purple-bg: #f5f3ff;
       --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-subtle: #e2e8f0;
-      --border-green: #c8e6c9;
+      --text-muted: #475569;
+      --border-subtle: #cbd5e1;
+      --border-green: #a5d6a7;
     }
 
     * { box-sizing: border-box; }
@@ -51,7 +51,7 @@
 
     /* Fixed 16:9 Slide Container */
     .slide-container {
-      width: 1200px;
+      width: 1220px;
       height: 680px;
       margin: 0 auto;
       display: flex;
@@ -62,50 +62,51 @@
 
     /* Header Budget: <= 80px */
     .slide-header {
-      height: 78px;
+      height: 76px;
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 2px solid #e2e8f0;
       padding-bottom: 6px;
     }
 
     .topic-pill {
       display: inline-block;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--primary-green);
       background: var(--light-mint);
-      padding: 2px 10px;
+      padding: 3px 12px;
       border-radius: 9999px;
       width: fit-content;
       margin-bottom: 4px;
     }
 
     .slide-header h2 {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
       color: var(--dark-green);
       margin: 0;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .slide-header .subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-muted);
-      margin: 2px 0 0 0;
+      margin: 3px 0 0 0;
       font-weight: 500;
     }
 
-    /* Body Budget: <= 520px */
+    /* Flexible Slide Body Budget */
     .slide-body {
-      height: 520px;
-      flex-grow: 1;
+      flex: 1;
+      min-height: 500px;
+      max-height: 535px;
       padding: 16px 0;
       display: flex;
       flex-direction: column;
@@ -121,31 +122,33 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
     }
 
     .slide-footer .citation {
       font-style: italic;
-      color: #475569;
+      color: #334155;
+      font-weight: 500;
     }
 
     .slide-footer .page-num {
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 15px;
       color: var(--primary-green);
     }
 
-    /* Natural De-boxed Typography */
+    /* Typography & Hierarchy */
     .prose-lead {
-      font-size: 18px;
+      font-size: 17.5px;
       line-height: 1.6;
-      color: #334155;
-      margin-bottom: 16px;
+      color: #1e293b;
+      margin-bottom: 14px;
     }
 
     .prose-regular {
-      font-size: 15px;
+      font-size: 15.5px;
       line-height: 1.6;
       color: #334155;
     }
@@ -167,51 +170,112 @@
       height: 100%;
     }
 
-    .grid-4col {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      align-items: stretch;
-      height: 100%;
+    /* Structured Comparison Matrix (Slide 3) */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+      background: var(--surface-white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border: 1px solid var(--border-subtle);
     }
 
-    /* Editorial Comparative Cards (Reserved for Parallel Entities) */
+    .matrix-table th {
+      background: #f1f5f9;
+      color: var(--dark-green);
+      font-weight: 700;
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 2px solid var(--border-subtle);
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
+    }
+
+    .matrix-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+      line-height: 1.45;
+      color: #1e293b;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .badge-species {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* Mechanism Schematics & SVG styling */
+    .diagram-panel {
+      background: var(--surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .diagram-panel svg {
+      width: 100%;
+      height: 100%;
+      max-height: 440px;
+    }
+
+    /* Editorial Comparative Cards */
     .editorial-card {
       background: var(--surface-white);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 18px;
+      padding: 18px 20px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
-    .card-accent-green { border-top: 4px solid var(--primary-green); }
-    .card-accent-blue { border-top: 4px solid var(--accent-blue); }
-    .card-accent-amber { border-top: 4px solid var(--accent-amber); }
-    .card-accent-purple { border-top: 4px solid var(--accent-purple); }
-    .card-accent-red { border-top: 4px solid var(--accent-red); }
+    .card-accent-green { border-top: 5px solid var(--primary-green); }
+    .card-accent-blue { border-top: 5px solid var(--accent-blue); }
+    .card-accent-amber { border-top: 5px solid var(--accent-amber); }
+    .card-accent-purple { border-top: 5px solid var(--accent-purple); }
+    .card-accent-red { border-top: 5px solid var(--accent-red); }
 
     .card-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       margin-bottom: 6px;
+      letter-spacing: 0.05em;
     }
 
     .card-title {
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 19px;
+      font-weight: 800;
       color: var(--text-main);
       margin-bottom: 8px;
+      letter-spacing: -0.01em;
     }
 
     .card-body {
-      font-size: 13.5px;
-      line-height: 1.5;
-      color: #475569;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #334155;
       flex-grow: 1;
     }
 
@@ -220,15 +284,15 @@
       background: var(--surface-white);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 
     .metric-banner .val {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 800;
       color: var(--accent-red);
       font-family: 'JetBrains Mono', monospace;
@@ -237,15 +301,15 @@
     }
 
     .metric-banner .desc {
-      font-size: 14px;
-      line-height: 1.4;
-      color: #334155;
+      font-size: 15px;
+      line-height: 1.45;
+      color: #1e293b;
     }
 
     /* Pipeline Process Steps */
     .pipeline-container {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       align-items: stretch;
       height: 100%;
     }
@@ -255,31 +319,33 @@
       background: var(--surface-white);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 16px 14px;
+      padding: 18px 16px;
       display: flex;
       flex-direction: column;
       position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
     }
 
     .pipeline-step:not(:last-child)::after {
       content: "➔";
       position: absolute;
-      right: -13px;
+      right: -14px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 16px;
+      font-size: 18px;
       color: var(--primary-green);
+      font-weight: 800;
       z-index: 2;
     }
 
     .pipeline-step .step-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--primary-green);
       background: var(--light-mint);
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -288,19 +354,19 @@
     }
 
     .pipeline-step .step-title {
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .pipeline-step .step-desc {
-      font-size: 12.5px;
-      line-height: 1.45;
-      color: #64748b;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #475569;
     }
 
-    /* Title Slide Special Layout */
+    /* Title Slide Layout */
     .title-wrapper {
       text-align: center;
       display: flex;
@@ -308,36 +374,37 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      padding: 0 40px;
+      padding: 0 30px;
     }
 
     .title-wrapper h1 {
-      font-size: 46px;
+      font-size: 48px;
       font-weight: 800;
       color: var(--dark-green);
       letter-spacing: -0.03em;
-      margin: 12px 0 10px 0;
+      margin: 14px 0 12px 0;
       line-height: 1.15;
     }
 
     .title-wrapper .lead-sub {
-      font-size: 20px;
-      color: #475569;
+      font-size: 21px;
+      color: #334155;
       font-weight: 500;
-      max-width: 900px;
-      margin-bottom: 30px;
+      max-width: 950px;
+      margin-bottom: 32px;
+      line-height: 1.4;
     }
 
     .title-meta-box {
       background: var(--surface-white);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      padding: 16px 28px;
+      padding: 16px 32px;
       display: flex;
       gap: 36px;
-      font-size: 13.5px;
-      color: #64748b;
-      font-family: 'JetBrains Mono', monospace;
+      font-size: 14.5px;
+      color: #334155;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
     /* On-Screen Notes Modal Drawer */
@@ -346,18 +413,18 @@
       position: fixed;
       bottom: 60px;
       right: 40px;
-      width: 480px;
-      max-height: 380px;
-      background: rgba(15, 23, 42, 0.96);
-      color: #f1f5f9;
+      width: 500px;
+      max-height: 400px;
+      background: rgba(15, 23, 42, 0.97);
+      color: #f8fafc;
       backdrop-filter: blur(8px);
       border-radius: 12px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
       z-index: 9999;
-      padding: 20px;
+      padding: 22px;
       overflow-y: auto;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.6;
       border: 1px solid #334155;
     }
@@ -387,9 +454,9 @@
       color: white;
       border: none;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      font-size: 13px;
+      width: 38px;
+      height: 38px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
@@ -418,24 +485,24 @@
       <div class="slide-container">
         <div class="slide-body" style="height: 610px;">
           <div class="title-wrapper">
-            <div class="topic-pill">SOLANACEOUS PATHOSYSTEMS &amp; MPMI</div>
+            <div class="topic-pill">PLANT PATHOLOGY &amp; MPMI • ADVANCED LECTURE SERIES</div>
             <h1>Bacterial Spot of Tomato &amp; Pepper</h1>
             <p class="lead-sub">Etiology, Spatiotemporal Pathogenesis, and Next-Generation Integrated Disease Management</p>
 
             <div class="title-meta-box">
-              <div><strong>Target Crops:</strong> Tomato &amp; Pepper</div>
-              <div><strong>Pathogen Group:</strong> <em>Xanthomonas</em> Complex</div>
-              <div><strong>Courseware:</strong> Plant Pathology Wiki</div>
+              <div><strong>Course:</strong> Advanced MPMI &amp; Phytopathology</div>
+              <div><strong>Module:</strong> Unit 04 • Bacterial Foliar Pathosystems</div>
+              <div><strong>Target Hosts:</strong> <em>Solanum lycopersicum</em> &amp; <em>Capsicum annuum</em></div>
             </div>
 
-            <p style="margin-top: 28px; font-size: 13px; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
-              Press <strong>[SPACE]</strong> to advance • Press <strong>[N]</strong> to toggle speaker lecture script
+            <p style="margin-top: 30px; font-size: 13.5px; color: #64748b; font-family: 'JetBrains Mono', monospace;">
+              Press <strong>[SPACE]</strong> to advance • Press <strong>[N]</strong> to toggle speaker lecture script drawer
             </p>
           </div>
         </div>
 
         <footer class="slide-footer">
-          <div class="citation">Plant Pathology &amp; MPMI Wiki Courseware (2026)</div>
+          <div class="citation">Academic Year 2026 • Graduate &amp; Collegiate Courseware</div>
           <div class="page-num">1</div>
         </footer>
       </div>
@@ -446,55 +513,58 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 2: DISEASE OVERVIEW & IMPACT
+         SLIDE 2: DISEASE OVERVIEW & LEARNING OBJECTIVES
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">EPIDEMIOLOGY &amp; ECONOMIC BURDEN</div>
-          <h2>Global Threat to Solanaceous Crop Production</h2>
-          <p class="subtitle">Devastating foliar blighting, severe defoliation, and direct commercial fruit loss</p>
+          <div class="topic-pill">EPIDEMIOLOGY &amp; PEDAGOGICAL GOALS</div>
+          <h2>Global Agronomic Threat &amp; Core Learning Objectives</h2>
+          <p class="subtitle">Severe foliar blighting, commercial fruit collapse, and lecture competency targets</p>
         </header>
 
         <main class="slide-body">
           <div class="grid-2col">
-            <div style="display: flex; flex-direction: column; justify-content: center;">
-              <p class="prose-lead">
-                Bacterial spot of tomato (<em>Solanum lycopersicum</em>) and pepper (<em>Capsicum annuum</em>) represents a persistent limiting factor for open-field and greenhouse production throughout warm, humid cultivation zones across the globe.
-              </p>
-              <ul class="prose-regular" style="padding-left: 20px; margin-top: 4px;">
-                <li style="margin-bottom: 10px;">
-                  <strong>Severe Canopy Defoliation:</strong> Confluent necrotic spotting causes rapid foliar scorching, reducing photosynthetic capacity and exposing green fruits directly to intense solar radiation.
-                </li>
-                <li style="margin-bottom: 10px;">
-                  <strong>Catastrophic Sunscald:</strong> Loss of canopy foliage induces severe secondary sunscald on maturing fruit, rendering entire harvests unmarketable even when fruit lesions are minimal.
-                </li>
-                <li>
-                  <strong>High Quarantine Status:</strong> Listed on the <strong>EPPO A2 quarantine catalog</strong>, imposing strict phytosanitary barriers on international seed lots and transboundary seedling trade.
-                </li>
-              </ul>
+            <!-- Left: Global Agronomic Impact -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <p class="prose-lead">
+                  Bacterial spot of tomato (<em>Solanum lycopersicum</em>) and pepper (<em>Capsicum annuum</em>) is a destructive, limiting factor across open-field and greenhouse production worldwide.
+                </p>
+                <div class="metric-banner" style="margin-bottom: 12px;">
+                  <div class="val">23%–44%</div>
+                  <div class="desc"><strong>Direct Marketable Yield Collapse:</strong> Defoliation triggers massive blossom drop, severe fruit scabbing, and indirect solar sunscald.</div>
+                </div>
+                <div class="metric-banner" style="margin-bottom: 12px;">
+                  <div class="val">60%–100%</div>
+                  <div class="desc"><strong>Nursery Source Epidemics:</strong> Field infections directly trace back to latent, asymptomatic greenhouse transplant seedlings.</div>
+                </div>
+                <div class="metric-banner">
+                  <div class="val" style="color: var(--primary-green); font-size: 24px;">EPPO A2</div>
+                  <div class="desc"><strong>Quarantine Action List:</strong> Regulated quarantine pest status imposing stringent international biosecurity inspections on seed lots.</div>
+                </div>
+              </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; gap: 14px;">
-              <div class="metric-banner">
-                <div class="val">23%–44%</div>
-                <div class="desc">
-                  <strong>Direct Yield Collapse:</strong> Documented commercial marketable yield losses resulting from flower blighting, blossom drop, and disfiguring fruit blemishes.
-                </div>
-              </div>
-
-              <div class="metric-banner">
-                <div class="val">60%–100%</div>
-                <div class="desc">
-                  <strong>Transplant Transmission:</strong> Proportion of commercial open-field epidemics directly traceable back to latent, asymptomatic greenhouse nursery transplants.
-                </div>
-              </div>
-
-              <div class="metric-banner">
-                <div class="val" style="color: var(--primary-green); font-size: 22px;">EPPO A2</div>
-                <div class="desc">
-                  <strong>Regulated Quarantine Alert:</strong> Stringent international biosecurity restrictions governing global movement of solanaceous propagating materials.
-                </div>
+            <!-- Right: Learning Objectives -->
+            <div class="editorial-card card-accent-green" style="background: #fcfdfc;">
+              <div class="card-tag" style="color: var(--primary-green);">Core Learning Objectives</div>
+              <div class="card-title">By the end of this lecture, you will master:</div>
+              <div class="card-body">
+                <ol style="padding-left: 20px; margin: 0; font-size: 14.5px; line-height: 1.6;">
+                  <li style="margin-bottom: 12px;">
+                    <strong>Phylogenomic Discrimination:</strong> Distinguish the 4 distinct <em>Xanthomonas</em> species by host range, enzymatic profiles (amylolytic/pectolytic), and environmental niches.
+                  </li>
+                  <li style="margin-bottom: 12px;">
+                    <strong>Biphasic Spatiotemporal Dynamics:</strong> Trace the orchestrated cycle from epiphytic swimming and oxidative stressome pre-arming to late flagellar reactivation and stomatal egression.
+                  </li>
+                  <li style="margin-bottom: 12px;">
+                    <strong>Effector Biology &amp; Plant Immunity:</strong> Contrast the conserved virulence functions of AvrBs2 and AvrBs3 (TALE) against host immune recognition by pepper <em>Bs2</em> and <em>Bs3</em>.
+                  </li>
+                  <li>
+                    <strong>Resistance Overcoming &amp; Next-Gen IPM:</strong> Explain plasmid-borne <em>copLAB</em> copper detoxification and formulate multipronged IPM using seed sanitation, nanocomposites, and <em>Bacillus</em> ISR.
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
@@ -507,67 +577,79 @@
       </div>
 
       <aside class="notes">
-        Bacterial spot is notorious for creating two distinct forms of economic destruction. The first is direct: fruit lesions and blossom drop reduce marketable yields by up to 44%. The second, and often more catastrophic, is indirect: the rapid defoliation of the canopy strips away shading, resulting in widespread solar burn known as sunscald. Furthermore, because asymptomatic greenhouse seedlings carry latent infections into commercial fields, over 60% of open-field outbreaks stem directly from infected nursery transplant stock.
+        Bacterial spot is notorious for creating two distinct forms of economic destruction. The first is direct: fruit lesions and blossom drop reduce marketable yields by up to 44%. The second, and often more catastrophic, is indirect: the rapid defoliation of the canopy strips away shading, resulting in widespread solar burn known as sunscald. Notice our four pedagogical objectives on the right: we will move systematically from taxonomy and spatiotemporal infection stages to molecular effectors, host R-gene genetics, and modern resistance management.
       </aside>
     </section>
 
     <!-- ==========================================
-         SLIDE 3: THE PATHOGEN COMPLEX
+         SLIDE 3: THE PATHOGEN COMPLEX (COMPARISON MATRIX)
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">TAXONOMY &amp; PHYLOGENOMICS</div>
-          <h2>The Causal Complex: Four Distinct Lineages</h2>
-          <p class="subtitle">Phylogenomics resolved the historical 'Group A–D' designations into four autonomous species</p>
+          <div class="topic-pill">TAXONOMY &amp; COMPARATIVE PHYLOGENOMICS</div>
+          <h2>The Pathogen Complex: Four Autonomous Lineages</h2>
+          <p class="subtitle">Phylogenomics resolved the historical 'Group A–D' designations into four distinct bacterial species</p>
         </header>
 
         <main class="slide-body">
-          <p class="prose-regular" style="margin-bottom: 14px;">
-            Historically grouped as a single taxon (<em>Xanthomonas campestris</em> pv. <em>vesicatoria</em>), modern polyphasic taxonomy and whole-genome sequencing have established four distinct species exhibiting physiological and host specialization:
+          <p class="prose-regular" style="margin-bottom: 12px;">
+            Historically grouped as a single variable taxon (<em>Xanthomonas campestris</em> pv. <em>vesicatoria</em>), modern polyphasic phylogenomics differentiates four autonomous species possessing distinct enzymatic capacities and ecological adaptations:
           </p>
 
-          <div class="grid-4col">
-            <div class="editorial-card card-accent-green">
-              <div class="card-tag" style="color: var(--primary-green);">Group A Lineage</div>
-              <div class="card-title"><em>X. euvesicatoria</em></div>
-              <div class="card-body">
-                <strong>Hosts:</strong> Tomato &amp; Pepper<br>
-                <strong>Physiology:</strong> Non-amylolytic (cannot hydrolyze starch).<br>
-                <strong>Significance:</strong> Global foundation model for Type III secretion and TALE biology (<em>avrBs2</em>, <em>avrBs3</em>).
-              </div>
-            </div>
-
-            <div class="editorial-card card-accent-blue">
-              <div class="card-tag" style="color: var(--accent-blue);">Group C Lineage</div>
-              <div class="card-title"><em>X. perforans</em></div>
-              <div class="card-body">
-                <strong>Hosts:</strong> Tomato (expanding to Pepper)<br>
-                <strong>Physiology:</strong> Strongly amylolytic; secretes potent bacteriocins.<br>
-                <strong>Significance:</strong> Dominates warm, intensive tomato zones, actively displacing other species in field populations.
-              </div>
-            </div>
-
-            <div class="editorial-card card-accent-amber">
-              <div class="card-tag" style="color: var(--accent-amber);">Group B Lineage</div>
-              <div class="card-title"><em>X. vesicatoria</em></div>
-              <div class="card-body">
-                <strong>Hosts:</strong> Tomato &amp; Pepper<br>
-                <strong>Physiology:</strong> Amylolytic enzyme profile.<br>
-                <strong>Significance:</strong> Historically prevalent across temperate and subtropical regions; cold-tolerant traits.
-              </div>
-            </div>
-
-            <div class="editorial-card card-accent-purple">
-              <div class="card-tag" style="color: var(--accent-purple);">Group D Lineage</div>
-              <div class="card-title"><em>X. gardneri</em></div>
-              <div class="card-body">
-                <strong>Hosts:</strong> Tomato &amp; Pepper<br>
-                <strong>Physiology:</strong> High pectolytic activity; cold adapted.<br>
-                <strong>Significance:</strong> Characterized by rapid clonal dissemination through contaminated commercial seed supplies worldwide.
-              </div>
-            </div>
-          </div>
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th style="width: 22%;">Species &amp; Lineage</th>
+                <th style="width: 17%;">Primary Hosts</th>
+                <th style="width: 15%;">Starch Hydrolysis</th>
+                <th style="width: 16%;">Enzymatic Niche</th>
+                <th style="width: 30%;">Distinctive Traits &amp; Significance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="badge-species" style="background: #dcfce7; color: #166534;"><em>X. euvesicatoria</em></span><br>
+                  <span style="font-size: 12px; color: #64748b;">Historical Group A</span>
+                </td>
+                <td>Tomato &amp; Pepper</td>
+                <td><strong style="color: var(--accent-red);">Non-amylolytic (-)</strong></td>
+                <td>Low pectolytic</td>
+                <td>Global foundational model for Type III secretion and TALE biology (<em>avrBs2</em>, <em>avrBs3</em>).</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="badge-species" style="background: #e0f2fe; color: #075985;"><em>X. perforans</em></span><br>
+                  <span style="font-size: 12px; color: #64748b;">Historical Group C</span>
+                </td>
+                <td>Tomato <span style="font-size: 12px; color: #0284c7;">(expanding to Pepper)</span></td>
+                <td><strong style="color: var(--primary-green);">Strongly amylolytic (++)</strong></td>
+                <td>Bacteriocin producer</td>
+                <td>Dominates warm, intensive field production; produces antibacterial bacteriocins that displace rival lineages.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="badge-species" style="background: #fef3c7; color: #92400e;"><em>X. vesicatoria</em></span><br>
+                  <span style="font-size: 12px; color: #64748b;">Historical Group B</span>
+                </td>
+                <td>Tomato &amp; Pepper</td>
+                <td><strong style="color: var(--primary-green);">Amylolytic (+)</strong></td>
+                <td>Moderate cellulolytic</td>
+                <td>Prevalent across temperate and cool-subtropical zones; adapted to cooler microclimates than <em>X. perforans</em>.</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="badge-species" style="background: #f3e8ff; color: #6b21a8;"><em>X. gardneri</em></span><br>
+                  <span style="font-size: 12px; color: #64748b;">Historical Group D</span>
+                </td>
+                <td>Tomato &amp; Pepper</td>
+                <td><strong>Variable / Weak</strong></td>
+                <td><strong style="color: var(--accent-purple);">High pectate lyase</strong></td>
+                <td>Cold-tolerant; causes extensive soft foliar and fruit maceration; drives global clonal outbreaks via contaminated seed.</td>
+              </tr>
+            </tbody>
+          </table>
         </main>
 
         <footer class="slide-footer">
@@ -577,74 +659,139 @@
       </div>
 
       <aside class="notes">
-        For decades, researchers classified all bacterial spot isolates as Xanthomonas campestris pathovar vesicatoria. However, genomic and biochemical analyses revealed four separate species, historically called Groups A, B, C, and D. Notice their distinct ecological traits: Xanthomonas perforans produces bacteriocins that suppress rival xanthomonads, allowing it to become dominant in Florida and other warm production regions. In contrast, Xanthomonas gardneri thrives in cooler conditions and possesses high pectolytic capabilities, causing severe fruit and leaf rot.
+        This comparison matrix resolves a common confusion in bacterial plant pathology. For decades, literature referred to all bacterial spot as Xanthomonas campestris pv. vesicatoria. Today we recognize four distinct biological species. Note the phenotypic keys: Xanthomonas euvesicatoria is non-amylolytic, whereas Xanthomonas perforans hydrolyzes starch aggressively and secretes bacteriocins, allowing it to outcompete Group A in Florida fields. Xanthomonas gardneri has high pectolytic enzyme activity, making it uniquely capable of causing extensive soft tissue maceration even in cooler climates.
       </aside>
     </section>
 
     <!-- ==========================================
-         SLIDE 4: DIAGNOSTIC SYMPTOMOLOGY
+         SLIDE 4: DIAGNOSTIC SYMPTOMS (WITH VISUAL SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">CLINICAL DIAGNOSTICS &amp; SYMPTOMOLOGY</div>
+          <div class="topic-pill">CLINICAL DIAGNOSTICS &amp; MORPHOLOGY</div>
           <h2>Diagnostic Symptoms Across Host Organs</h2>
-          <p class="subtitle">Diagnostic progression from foliar water-soaking to fruit blister scabs</p>
+          <p class="subtitle">Diagnostic progression from foliar water-soaking to fruit blister scabs and defoliation</p>
         </header>
 
         <main class="slide-body">
-          <div class="grid-3col">
-            <div class="editorial-card card-accent-green">
-              <div class="card-tag" style="color: var(--primary-green);">Foliar Pathology</div>
-              <div class="card-title">Water-Soaking &amp; Shot-Hole</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Early Stage:</strong> Small (1–3 mm), dark, angular water-soaked spots on the abaxial leaf surface.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Lesion Maturation:</strong> Centers turn necrotic, brownish-black, surrounded by a vivid chlorotic halo.
-                  </li>
-                  <li>
-                    <strong>Shot-Hole Effect:</strong> In <em>X. perforans</em> infections, necrotic centers dry and drop out, creating distinctive perforated leaves before defoliation.
-                  </li>
-                </ul>
-              </div>
+          <div class="grid-2col">
+            <!-- Left: Visual Symptom Morphology Schematic -->
+            <div class="diagram-panel" style="padding: 12px;">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <!-- Background Canvas -->
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+
+                <!-- Top Half: Foliar Symptom Progression -->
+                <text x="20" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="#1b5e20">FOLIAR SYMPTOM PROGRESSION</text>
+
+                <!-- Stage 1: Leaf Water-soaking -->
+                <g transform="translate(30, 45)">
+                  <!-- Leaf base -->
+                  <path d="M 0,40 C 20,10 60,10 80,40 C 60,70 20,70 0,40 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/>
+                  <!-- Water-soaked spots -->
+                  <circle cx="35" cy="36" r="5" fill="#475569" opacity="0.6"/>
+                  <circle cx="50" cy="42" r="4" fill="#475569" opacity="0.6"/>
+                  <circle cx="28" cy="46" r="3" fill="#475569" opacity="0.6"/>
+                  <text x="40" y="85" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">1. Water-Soaking</text>
+                  <text x="40" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Tiny (1–3 mm) dark spots</text>
+                </g>
+
+                <!-- Arrow 1 -->
+                <path d="M 130,85 L 160,85" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-head)"/>
+
+                <!-- Stage 2: Halo Necrosis -->
+                <g transform="translate(180, 45)">
+                  <path d="M 0,40 C 20,10 60,10 80,40 C 60,70 20,70 0,40 Z" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/>
+                  <!-- Chlorotic halo -->
+                  <circle cx="40" cy="40" r="14" fill="#fef08a" opacity="0.9"/>
+                  <!-- Necrotic center -->
+                  <circle cx="40" cy="40" r="8" fill="#78350f"/>
+                  <text x="40" y="85" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">2. Necrotic Halo</text>
+                  <text x="40" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Chlorotic yellow ring</text>
+                </g>
+
+                <!-- Arrow 2 -->
+                <path d="M 280,85 L 310,85" stroke="#94a3b8" stroke-width="2"/>
+
+                <!-- Stage 3: Shot-Hole Perforation -->
+                <g transform="translate(330, 45)">
+                  <path d="M 0,40 C 20,10 60,10 80,40 C 60,70 20,70 0,40 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5"/>
+                  <!-- Shot hole (cutout) -->
+                  <circle cx="40" cy="40" r="9" fill="#f8fafc" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2 2"/>
+                  <text x="40" y="85" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#dc2626" text-anchor="middle">3. Shot-Hole Perforation</text>
+                  <text x="40" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Center drops out (X. perf)</text>
+                </g>
+
+                <!-- Divider -->
+                <line x1="20" y1="180" x2="500" y2="180" stroke="#e2e8f0" stroke-width="1.5"/>
+
+                <!-- Bottom Half: Fruit Lesions & Sunscald -->
+                <text x="20" y="208" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="14" fill="#991b1b">FRUIT LESIONS &amp; CANOPY SUNSCALD</text>
+
+                <!-- Fruit 1: Blister Pustule -->
+                <g transform="translate(60, 225)">
+                  <!-- Tomato Fruit silhouette -->
+                  <circle cx="45" cy="50" r="40" fill="#86efac" stroke="#15803d" stroke-width="1.5"/>
+                  <path d="M 45,10 C 42,2 35,2 35,0 C 45,5 55,5 45,10 Z" fill="#15803d"/>
+                  <!-- Raised Blisters -->
+                  <circle cx="35" cy="45" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
+                  <circle cx="55" cy="55" r="5" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2"/>
+                  <text x="45" y="110" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">Blister Pustules</text>
+                  <text x="45" y="123" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Pale green with white halo</text>
+                </g>
+
+                <!-- Arrow 3 -->
+                <path d="M 170,275 L 205,275" stroke="#94a3b8" stroke-width="2"/>
+
+                <!-- Fruit 2: Rough Scab / Sunken Crater -->
+                <g transform="translate(225, 225)">
+                  <circle cx="45" cy="50" r="40" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5"/>
+                  <!-- Rough scab craters -->
+                  <path d="M 35,42 Q 40,38 45,43 Q 50,48 42,52 Q 34,48 35,42 Z" fill="#451a03" stroke="#78350f" stroke-width="1.5"/>
+                  <path d="M 52,58 Q 58,54 62,59 Q 60,65 54,64 Z" fill="#451a03" stroke="#78350f" stroke-width="1.5"/>
+                  <text x="45" y="110" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#334155" text-anchor="middle">Cracked Scabs (3–6 mm)</text>
+                  <text x="45" y="123" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Sunken, rough, unmarketable</text>
+                </g>
+
+                <!-- Arrow 4 -->
+                <path d="M 335,275 L 370,275" stroke="#94a3b8" stroke-width="2"/>
+
+                <!-- Fruit 3: Sunscald Damage -->
+                <g transform="translate(390, 225)">
+                  <circle cx="45" cy="50" r="40" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5"/>
+                  <!-- Sunscald bleached necrotic patch -->
+                  <path d="M 25,25 Q 65,20 65,55 Q 40,65 25,50 Q 20,35 25,25 Z" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+                  <text x="45" y="110" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#d97706" text-anchor="middle">Canopy Sunscald</text>
+                  <text x="45" y="123" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Direct solar scald from defoliation</text>
+                </g>
+              </svg>
             </div>
 
-            <div class="editorial-card card-accent-amber">
-              <div class="card-tag" style="color: var(--accent-amber);">Stem &amp; Petiole Pathology</div>
-              <div class="card-title">Cankers &amp; Pith Necrosis</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Stem Lesions:</strong> Elongated, dark brown to black cankers develop along stems and petioles.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Structural Weakness:</strong> Girdling cankers render branches brittle and highly susceptible to wind snapping.
-                  </li>
-                  <li>
-                    <strong>Internal Decay:</strong> Under warm, humid greenhouse conditions, bacteria invade vascular elements, inducing internal <strong>pith necrosis</strong>.
-                  </li>
-                </ul>
+            <!-- Right: Clinical Descriptions -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="editorial-card card-accent-green" style="margin-bottom: 12px; padding: 14px 18px;">
+                <div class="card-tag" style="color: var(--primary-green);">Foliar Pathology &amp; Perforation</div>
+                <div class="card-title" style="font-size: 17px;">Abaxial Water-Soaking &amp; Shot-Hole</div>
+                <div class="card-body" style="font-size: 14px;">
+                  Initial infections appear as minute, water-soaked dark spots on lower leaf surfaces. As lesions enlarge, centers turn brown-black with distinctive chlorotic halos. In <em>X. perforans</em>, dead tissue drops out to form diagnostic <strong>shot-holes</strong> before catastrophic defoliation.
+                </div>
               </div>
-            </div>
 
-            <div class="editorial-card card-accent-red">
-              <div class="card-tag" style="color: var(--accent-red);">Fruit Pathology</div>
-              <div class="card-title">Scabby Blisters &amp; Sunscald</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Initial Pustules:</strong> Immature green fruit exhibits pale green, water-soaked dots with whitish margins.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Blister Eruption:</strong> Spots enlarge into raised, blister-like, or scabby lesions (3–6 mm).
-                  </li>
-                  <li>
-                    <strong>Market Rejection:</strong> Scabs turn dark brown, cracked, and sunken. Secondary canopy defoliation induces extensive solar sunscald across fruit clusters.
-                  </li>
-                </ul>
+              <div class="editorial-card card-accent-amber" style="margin-bottom: 12px; padding: 14px 18px;">
+                <div class="card-tag" style="color: var(--accent-amber);">Stem &amp; Petiole Lesions</div>
+                <div class="card-title" style="font-size: 17px;">Cankers &amp; Greenhouse Pith Necrosis</div>
+                <div class="card-body" style="font-size: 14px;">
+                  Elongated black cankers weaken structural branches, causing lodging. Under warm protected greenhouse culture, vascular penetration leads to extensive <strong>pith necrosis</strong> and wilt.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-red" style="padding: 14px 18px;">
+                <div class="card-tag" style="color: var(--accent-red);">Fruit Pathology &amp; Market Destruction</div>
+                <div class="card-title" style="font-size: 17px;">Scabs, Blisters &amp; Solar Sunscald</div>
+                <div class="card-body" style="font-size: 14px;">
+                  Green fruits produce raised, blister-like pustules (3–6 mm) that turn into sunken, cracked scabs. Even when fruit lesions are localized, foliar canopy loss triggers severe secondary <strong>sunscald</strong>, ruining commercial packing.
+                </div>
               </div>
             </div>
           </div>
@@ -657,7 +804,7 @@
       </div>
 
       <aside class="notes">
-        Recognizing the symptomology across different plant organs is essential for field diagnosis. Foliar symptoms begin as minute water-soaked lesions that rapidly darken. A unique hallmark of Xanthomonas perforans is the shot-hole symptom: the dead center drops out of the leaf tissue, giving the leaf a perforated appearance. On fruits, lesions begin as small raised blisters that crack and form rough, dark scabs. Even a few lesions on fruit skin will completely downgrade commercial packing grades.
+        Recognizing the symptomology across different plant organs is essential for field diagnosis. As shown in the left visual schematic, foliar symptoms begin as minute water-soaked lesions that rapidly darken. A unique hallmark of Xanthomonas perforans is the shot-hole symptom: the dead center drops out of the leaf tissue, giving the leaf a perforated appearance. On fruits, lesions begin as small raised blisters that crack and form rough, dark scabs. Even a few lesions on fruit skin will completely downgrade commercial packing grades.
       </aside>
     </section>
 
@@ -673,7 +820,7 @@
         </header>
 
         <main class="slide-body">
-          <p class="prose-regular" style="margin-bottom: 16px;">
+          <p class="prose-regular" style="margin-bottom: 18px;">
             The BSTP epidemiological cycle is perpetuated by an insidious transmission chain connecting commercial seed production, high-density transplant nurseries, and open-field plantings:
           </p>
 
@@ -682,15 +829,15 @@
               <div class="step-num">1</div>
               <div class="step-title">Seed Infestation</div>
               <div class="step-desc">
-                Bacteria survive internally and externally on seed coats (34–100 CFU/g). Contamination rates reach 16%–39% in commercial seed lots, establishing a primary vehicle for global transport.
+                Bacteria survive internally and externally on seed coats (<strong>34–100 CFU/g</strong>). Contamination rates reach <strong>16%–39%</strong> in commercial seed lots, establishing an efficient primary vehicle for transboundary transport.
               </div>
             </div>
 
             <div class="pipeline-step">
               <div class="step-num">2</div>
-              <div class="step-title">Floral Inoculation</div>
+              <div class="step-title">Floral Portal</div>
               <div class="step-desc">
-                During field flowering, open blossoms serve as primary portals of entry. Bacteria invade developing ovary tissues, infesting subsequent seed generations without killing the mother plant.
+                During field flowering, open blossoms serve as primary entrance portals. Bacteria invade developing ovary tissues, infesting subsequent seed generations without causing systemic mother plant death.
               </div>
             </div>
 
@@ -698,7 +845,7 @@
               <div class="step-num">3</div>
               <div class="step-title">Nursery Incubation</div>
               <div class="step-desc">
-                High transplant density and overhead sprinkler mist create an ideal incubator. A <strong>5–7 day latent incubation period</strong> allows symptomless infected seedlings to pass commercial inspection.
+                High transplant density and overhead mist create an ideal incubator. A <strong>5–7 day latent incubation period</strong> allows symptomless infected seedlings to pass commercial quality inspections.
               </div>
             </div>
 
@@ -706,7 +853,7 @@
               <div class="step-num">4</div>
               <div class="step-title">Field Epidemic</div>
               <div class="step-desc">
-                <strong>60%–100% of field epidemics</strong> stem from infected nursery trays. Wind-driven rain and tractor traffic propel rapid splash dispersal across mature crop canopies.
+                <strong>60%–100% of field epidemics</strong> stem from infected nursery trays. Wind-driven rain and equipment traffic propel rapid splash dispersal across mature crop canopies.
               </div>
             </div>
           </div>
@@ -724,64 +871,99 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 6: SPATIOTEMPORAL DYNAMICS I: INGRESS
+         SLIDE 6: SPATIOTEMPORAL INGRESS (WITH MECHANISM SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">SPATIOTEMPORAL INFECTION DYNAMICS</div>
+          <div class="topic-pill">SPATIOTEMPORAL INFECTION DYNAMICS • PHASE I</div>
           <h2>Ingress: Epiphytic Adaptation &amp; Stomatal Entry</h2>
-          <p class="subtitle">Coordinated molecular shifts from phyllosphere swimming to stomatal docking</p>
+          <p class="subtitle">Chemotactic swimming, anticipatory stressome pre-arming, and the ycgR motor brake</p>
         </header>
 
         <main class="slide-body">
-          <p class="prose-regular" style="margin-bottom: 14px;">
-            Recent in planta transcriptomics (Kaur et al., 2026) reveals that early foliar infection is precisely regulated across distinct molecular stages within the first 24 hours:
-          </p>
+          <div class="grid-2col">
+            <!-- Left: Stomatal Ingress Mechanism Schematic -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
 
-          <div class="grid-3col">
-            <div class="editorial-card card-accent-green">
-              <div class="card-tag" style="color: var(--primary-green);">8–12 h Post-Inoculation</div>
-              <div class="card-title">Epiphytic Motility</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Flagellar Swimming:</strong> Bacteria deploy polar flagella and methyl-accepting chemotaxis proteins to actively navigate the phyllosphere.
-                  </li>
-                  <li>
-                    <strong>Chemotactic Tropism:</strong> Pathogens detect nutrient exudates and humidity gradients, directing movement toward stomatal apertures.
-                  </li>
-                </ul>
-              </div>
+                <!-- Cuticle & Epidermis Layer -->
+                <rect x="20" y="160" width="180" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+                <rect x="320" y="160" width="180" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+                <text x="110" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">Plant Epidermal Cells</text>
+                <text x="410" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#15803d" text-anchor="middle">Plant Epidermal Cells</text>
+
+                <!-- Guard Cells / Stomatal Pore -->
+                <path d="M 200,150 C 200,140 240,140 240,180 C 240,220 200,220 200,210 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+                <path d="M 320,150 C 320,140 280,140 280,180 C 280,220 320,220 320,210 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+                <text x="260" y="185" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#047857" text-anchor="middle">Stomatal Pore</text>
+
+                <!-- Phyllosphere / Leaf Surface (Top) -->
+                <rect x="20" y="20" width="480" height="130" fill="#f1f5f9" rx="8" opacity="0.6"/>
+                <text x="35" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#334155">PHYLLOSPHERE (LEAF SURFACE) • 8–24 h</text>
+
+                <!-- Stage 1 Bacteria: Swimming with Flagella (8-12h) -->
+                <g transform="translate(60, 60)">
+                  <rect x="0" y="0" width="40" height="18" rx="9" fill="#0284c7"/>
+                  <path d="M 0,9 C -15,0 -20,20 -35,9" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+                  <text x="20" y="32" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#0369a1" text-anchor="middle">8–12 h: Swimming</text>
+                  <text x="20" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#64748b" text-anchor="middle">Polar Flagella &amp; Chemotaxis</text>
+                </g>
+
+                <!-- Stage 2 Bacteria: Anticipatory Oxidative Stressome (12-24h) -->
+                <g transform="translate(240, 55)">
+                  <rect x="0" y="0" width="46" height="20" rx="10" fill="#d97706"/>
+                  <!-- Stress Shield aura -->
+                  <circle cx="23" cy="10" r="28" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 3"/>
+                  <text x="23" y="-6" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="800" fill="#b45309" text-anchor="middle">12–24 h: katB, sodA, ahpCF</text>
+                  <text x="23" y="34" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="600" fill="#78350f" text-anchor="middle">Pre-armed Stress Defense</text>
+                </g>
+
+                <!-- Stage 3 Bacteria: Docked at Stoma with ycgR Brake (24h) -->
+                <g transform="translate(237, 130)">
+                  <rect x="0" y="0" width="46" height="20" rx="10" fill="#7c3aed"/>
+                  <!-- Attachment pili -->
+                  <line x1="5" y1="20" x2="0" y2="30" stroke="#7c3aed" stroke-width="2"/>
+                  <line x1="23" y1="20" x2="23" y2="32" stroke="#7c3aed" stroke-width="2"/>
+                  <line x1="41" y1="20" x2="46" y2="30" stroke="#7c3aed" stroke-width="2"/>
+                  <text x="120" y="12" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#6b21a8">24 h: ycgR Brake</text>
+                  <text x="120" y="25" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#475569">c-di-GMP locks motor; Type IV pili anchor</text>
+                </g>
+
+                <!-- Apoplast Cavity (Bottom) -->
+                <rect x="20" y="210" width="480" height="170" fill="#fef2f2" rx="8" opacity="0.6"/>
+                <text x="35" y="235" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#991b1b">SUBSTOMATAL APOPLAST CAVITY</text>
+                <text x="260" y="300" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" fill="#dc2626" text-anchor="middle">
+                  ➔ Ingress complete: T3SS effector translocation begins
+                </text>
+              </svg>
             </div>
 
-            <div class="editorial-card card-accent-blue">
-              <div class="card-tag" style="color: var(--accent-blue);">12–24 h Post-Inoculation</div>
-              <div class="card-title">Stressome Induction</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Anticipatory Defense:</strong> Pathogens pre-arm themselves <em>prior</em> to entering host tissues by upregulating the oxidative stressome.
-                  </li>
-                  <li>
-                    <strong>ROS Quenching:</strong> Strong transcriptional induction of <em>katB</em> (catalase), <em>ahpCF</em> (alkyl hydroperoxide reductase), and <em>sodA</em> disarms apoplastic plant defense bursts.
-                  </li>
-                </ul>
+            <!-- Right: Timeline Descriptions -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="editorial-card card-accent-blue" style="margin-bottom: 12px;">
+                <div class="card-tag" style="color: var(--accent-blue);">8–12 h Post-Inoculation</div>
+                <div class="card-title">Active Epiphytic Motility</div>
+                <div class="card-body">
+                  Pathogens navigate the foliar phyllosphere using polar flagella and methyl-accepting chemotaxis proteins (MCPs), actively tracking stomatal moisture and chemical gradients.
+                </div>
               </div>
-            </div>
 
-            <div class="editorial-card card-accent-purple">
-              <div class="card-tag" style="color: var(--accent-purple);">24 h Post-Inoculation</div>
-              <div class="card-title">Docking &amp; Colonization</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Molecular Brake:</strong> Cyclic-di-GMP signalling triggers the <em>ycgR</em> "wheel-lock" brake protein, immediately halting flagellar rotation.
-                  </li>
-                  <li>
-                    <strong>Biofilm Attachment:</strong> Activation of cellulose synthesis (<em>bcsABC</em>) and Type IV pili anchors adherent microcolonies at stomatal rims for ingress.
-                  </li>
-                </ul>
+              <div class="editorial-card card-accent-amber" style="margin-bottom: 12px;">
+                <div class="card-tag" style="color: var(--accent-amber);">12–24 h Post-Inoculation</div>
+                <div class="card-title">Anticipatory Stress Induction</div>
+                <div class="card-body">
+                  Prior to host invasion, bacteria pre-arm against plant oxidative defenses by upregulating the oxidative stressome (<em>katB</em> catalase, <em>ahpCF</em> alkyl hydroperoxidase, <em>sodA</em> superoxide dismutase).
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-purple">
+                <div class="card-tag" style="color: var(--accent-purple);">24 h Post-Inoculation</div>
+                <div class="card-title">Stomatal Docking &amp; ycgR Brake</div>
+                <div class="card-body">
+                  Elevated cyclic-di-GMP activates the <em>ycgR</em> "wheel-lock" brake protein, arresting flagellar motors. Pathogens deploy cellulose synthase (<em>bcsABC</em>) and Type IV pili to adhere firmly at stomatal rims before interior invasion.
+                </div>
               </div>
             </div>
           </div>
@@ -799,64 +981,91 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 7: SPATIOTEMPORAL DYNAMICS II: EGRESSION
+         SLIDE 7: SPATIOTEMPORAL EGRESSION (WITH MECHANISM SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">SPATIOTEMPORAL INFECTION DYNAMICS</div>
-          <h2>Egression: Tissue Maceration &amp; Re-emergence</h2>
-          <p class="subtitle">Late-stage hypoxia survival, motility reactivation, and secondary foliar egression</p>
+          <div class="topic-pill">SPATIOTEMPORAL INFECTION DYNAMICS • PHASE II</div>
+          <h2>Egression: Tissue Maceration &amp; Stomatal Escape</h2>
+          <p class="subtitle">Apoplastic multiplication, hypoxic survival via cioAB, and flagellar reactivation</p>
         </header>
 
         <main class="slide-body">
-          <p class="prose-regular" style="margin-bottom: 14px;">
-            Following apoplastic colonization, the pathogen dynamically alters its metabolic and physiological program to escape dying host tissues:
-          </p>
+          <div class="grid-2col">
+            <!-- Left: Egression Mechanism Schematic -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
 
-          <div class="grid-3col">
-            <div class="editorial-card card-accent-green">
-              <div class="card-tag" style="color: var(--primary-green);">24–48 h Post-Inoculation</div>
-              <div class="card-title">Apoplastic Colonization</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>T3SS Delivery:</strong> The <em>hrp</em> cluster is massively upregulated to deliver effector proteins into host mesophyll cells.
-                  </li>
-                  <li>
-                    <strong>Nutrient Scavenging:</strong> High-affinity transporters for citrate (<em>citM</em>), phosphate (<em>pstSCAB</em>), and sulfate (<em>cysJIH</em>) harvest scarce nutrients.
-                  </li>
-                </ul>
-              </div>
+                <!-- Top: Leaf Surface / Rain Splash Dispersal -->
+                <rect x="20" y="20" width="480" height="120" fill="#e0f2fe" rx="8" opacity="0.6"/>
+                <text x="35" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#0369a1">LEAF EXTERIOR • SECONDARY RAIN SPLASH (&gt; 72 h)</text>
+
+                <!-- Escaping Bacteria Swimming Out -->
+                <g transform="translate(235, 60)">
+                  <rect x="0" y="0" width="46" height="20" rx="10" fill="#0284c7"/>
+                  <!-- Active Flagella -->
+                  <path d="M 23,0 C 15,-15 35,-25 23,-35" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+                  <text x="80" y="10" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#0369a1">Reactivated Flagella</text>
+                  <text x="80" y="24" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#475569">fliA, fliC, cheY switched ON</text>
+                </g>
+
+                <!-- Guard Cells / Open Stoma -->
+                <rect x="20" y="150" width="180" height="35" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+                <rect x="320" y="150" width="180" height="35" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+                <!-- Stomatal aperture with exit arrow -->
+                <path d="M 260,200 L 260,110" stroke="#dc2626" stroke-width="3" stroke-dasharray="4 3"/>
+                <polygon points="260,95 254,112 266,112" fill="#dc2626"/>
+                <text x="260" y="145" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#dc2626" text-anchor="middle">EGRESSION EXIT</text>
+
+                <!-- Bottom: Macerated Hypoxic Apoplast (48-72h) -->
+                <rect x="20" y="195" width="480" height="185" fill="#fef2f2" rx="8" opacity="0.8"/>
+                <text x="35" y="220" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#991b1b">WATER-SOAKED, HYPOXIC APOPLAST (48–72 h)</text>
+
+                <!-- Macerated Plant Cell Fragments -->
+                <path d="M 60,260 Q 90,240 120,270 Q 150,290 100,310 Z" fill="#fecaca" stroke="#dc2626" stroke-width="1.5"/>
+                <text x="95" y="280" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#991b1b" text-anchor="middle">Macerated Cells</text>
+
+                <!-- Hypoxic Adaptation -->
+                <g transform="translate(200, 250)">
+                  <rect x="0" y="0" width="130" height="45" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+                  <text x="65" y="20" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#b45309" text-anchor="middle">Hypoxia: cioAB</text>
+                  <text x="65" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#475569" text-anchor="middle">Cytochrome bd oxidase</text>
+                </g>
+
+                <g transform="translate(360, 270)">
+                  <rect x="0" y="0" width="120" height="45" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                  <text x="60" y="20" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#1d4ed8" text-anchor="middle">citM &amp; pstSCAB</text>
+                  <text x="60" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#475569" text-anchor="middle">Nutrient scavenging</text>
+                </g>
+              </svg>
             </div>
 
-            <div class="editorial-card card-accent-amber">
-              <div class="card-tag" style="color: var(--accent-amber);">48–72 h Post-Inoculation</div>
-              <div class="card-title">Hypoxia &amp; Maceration</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Tissue Breakdown:</strong> Cell-wall-degrading enzymes liquefy plant middle lamellae, creating visible water-soaked lesions.
-                  </li>
-                  <li>
-                    <strong>Hypoxic Switch:</strong> Severe oxygen depletion in water-logged tissue triggers induction of cytochrome <em>bd</em> oxidase (<em>cioAB</em>) for microaerobic respiration.
-                  </li>
-                </ul>
+            <!-- Right: Stage Descriptions -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="editorial-card card-accent-green" style="margin-bottom: 12px;">
+                <div class="card-tag" style="color: var(--primary-green);">24–48 h Post-Inoculation</div>
+                <div class="card-title">Apoplastic Proliferation</div>
+                <div class="card-body">
+                  Pathogens deploy T3SS effectors to suppress basal immunity while high-affinity citrate (<em>citM</em>) and phosphate (<em>pstSCAB</em>) transporters harvest apoplastic nutrients.
+                </div>
               </div>
-            </div>
 
-            <div class="editorial-card card-accent-red">
-              <div class="card-tag" style="color: var(--accent-red);">&gt; 72 h Post-Inoculation</div>
-              <div class="card-title">Motility &amp; Egression</div>
-              <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Flagellar Reactivation:</strong> In striking contrast to middle infection, flagellar operons (<em>fliA</em>, <em>fliC</em>, <em>cheY</em>) are strongly reactivated.
-                  </li>
-                  <li>
-                    <strong>Stomatal Escape:</strong> Swimming bacteria exit through stomata onto the leaf surface, forming dense inoculum pools ready for rain-splash epidemics.
-                  </li>
-                </ul>
+              <div class="editorial-card card-accent-amber" style="margin-bottom: 12px;">
+                <div class="card-tag" style="color: var(--accent-amber);">48–72 h Post-Inoculation</div>
+                <div class="card-title">Tissue Maceration &amp; Hypoxia</div>
+                <div class="card-body">
+                  Enzymatic pectin and cell-wall digestion liquefies tissues into water-soaked lesions. Severe oxygen depletion triggers cytochrome <em>bd</em> oxidase (<em>cioAB</em>) for microaerobic respiration.
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-red">
+                <div class="card-tag" style="color: var(--accent-red);">&gt; 72 h Post-Inoculation</div>
+                <div class="card-title">Flagellar Reactivation &amp; Escape</div>
+                <div class="card-body">
+                  In striking contrast to the middle infection phase, flagellar and chemotaxis genes (<em>fliA</em>, <em>fliC</em>, <em>cheY</em>) are strongly reactivated. Bacteria swim out through open stomata to seed rain-splash secondary epidemics.
+                </div>
               </div>
             </div>
           </div>
@@ -874,7 +1083,7 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 8: MOLECULAR PATHOGENICITY
+         SLIDE 8: MOLECULAR EFFECTORS (WITH T3SS SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
@@ -886,45 +1095,93 @@
 
         <main class="slide-body">
           <div class="grid-2col">
-            <div class="editorial-card card-accent-blue">
-              <div class="card-tag" style="color: var(--accent-blue);">Core Conserved Virulence Factor</div>
-              <div class="card-title">AvrBs2 Phosphodiesterase</div>
-              <div class="card-body">
-                <p style="margin-bottom: 10px;">
-                  <strong>Universal Conservation:</strong> Maintained in &gt;99% of field isolates across all four bacterial spot xanthomonads, indicating immense fitness importance.
-                </p>
-                <ul style="padding-left: 18px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Enzymatic Activity:</strong> Contains glycerophosphoryl diester phosphodiesterase (GDPD) homology domains, required for host lipid alteration.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Virulence Penalty:</strong> Deletion of <em>avrBs2</em> severely curtails apoplastic bacterial multiplication and reduces foliar symptom severity by &gt;80%.
-                  </li>
-                  <li>
-                    <strong>Evolutionary Stability:</strong> Because mutational loss heavily compromises fitness, AvrBs2 represents an ideal target for durable plant resistance.
-                  </li>
-                </ul>
-              </div>
+            <!-- Left: T3SS Injection Schematic SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+
+                <!-- Bacterial Cell Envelope (Top) -->
+                <rect x="20" y="20" width="480" height="70" fill="#e0f2fe" rx="6"/>
+                <text x="35" y="42" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#0369a1">XANTHOMONAS CELL (INNER &amp; OUTER MEMBRANES)</text>
+                <text x="35" y="62" font-family="'JetBrains Mono', monospace" font-size="11" fill="#0284c7">Hrp/Hrc Type III Secretion Cluster (T3SS)</text>
+
+                <!-- T3SS Syringe / Basal Body & Needle -->
+                <g transform="translate(245, 75)">
+                  <!-- Basal Rings -->
+                  <rect x="0" y="0" width="30" height="20" fill="#0284c7" rx="3"/>
+                  <!-- Needle filament -->
+                  <rect x="11" y="20" width="8" height="90" fill="#0369a1"/>
+                  <polygon points="15,115 10,128 20,128" fill="#0284c7"/>
+                </g>
+
+                <!-- Host Plant Plasma Membrane (Middle) -->
+                <line x1="20" y1="200" x2="500" y2="200" stroke="#16a34a" stroke-width="4"/>
+                <text x="35" y="190" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#15803d">HOST PLANT PLASMA MEMBRANE</text>
+
+                <!-- Host Cytoplasm & Nucleus (Bottom) -->
+                <rect x="20" y="205" width="480" height="175" fill="#fcfdfc" rx="6"/>
+
+                <!-- Effector 1: AvrBs2 Phosphodiesterase (Cytoplasmic) -->
+                <g transform="translate(60, 230)">
+                  <circle cx="45" cy="45" r="35" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                  <text x="45" y="38" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="13" fill="#1e40af" text-anchor="middle">AvrBs2</text>
+                  <text x="45" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#1e3a8a" text-anchor="middle">GDPD Activity</text>
+                  <text x="45" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="600" fill="#1e40af" text-anchor="middle">Host Lipid Manipulation</text>
+                  <text x="45" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Vital for apoplastic growth</text>
+                </g>
+
+                <!-- Effector 2: AvrBs3 TALE (Nuclear Target) -->
+                <g transform="translate(280, 220)">
+                  <!-- Plant Nucleus -->
+                  <circle cx="110" cy="70" r="60" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4 2"/>
+                  <text x="110" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" fill="#6d28d9" text-anchor="middle">Plant Nucleus</text>
+
+                  <!-- AvrBs3 on DNA -->
+                  <rect x="80" y="45" width="60" height="24" rx="6" fill="#7c3aed"/>
+                  <text x="110" y="61" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="12" fill="#ffffff" text-anchor="middle">AvrBs3</text>
+                  <line x1="60" y1="80" x2="160" y2="80" stroke="#4c1d95" stroke-width="2.5"/>
+                  <text x="110" y="98" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="600" fill="#4c1d95" text-anchor="middle">Host Transcription Reprogramming</text>
+                  <text x="110" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" fill="#6b21a8" text-anchor="middle">Triggers Cell Hypertrophy</text>
+                </g>
+              </svg>
             </div>
 
-            <div class="editorial-card card-accent-purple">
-              <div class="card-tag" style="color: var(--accent-purple);">Host Transcriptional Reprogrammer</div>
-              <div class="card-title">AvrBs3 (TALE Prototype)</div>
-              <div class="card-body">
-                <p style="margin-bottom: 10px;">
-                  <strong>Discovery Model:</strong> Derived from <em>X. euvesicatoria</em>; prototype of the famous <strong>Transcription Activator-Like Effector (TALE)</strong> family.
-                </p>
-                <ul style="padding-left: 18px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>DNA Recognition Code:</strong> Features 34-amino-acid tandem repeats where repeat-variable diresidues (RVDs) recognize specific host promoter DNA base pairs.
-                  </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Host Hypertrophy:</strong> Hijacks plant nuclear transcription, activating host genes that induce massive swelling of plant mesophyll cells.
-                  </li>
-                  <li>
-                    <strong>Colonization Niche:</strong> Cell enlargement dramatically expands apoplastic water capacity, creating an optimal sheltered incubator for bacteria.
-                  </li>
-                </ul>
+            <!-- Right: In-Depth Effector Profiles -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="editorial-card card-accent-blue" style="margin-bottom: 14px;">
+                <div class="card-tag" style="color: var(--accent-blue);">Core Conserved Virulence Factor</div>
+                <div class="card-title">AvrBs2 Phosphodiesterase</div>
+                <div class="card-body">
+                  <ul style="padding-left: 18px; margin: 0; font-size: 14.5px;">
+                    <li style="margin-bottom: 8px;">
+                      <strong>Universal Conservation:</strong> Maintained in &gt;99% of field isolates across all 4 species, underscoring critical fitness importance.
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                      <strong>GDPD Catalytic Domain:</strong> Possesses glycerophosphoryl diester phosphodiesterase activity essential for nutrient release.
+                    </li>
+                    <li>
+                      <strong>Severe Virulence Penalty:</strong> Deletion mutants suffer &gt;80% reduction in apoplastic bacterial proliferation and symptom development.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-purple">
+                <div class="card-tag" style="color: var(--accent-purple);">Transcription Activator-Like Effector</div>
+                <div class="card-title">AvrBs3 (TALE Prototype)</div>
+                <div class="card-body">
+                  <ul style="padding-left: 18px; margin: 0; font-size: 14.5px;">
+                    <li style="margin-bottom: 8px;">
+                      <strong>Discovery Paradigm:</strong> Prototype of TALEs in <em>X. euvesicatoria</em>; features 34-aa tandem repeats binding host plant promoters.
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                      <strong>Induction of Hypertrophy:</strong> Hijacks plant host transcriptional machinery to stimulate dramatic swelling of mesophyll cells.
+                    </li>
+                    <li>
+                      <strong>Niche Creation:</strong> Cell enlargement dramatically expands apoplastic water capacity, creating an optimal sheltered incubator.
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -942,49 +1199,108 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 9: HOST RESISTANCE GENETICS
+         SLIDE 9: HOST RESISTANCE (WITH RECOGNITION SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">IMMUNE GENETICS &amp; BREEDING</div>
+          <div class="topic-pill">IMMUNE GENETICS &amp; TRANSGENIC BREEDING</div>
           <h2>Gene-for-Gene Defenses &amp; Transgenic Tomato</h2>
-          <p class="subtitle">Pepper Bs resistance genes and modern engineering of durable tomato immunity</p>
+          <p class="subtitle">Pepper Bs resistance models and heterologous deployment of Bs2 in cultivated tomato</p>
         </header>
 
         <main class="slide-body">
           <div class="grid-2col">
-            <div>
-              <p class="prose-lead" style="font-size: 16px; margin-bottom: 12px;">
-                The pepper–<em>Xanthomonas</em> interaction serves as a textbook paradigm for the <strong>Gene-for-Gene hypothesis</strong>, providing landmark cloned resistance genes:
-              </p>
+            <!-- Left: Gene-for-Gene Recognition Schematic SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
 
-              <div style="display: flex; flex-direction: column; gap: 8px;">
-                <div style="background: var(--surface-white); border-left: 4px solid var(--primary-green); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-                  <strong>Bs1:</strong> Recognizes AvrBs1, triggering localized hypersensitive cell death (HR).
-                </div>
-                <div style="background: var(--surface-white); border-left: 4px solid var(--accent-blue); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-                  <strong>Bs2 (CC-NB-LRR):</strong> Recognizes conserved AvrBs2. Provides durable resistance because virulence loss in AvrBs2 incurs high evolutionary fitness costs.
-                </div>
-                <div style="background: var(--surface-white); border-left: 4px solid var(--accent-purple); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-                  <strong>Bs3 (Executor R-gene):</strong> Directly transcriptionally activated by TALE AvrBs3; executes rapid programmed suicide of infected cells.
-                </div>
-                <div style="background: var(--surface-white); border-left: 4px solid var(--accent-amber); padding: 8px 12px; border-radius: 4px; font-size: 13px;">
-                  <strong>Bs4 (TIR-NB-LRR):</strong> Mediates intracellular recognition of AvrBs4.
-                </div>
-              </div>
+                <text x="20" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#15803d">PEPPER (CAPSICUM ANNUUM) IMMUNE RECOGNITION</text>
+
+                <!-- Model 1: Bs2 Recognition (Cytoplasmic CC-NB-LRR) -->
+                <g transform="translate(30, 45)">
+                  <rect x="0" y="0" width="215" height="155" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+                  <text x="15" y="24" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="12" fill="#1e40af">1. CC-NB-LRR Model: Bs2</text>
+                  <!-- AvrBs2 -->
+                  <circle cx="50" cy="65" r="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+                  <text x="50" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="800" fill="#1e40af" text-anchor="middle">AvrBs2</text>
+                  <!-- Bs2 Receptor -->
+                  <circle cx="130" cy="65" r="24" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+                  <text x="130" y="69" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#15803d" text-anchor="middle">Bs2</text>
+                  <!-- Interaction -->
+                  <path d="M 68,65 L 106,65" stroke="#dc2626" stroke-width="2" stroke-dasharray="2 2"/>
+                  <!-- Result -->
+                  <rect x="15" y="105" width="185" height="36" rx="4" fill="#fee2e2"/>
+                  <text x="107" y="122" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#991b1b" text-anchor="middle">Hypersensitive Response (HR)</text>
+                  <text x="107" y="134" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#7f1d1d" text-anchor="middle">Bacterial multiplication arrested</text>
+                </g>
+
+                <!-- Model 2: Bs3 Executor Model (Nuclear Transcription) -->
+                <g transform="translate(275, 45)">
+                  <rect x="0" y="0" width="215" height="155" rx="8" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+                  <text x="15" y="24" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="12" fill="#6d28d9">2. Executor Model: Bs3</text>
+                  <!-- AvrBs3 TALE binding Bs3 promoter -->
+                  <rect x="30" y="50" width="55" height="22" rx="4" fill="#7c3aed"/>
+                  <text x="57" y="65" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">AvrBs3</text>
+                  <line x1="20" y1="80" x2="195" y2="80" stroke="#334155" stroke-width="2"/>
+                  <text x="120" y="75" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#7c3aed">Bs3 Promoter</text>
+                  <text x="140" y="94" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="800" fill="#15803d">Bs3 Gene ON</text>
+                  <!-- Result -->
+                  <rect x="15" y="105" width="185" height="36" rx="4" fill="#fee2e2"/>
+                  <text x="107" y="122" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#991b1b" text-anchor="middle">Programmed Cell Suicide</text>
+                  <text x="107" y="134" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#7f1d1d" text-anchor="middle">Direct transcription execution</text>
+                </g>
+
+                <!-- Transgenic Tomato Application (Bottom) -->
+                <g transform="translate(30, 220)">
+                  <rect x="0" y="0" width="460" height="160" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5"/>
+                  <text x="20" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="13" fill="#047857">TRANSGENIC BREAKTHROUGH: PEPPER Bs2 IN TOMATO</text>
+                  <text x="20" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#065f46">
+                    Cultivated tomato (<em>S. lycopersicum</em>) naturally lacks durable single R-genes against bacterial spot.
+                  </text>
+                  <rect x="20" y="68" width="420" height="74" rx="6" fill="#ffffff" stroke="#a7f3d0"/>
+                  <text x="35" y="92" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#065f46">
+                    Heterologous transgenic expression of pepper <em>Bs2</em> in commercial tomato:
+                  </text>
+                  <text x="35" y="112" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#334155">
+                    • Confers complete field resistance against all 4 <em>Xanthomonas</em> species carrying functional AvrBs2.
+                  </text>
+                  <text x="35" y="128" font-family="'Plus Jakarta Sans', sans-serif" font-size="11.5" fill="#334155">
+                    • Exceptionally durable: <em>avrBs2</em> mutants incur heavy fitness penalties in apoplastic colonization.
+                  </text>
+                </g>
+              </svg>
             </div>
 
-            <div class="editorial-card card-accent-green" style="justify-content: center;">
-              <div class="card-tag" style="color: var(--primary-green);">Engineering Crop Immunity</div>
-              <div class="card-title">Transgenic <em>Bs2</em> Deployment in Tomato</div>
-              <div class="card-body">
-                <p style="margin-bottom: 10px;">
-                  While pepper possesses single dominant <em>Bs</em> resistance genes, cultivated tomato (<em>Solanum lycopersicum</em>) naturally lacks durable single R-genes, relying only on partial quantitative trait loci (QTL-11A/B/C).
+            <!-- Right: Genetics Breakdown -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <p class="prose-lead" style="font-size: 16.5px; margin-bottom: 12px;">
+                  The pepper–<em>Xanthomonas</em> pathosystem provides foundational models for intracellular plant immunity:
                 </p>
-                <div style="background: var(--light-mint); border: 1px solid var(--border-green); border-radius: 8px; padding: 12px; margin-top: 10px;">
-                  <strong style="color: var(--dark-green);">Landmark Breakthrough:</strong><br>
-                  Heterologous transgenic expression of the pepper <strong>CC-NB-LRR gene <em>Bs2</em></strong> in commercial tomato cultivars confers complete, durable field resistance against all four bacterial spot xanthomonads carrying functional AvrBs2 without yield penalties (Tai et al., 1999).
+
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+                  <div style="background: var(--surface-white); border-left: 4px solid var(--primary-green); padding: 8px 14px; border-radius: 4px; font-size: 14px;">
+                    <strong>Bs1:</strong> Mediates recognition of AvrBs1, inducing rapid hypersensitive arrest.
+                  </div>
+                  <div style="background: var(--surface-white); border-left: 4px solid var(--accent-blue); padding: 8px 14px; border-radius: 4px; font-size: 14px;">
+                    <strong>Bs2 (CC-NB-LRR):</strong> Senses conserved AvrBs2; highly durable because <em>avrBs2</em> mutational loss incurs a severe bacterial virulence penalty.
+                  </div>
+                  <div style="background: var(--surface-white); border-left: 4px solid var(--accent-purple); padding: 8px 14px; border-radius: 4px; font-size: 14px;">
+                    <strong>Bs3 (Executor R-gene):</strong> Directly transcriptionally activated by TALE AvrBs3 to execute immediate plant host cell suicide.
+                  </div>
+                  <div style="background: var(--surface-white); border-left: 4px solid var(--accent-amber); padding: 8px 14px; border-radius: 4px; font-size: 14px;">
+                    <strong>Bs4 (TIR-NB-LRR):</strong> Mediates intracellular recognition of AvrBs4.
+                  </div>
+                </div>
+              </div>
+
+              <div class="editorial-card card-accent-green" style="padding: 14px 18px;">
+                <div class="card-tag" style="color: var(--primary-green);">Breeding Horizon</div>
+                <div class="card-title" style="font-size: 17px;">Transgenic Field Durability</div>
+                <div class="card-body" style="font-size: 13.5px;">
+                  Because tomato lacks single dominant R-genes, deploying pepper <em>Bs2</em> represents a gold-standard demonstration of cross-genus R-gene transfer, providing durable immunity across commercial tomato fields (Tai et al., 1999).
                 </div>
               </div>
             </div>
@@ -1003,7 +1319,7 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 10: ANTIMICROBIAL RESISTANCE CRISIS
+         SLIDE 10: COPPER RESISTANCE (WITH MEMBRANE SVG)
          ========================================== -->
     <section>
       <div class="slide-container">
@@ -1015,46 +1331,102 @@
 
         <main class="slide-body">
           <div class="grid-2col">
-            <div>
-              <p class="prose-lead" style="font-size: 16px; margin-bottom: 12px;">
-                Since the 1960s, agricultural management of bacterial spot has relied heavily on preventive foliar sprays of copper bactericides mixed with ethylene-bis-dithiocarbamate (EBDC / mancozeb).
-              </p>
-              <div class="editorial-card card-accent-red">
+            <!-- Left: copLAB Bacterial Membrane Schematic SVG -->
+            <div class="diagram-panel">
+              <svg viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet">
+                <rect width="520" height="400" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+
+                <text x="20" y="28" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" fill="#991b1b">copLAB PLASMID-MEDIATED COPPER DETOXIFICATION</text>
+
+                <!-- Extracellular Space (Top) -->
+                <rect x="20" y="45" width="480" height="55" fill="#f1f5f9" rx="6"/>
+                <text x="35" y="65" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="11" fill="#475569">EXTRACELLULAR LEAF APOPLAST</text>
+                <text x="35" y="85" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="800" fill="#dc2626">Toxic Copper Sprays (CuSO4 + Mancozeb)</text>
+
+                <!-- Bacterial Outer Membrane -->
+                <rect x="20" y="110" width="480" height="18" fill="#64748b"/>
+                <text x="490" y="124" font-family="'JetBrains Mono', monospace" font-size="9" fill="#ffffff" text-anchor="end">Outer Membrane</text>
+
+                <!-- CopB Outer Membrane Protein -->
+                <rect x="120" y="104" width="40" height="30" rx="4" fill="#0284c7"/>
+                <text x="140" y="124" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">CopB</text>
+
+                <!-- Periplasmic Space -->
+                <rect x="20" y="138" width="480" height="130" fill="#fef3c7" opacity="0.7"/>
+                <text x="35" y="158" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#92400e">PERIPLASMIC SPACE</text>
+
+                <!-- CopA Copper Sequestration -->
+                <g transform="translate(60, 180)">
+                  <circle cx="35" cy="35" r="28" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
+                  <text x="35" y="32" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="12" fill="#0c4a6e" text-anchor="middle">CopA</text>
+                  <text x="35" y="46" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" fill="#0c4a6e" text-anchor="middle">Cu Sequestration</text>
+                </g>
+
+                <!-- CopL Multicopper Oxidase (Crucial Reaction) -->
+                <g transform="translate(240, 160)">
+                  <rect x="0" y="0" width="220" height="90" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                  <text x="110" y="24" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="12" fill="#b45309" text-anchor="middle">CopL (Multicopper Oxidase)</text>
+
+                  <!-- Chemical Reaction -->
+                  <g transform="translate(20, 40)">
+                    <text x="25" y="24" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="800" fill="#dc2626">Cu+</text>
+                    <text x="25" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#dc2626">(Highly Toxic)</text>
+
+                    <path d="M 65,20 L 105,20" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-head)"/>
+                    <text x="85" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="#b45309" text-anchor="middle">Oxidation</text>
+
+                    <text x="145" y="24" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="800" fill="#16a34a">Cu2+</text>
+                    <text x="145" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="9" fill="#16a34a">(Less Bioavailable)</text>
+                  </g>
+                </g>
+
+                <!-- Bacterial Inner Membrane -->
+                <rect x="20" y="278" width="480" height="18" fill="#475569"/>
+                <text x="490" y="292" font-family="'JetBrains Mono', monospace" font-size="9" fill="#ffffff" text-anchor="end">Inner Membrane</text>
+
+                <!-- Bacterial Cytoplasm (Bottom) -->
+                <rect x="20" y="306" width="480" height="74" fill="#f1f5f9" rx="6"/>
+                <text x="35" y="328" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="12" fill="#334155">BACTERIAL CYTOPLASM</text>
+                <text x="35" y="348" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" fill="#475569">
+                  • Plasmids carry self-transmissible conjugative elements transmitting <em>copLAB</em> across species.
+                </text>
+              </svg>
+            </div>
+
+            <!-- Right: Agronomic Crisis & Mechanism Details -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="editorial-card card-accent-red" style="margin-bottom: 12px; padding: 16px 18px;">
                 <div class="card-tag" style="color: var(--accent-red);">Plasmid-Borne Molecular Mechanism</div>
-                <div class="card-title">The <em>copLAB</em> Resistance Cluster</div>
-                <div class="card-body">
-                  <ul style="padding-left: 16px; margin: 0;">
+                <div class="card-title" style="font-size: 18px;">The <em>copLAB</em> Resistance Cluster</div>
+                <div class="card-body" style="font-size: 14px;">
+                  <ul style="padding-left: 18px; margin: 0;">
                     <li style="margin-bottom: 6px;">
-                      <strong>Conjugative Plasmids:</strong> Resistance genes are carried on self-transmissible plasmids, allowing rapid horizontal transfer across species.
+                      <strong>Conjugative Transmission:</strong> Borne on self-transmissible plasmids, spreading rapidly across <em>Xanthomonas</em> lineages via horizontal gene transfer.
                     </li>
                     <li style="margin-bottom: 6px;">
-                      <strong><em>copA</em> &amp; <em>copB</em>:</strong> Encode periplasmic and outer-membrane proteins that sequester excess cupric ions.
+                      <strong>CopA &amp; CopB Sequestration:</strong> Periplasmic and outer-membrane proteins scavenge and bind excess copper ions.
                     </li>
                     <li>
-                      <strong><em>copL</em> Multicopper Oxidase:</strong> Catalyzes the oxidation of highly toxic $\text{Cu}^+$ to the less toxic and less bioavailable $\text{Cu}^{2+}$ state.
+                      <strong>CopL Enzymatic Oxidation:</strong> Multicopper oxidase converts cytotoxic cuprous ions (Cu<sup>+</sup>) into less toxic cupric ions (Cu<sup>2+</sup>).
                     </li>
                   </ul>
                 </div>
               </div>
-            </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; gap: 14px;">
-              <div class="metric-banner">
-                <div class="val">&gt; 90%</div>
-                <div class="desc">
-                  <strong>Field Frequency:</strong> Over 90% of commercial <em>Xanthomonas</em> isolates in Florida, Brazil, and Taiwan are resistant to copper bactericides.
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="metric-banner" style="padding: 10px 16px;">
+                  <div class="val" style="font-size: 28px;">&gt; 90%</div>
+                  <div class="desc" style="font-size: 13.5px;"><strong>Field Frequency:</strong> Over 90% of commercial isolates in Florida, Taiwan, and Brazil are copper-tolerant.</div>
                 </div>
-              </div>
 
-              <div class="metric-banner">
-                <div class="val" style="color: var(--accent-amber);">Dual Resist</div>
-                <div class="desc">
-                  <strong>Streptomycin Co-Resistance:</strong> Historical agricultural antibiotic sprays selected for chromosomal <em>rpoB</em> mutations, eliminating antibiotic rescue options.
+                <div class="metric-banner" style="padding: 10px 16px;">
+                  <div class="val" style="color: var(--accent-amber); font-size: 20px;">Dual Resist</div>
+                  <div class="desc" style="font-size: 13.5px;"><strong>Streptomycin Co-Resistance:</strong> Historical antibiotic sprays selected for chromosomal <em>rpoB</em> mutations, eliminating rescue chemistry.</div>
                 </div>
-              </div>
 
-              <div style="background: var(--surface-white); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 18px; font-size: 13.5px; color: #475569;">
-                <strong style="color: var(--accent-red);">Operational Outcome:</strong> Conventional chemical sprays no longer suppress disease during rain-heavy epidemics, necessitating urgent transition to alternative IPM solutions.
+                <div style="background: var(--surface-white); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #475569;">
+                  <strong style="color: var(--accent-red);">Operational Outcome:</strong> Standard copper sprays fail in warm rainy seasons, demanding non-biocidal IPM solutions.
+                </div>
               </div>
             </div>
           </div>
@@ -1088,15 +1460,15 @@
               <div class="card-tag" style="color: var(--primary-green);">Physical &amp; Sanitation</div>
               <div class="card-title">Clean Seed &amp; Rogueing</div>
               <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong>Hot-Water Treatment:</strong> Seed disinfestation at 50°C (25 min for tomato, 30 min for pepper) eradicates internal seedborne inoculum without damaging germination.
+                <ul style="padding-left: 18px; margin: 0; font-size: 14.5px;">
+                  <li style="margin-bottom: 10px;">
+                    <strong>Hot-Water Seed Treatment:</strong> Thermal disinfestation at 50°C (25 min for tomato; 30 min for pepper) completely eradicates seedborne bacteria without reducing germination.
                   </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Nursery Buffer Rogueing:</strong> When a symptomatic seedling is spotted, rogueing all trays within a 1- to 3-meter radius removes latent incubation reservoirs.
+                  <li style="margin-bottom: 10px;">
+                    <strong>Nursery Buffer Rogueing:</strong> When a symptomatic seedling appears, rogueing all trays within a 1- to 3-meter radius eliminates latent incubation foci.
                   </li>
                   <li>
-                    <strong>Drip Irrigation:</strong> Strict elimination of overhead sprinklers prevents splashing.
+                    <strong>Drip Irrigation:</strong> Strict avoidance of overhead sprinklers prevents splash dissemination.
                   </li>
                 </ul>
               </div>
@@ -1106,33 +1478,33 @@
               <div class="card-tag" style="color: var(--accent-blue);">Engineered Nanomaterials</div>
               <div class="card-title">Advanced Nanocomposites</div>
               <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
+                <ul style="padding-left: 18px; margin: 0; font-size: 14.5px;">
+                  <li style="margin-bottom: 10px;">
                     <strong>Core-Shell Copper (CS-Cu):</strong> Silica-core nanoparticles coated with ultra-thin metallic copper deliver sustained ionic release.
                   </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Multivalent Cu (MV-Cu):</strong> Overcomes <em>copLAB</em> resistance mechanisms at <strong>10-fold lower metallic load</strong>.
+                  <li style="margin-bottom: 10px;">
+                    <strong>Multivalent Cu (MV-Cu):</strong> Overcomes <em>copLAB</em> resistance at <strong>10-fold lower active ingredient rates</strong>.
                   </li>
                   <li>
-                    <strong>Zero Phytotoxicity:</strong> Drastically cuts heavy metal soil accumulation while matching or exceeding conventional bactericide efficacy.
+                    <strong>Environmental Safety:</strong> Drastically curtails heavy-metal soil accumulation with zero phytotoxic burn on flowers and leaves.
                   </li>
                 </ul>
               </div>
             </div>
 
             <div class="editorial-card card-accent-purple">
-              <div class="card-tag" style="color: var(--accent-purple);">Biocontrol &amp; Phage Therapy</div>
-              <div class="card-title">Biological Antagonists</div>
+              <div class="card-tag" style="color: var(--accent-purple);">Biological Antagonists</div>
+              <div class="card-title">Biocontrol &amp; Phage Cocktails</div>
               <div class="card-body">
-                <ul style="padding-left: 16px; margin: 0;">
-                  <li style="margin-bottom: 8px;">
-                    <strong><em>Bacillus velezensis</em> GF267:</strong> Eradicates <em>X. perforans</em> in vitro within 5 h; preemptively colonizes phyllosphere niches (NOI 0.8–1.0).
+                <ul style="padding-left: 18px; margin: 0; font-size: 14.5px;">
+                  <li style="margin-bottom: 10px;">
+                    <strong><em>Bacillus velezensis</em> GF267:</strong> Rapidly suppresses <em>X. perforans</em> within 5 h; preempts nutrition space with a high <strong>Niche Overlap Index (NOI: 0.8–1.0)</strong>.
                   </li>
-                  <li style="margin-bottom: 8px;">
-                    <strong>Induced Systemic Resistance:</strong> Cyclic lipopeptides trigger root-mediated ISR, accelerating plant peroxidase and PR bursts.
+                  <li style="margin-bottom: 10px;">
+                    <strong>Induced Systemic Resistance:</strong> Cyclic lipopeptides trigger root-mediated ISR, accelerating peroxidase bursts.
                   </li>
                   <li>
-                    <strong>Lytic Bacteriophages:</strong> Phage cocktails (e.g., KФ1) provide targeted contact kill without selecting for chemical resistance.
+                    <strong>Lytic Bacteriophages:</strong> Phage cocktails (e.g., <strong>KΦ1</strong>) deliver targeted bacterial lysis without selecting for chemical resistance.
                   </li>
                 </ul>
               </div>
@@ -1152,31 +1524,31 @@
     </section>
 
     <!-- ==========================================
-         SLIDE 12: SUMMARY & PEDAGOGICAL TAKEAWAYS
+         SLIDE 12: MULTI-SCALE SYNTHESIS
          ========================================== -->
     <section>
       <div class="slide-container">
         <header class="slide-header">
-          <div class="topic-pill">SYNTHESIS &amp; SUMMARY</div>
+          <div class="topic-pill">SYNTHESIS &amp; PEDAGOGICAL SUMMARY</div>
           <h2>Multi-Scale Synthesis of the BSTP Pathosystem</h2>
-          <p class="subtitle">Key conceptual takeaways bridging epidemiology, molecular biology, and IPM</p>
+          <p class="subtitle">Key conceptual takeaways bridging taxonomy, spatiotemporal dynamics, and sustainable IPM</p>
         </header>
 
         <main class="slide-body">
           <div class="grid-2col">
-            <div class="editorial-card card-accent-green">
-              <div class="card-tag" style="color: var(--primary-green);">1. Etiology &amp; Taxonomy</div>
+            <div class="editorial-card card-accent-green" style="margin-bottom: 14px;">
+              <div class="card-tag" style="color: var(--primary-green);">1. Etiology &amp; Evolution</div>
               <div class="card-title">Four Autonomous Lineages</div>
               <div class="card-body">
-                Bacterial spot is incited by four genetically distinct species (<em>X. euvesicatoria</em>, <em>perforans</em>, <em>vesicatoria</em>, <em>gardneri</em>) exhibiting dynamic niche competition, enzymatic divergence, and continuing host range expansion across tomato and pepper.
+                Bacterial spot is incited by four genetically distinct species (<em>X. euvesicatoria</em>, <em>perforans</em>, <em>vesicatoria</em>, <em>gardneri</em>) exhibiting dynamic niche competition, enzymatic divergence (amylolytic vs. pectolytic), and continuing host range expansion across tomato and pepper.
               </div>
             </div>
 
-            <div class="editorial-card card-accent-blue">
+            <div class="editorial-card card-accent-blue" style="margin-bottom: 14px;">
               <div class="card-tag" style="color: var(--accent-blue);">2. Spatiotemporal Infection Cycle</div>
               <div class="card-title">Biphasic Motility &amp; Egression</div>
               <div class="card-body">
-                Pathogenesis proceeds through an initial swimming and oxidative stress pre-adaptation phase, stomatal docking via the <em>ycgR</em> brake, apoplastic T3SS effector suppression, and late-stage flagellar reactivation driving stomatal egression for secondary dispersal.
+                Pathogenesis proceeds through an initial swimming and oxidative stress pre-adaptation phase, stomatal docking via the <em>ycgR</em> brake, apoplastic T3SS effector suppression, and late-stage flagellar reactivation driving stomatal egression for secondary rain-splash dispersal.
               </div>
             </div>
 
@@ -1199,7 +1571,7 @@
         </main>
 
         <footer class="slide-footer">
-          <div class="citation">Plant Pathology &amp; MPMI Wiki Courseware</div>
+          <div class="citation">Academic Year 2026 • Graduate &amp; Collegiate Courseware</div>
           <div class="page-num">12</div>
         </footer>
       </div>
@@ -1221,18 +1593,18 @@
         </header>
 
         <main class="slide-body">
-          <div class="grid-2col" style="font-size: 13px; line-height: 1.5; color: #334155;">
+          <div class="grid-2col" style="font-size: 12.5px; line-height: 1.5; color: #334155;">
             <div>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Abrahamian, P., et al. (2019).</strong> Dynamics and spread of bacterial spot epidemics in tomato transplants grown for field production. <em>Plant Disease</em>, 105(3), 566–575.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Bernal, E., et al. (2020).</strong> Mapping of quantitative trait loci conferring resistance to bacterial spot in tomato accessions. <em>Phytopathology</em>, 110(6), 1180–1188.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Dutta, B., et al. (2014).</strong> Floral infection and seed transmission of <em>Xanthomonas</em> species in pepper and tomato. <em>Phytopathology</em>, 104(8), 812–820.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Kaur, A., et al. (2026).</strong> Spatiotemporal coordination of virulence, metabolism, and stress responses shapes infection dynamics of <em>Xanthomonas perforans</em>. <em>Applied and Environmental Microbiology</em>, 92(8), e00681-26.
               </p>
               <p>
@@ -1241,19 +1613,19 @@
             </div>
 
             <div>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Marco, G. M., &amp; Stall, R. E. (1983).</strong> Control of bacterial spot of pepper initiated by strains of <em>Xanthomonas campestris</em> pv. <em>vesicatoria</em> that differ in sensitivity to copper. <em>Plant Disease</em>, 67(7), 779–781.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Mates, A. K., et al. (2019).</strong> <em>Bacillus velezensis</em> GF267 as a multi-site antagonist for the control of tomato bacterial spot. <em>Biological Control</em>, 137, 104013.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Osdaghi, E., et al. (2021).</strong> A centenary for bacterial spot of tomato and pepper. <em>Molecular Plant Pathology</em>, 22(9), 1500–1519.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Potnis, N., et al. (2015).</strong> Bacterial spot of tomato and pepper: diverse <em>Xanthomonas</em> species posing a worldwide challenge. <em>Molecular Plant Pathology</em>, 16(9), 907–920.
               </p>
-              <p style="margin-bottom: 12px;">
+              <p style="margin-bottom: 10px;">
                 <strong>Strayer-Scherer, A., et al. (2018).</strong> Advanced copper composites against copper-tolerant <em>Xanthomonas perforans</em>. <em>Phytopathology</em>, 108(2), 196–205.
               </p>
               <p>
@@ -1293,7 +1665,6 @@
 <!-- Reveal.js Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/math/math.min.js"></script>
 
 <script>
   Reveal.initialize({
@@ -1309,7 +1680,7 @@
     height: 720,
     minScale: 0.2,
     maxScale: 2.0,
-    plugins: [ RevealNotes, RevealMath.KaTeX ]
+    plugins: [ RevealNotes ]
   });
 
   // Notes Modal Synchronization
